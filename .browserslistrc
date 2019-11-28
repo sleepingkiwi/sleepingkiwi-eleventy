@@ -1,0 +1,6 @@
+# we have JavaScript/CSS prefix support for the following browsers:
+
+last 1 version,
+not dead,
+> 0.25%
+# IE >= 9 # uncomment if you want to support back to Internet Explorer 9...
