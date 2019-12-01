@@ -1,17 +1,6 @@
-class Test {
-  // or `async data() {`
-  // or `get data() {`
-  data() {
-    return {
-      someContent: 'Joe',
-      layout: 'layouts/base',
-    };
-  }
+const data = {
+  someContent: 'Joe',
+  layout: 'layouts/base',
+};
 
-  render({ someContent, site }) {
-    // will always be "Ted"
-    return `<p>Content is ${someContent} for site: ${site.title}</p>`;
-  }
-}
-
-module.exports = Test;
+module.exports = ({ site, page }) => `<p>Content is ${data.someContent} for site: ${site.title}</p><p>file slug is ${page.fileSlug}</p>`;

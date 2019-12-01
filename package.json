@@ -13,7 +13,14 @@
     "url": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy/issues"
   },
   "homepage": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme",
-  "dependencies": {},
+  "dependencies": {
+    "core-js": "^3.4.0",
+    "netlify-cms": "^2.9.7",
+    "preact": "^10.0.5",
+    "preact-router": "^3.1.0",
+    "prop-types": "^15.7.2",
+    "unfetch": "^4.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
@@ -31,9 +38,31 @@
     "stylelint": "^12.0.0",
     "stylelint-config-standard": "^19.0.0",
     "stylelint-scss": "^3.12.1",
-    "stylelint-selector-bem-pattern": "^2.0.0"
+    "stylelint-selector-bem-pattern": "^2.0.0",
+    "autoprefixer": "^9.6.5",
+    "cssnano": "^4.1.10",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "light-server": "2.6.4"
   },
   "scripts": {
-    "test": "echo \"For goodness sake. Write Some Tests.\" && exit 1"
+    "test": "echo \"For goodness sake. Write Some Tests.\" && exit 1",
+    "clean": "rm -rf dist",
+    "eleventy:default": "npx @11ty/eleventy",
+    "eleventy:watch": "npx @11ty/eleventy --watch",
+    "styles:lint": "stylelint src/styles/**/*.scss --color",
+    "styles": "node-sass src/styles/ --output dist/styles/ --source-map true --source-map-contents true && postcss ./dist/styles/*.css --replace",
+    "scripts:lint": "eslint src/js/**/*.js",
+    "scripts:prod": "npm run scripts:lint && webpack --env.production --progress --color",
+    "scripts:dev": "npm run scripts:lint && webpack --env.production=false --env.development --progress --color ",
+    "scripts:stats": "webpack --profile --json --env.production > compilation-stats.json",
+    "serve": "light-server -c .lightserverrc",
+    "dev": "npm-run-all clean styles:lint styles scripts:dev eleventy:default --parallel eleventy:watch serve --print-label",
+    "dev:debug": "DEBUG=* npm run dev",
+    "start": "npm run dev",
+    "build": "run-s clean styles:lint styles scripts:prod eleventy:default --print-label"
   }
 }
