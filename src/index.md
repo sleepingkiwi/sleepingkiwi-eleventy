@@ -1,0 +1,3 @@
+---
+Layout: 'layouts/base'
+---
