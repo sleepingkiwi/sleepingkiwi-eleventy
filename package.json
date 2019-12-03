@@ -15,42 +15,43 @@
   "homepage": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme",
   "dependencies": {
     "core-js": "^3.4.0",
-    "netlify-cms": "^2.9.7",
     "preact": "^10.0.5",
     "preact-router": "^3.1.0",
     "prop-types": "^15.7.2",
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^0.9.0",
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
+    "autoprefixer": "^9.6.5",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "@11ty/eleventy": "^0.9.0",
+    "cssnano": "^4.1.10",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "light-server": "2.6.4",
+    "node-file-rev": "^1.1.2",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.3",
     "stylelint": "^12.0.0",
     "stylelint-config-standard": "^19.0.0",
     "stylelint-scss": "^3.12.1",
     "stylelint-selector-bem-pattern": "^2.0.0",
-    "autoprefixer": "^9.6.5",
-    "cssnano": "^4.1.10",
-    "node-sass": "^4.12.0",
-    "npm-run-all": "^4.1.5",
-    "postcss-cli": "^6.1.3",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
-    "light-server": "2.6.4"
+    "webpack-cli": "^3.3.9"
   },
   "scripts": {
     "test": "echo \"For goodness sake. Write Some Tests.\" && exit 1",
     "clean": "rm -rf dist",
+    "rev": "node-file-rev dist/main.js dist/main.modules.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
     "eleventy:default": "npx @11ty/eleventy",
     "eleventy:watch": "npx @11ty/eleventy --watch",
     "styles:lint": "stylelint src/styles/**/*.scss --color",
@@ -63,6 +64,6 @@
     "dev": "npm-run-all clean styles:lint styles scripts:dev eleventy:default --parallel eleventy:watch serve --print-label",
     "dev:debug": "DEBUG=* npm run dev",
     "start": "npm run dev",
-    "build": "run-s clean styles:lint styles scripts:prod eleventy:default --print-label"
+    "build": "run-s clean styles:lint styles scripts:prod rev eleventy:default --print-label"
   }
 }

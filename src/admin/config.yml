@@ -63,7 +63,7 @@ collections:
         delete: false
         file: "src/_data/site.json"
         fields:
-          - {label: "Site Name", name: "name", widget: "string"}
+          - {label: "Site Name", name: "title", widget: "string"}
           - {label: "Site Url", name: "url", widget: "string"}
           - {label: "Author Name", name: "authorName", widget: "string"}
           - {label: "Author Email Address", name: "authorEmail", widget: "string"}

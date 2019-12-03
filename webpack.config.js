@@ -14,7 +14,7 @@ module.exports = (env = {}) => {
      *  We actually run through two webpack configs (hence the array of two objects)
      *  look at Serving Modern JS in the readme for more info.
      *  -
-     *  in this first config we use the admin js for netlify and produce a version of our client
+     *  in this first config we produce a version of our client
      *  js that uses our browserslistrc file to detrmine transforms and polyfills
     **/
     {
@@ -28,8 +28,6 @@ module.exports = (env = {}) => {
         main: './src/js/entry.js',
         // an example of a second entry - page specific javascript for the about page
         // about: './src/pages/about.js',
-        // this is the admin entry point - for building netlify-cms
-        admin: './src/admin/admin.js',
       },
 
       output: {
@@ -80,14 +78,6 @@ module.exports = (env = {}) => {
         **/
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development'),
-        }),
-
-        // disable sourcemaps for the admin bundle
-        // because it's like 6mb -_-
-        new webpack.SourceMapDevToolPlugin({
-          filename: 'sourcemaps/[file].map',
-          test: /\.(js|jsx|css)($|\?)/i,
-          exclude: /admin\.js/,
         }),
       ],
 
@@ -158,7 +148,7 @@ module.exports = (env = {}) => {
 
     /** MODULES CONFIG
      *  --------------------------------------------------------------------------------------------
-     *  in this config we ignore the admin js for netlify and produce a version of our client
+     *  in this config we produce a version of our client
      *  js that uses esmodules: true in the babel config to minimise transforms and polyfills
      *  look at Serving Modern JS in the readme for more info.
     **/

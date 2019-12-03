@@ -26,6 +26,8 @@ With this project I've tried to use individual tooling more directly from the sc
 
 __[light-server]__ is very useful in helping to achieve this because it gives me an easy way to watch multiple files, run browser sync and run npm commands on changes.
 
+### Serving more modern JavaScript to browsers that support modules
+
 ### Progressive enhancement
 
 ### Preact for complex/stateful JavaScript
@@ -35,6 +37,10 @@ __[light-server]__ is very useful in helping to achieve this because it gives me
 ## Implementation notes
 
 > Things to remember or gotchas
+
+### Cache busting (adding new files to be cache busted)
+
+We use [node-file-rev] for cache busting, currently we manually specify which files to cache bust in the `npm run rev` script. This is simple but if you generate lots of individual files that need to be cache busted it could be worth looking at automating this a little more.
 
 ### Authentication
 
@@ -63,3 +69,4 @@ As a result, the config for authentication is located largely on [netlify]
 [PostCSS]: https://postcss.org/
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [CSS nano]: https://cssnano.co/
+[node-file-rev]: https://github.com/lukasoppermann/node-file-rev
