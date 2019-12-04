@@ -1,18 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class ="no-js" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{site.title}}</title>
+
+  {#
+    Loading scripts and styles.
+    -
+    See `Serving more modern JavaScript` and `Cache busting` in readme.md
+  #}
+  <link rel="preload" as="script" href="{{rev['/main.modules.js']}}" crossorigin>
   <link rel="stylesheet" href="{{rev['/styles/main.css']}}">
+
+  {#
+    Loading polyfills for older browsers.
+    -
+    make sure this loading method is suitable for the polyfills you want to load.
+    Look at `Loading polyfills` in readme.md for more info
+  #}
+  <script nomodule src="{{rev['/polyfills.js']}}"></script>
+
+  <script>
+    // more modern script for more modern browsers
+    function $loadjs(src, fallback) {
+      s = document.createElement('script');
+      // avoids double loading issues in Safari 10.1 which supports module but not nomodule...
+      if ('noModule' in s) s.type = 'module', s.src = src;
+      else s.src = fallback;
+      document.head.appendChild(s);
+    }
+
+    $loadjs('{{rev['/main.modules.js']}}', '{{rev['/main.js']}}');
+
+    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ');
+  </script>
+
+  <!--
+      interested in how things work? Some of the weird bits are explained at
+      https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme
+  -->
 </head>
 <body>
   {{ content | safe }}
 
   <script>
-    // there is also a modules version in {{rev['/main.modules.js']}}
+    // there is also a modules version in
   </script>
-  <script src="{{rev['/main.js']}}"></script>
+  <script src=""></script>
 </body>
 </html>

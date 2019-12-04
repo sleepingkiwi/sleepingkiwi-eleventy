@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env = {}) => {
   /** isProduction
@@ -12,7 +13,8 @@ module.exports = (env = {}) => {
     /** NOMODULES (browserlist) CONFIG
      *  --------------------------------------------------------------------------------------------
      *  We actually run through two webpack configs (hence the array of two objects)
-     *  look at Serving Modern JS in the readme for more info.
+     *  look at `Serving more modern JavaScript to browsers that support modules`
+     *  in the readme for more info.
      *  -
      *  in this first config we produce a version of our client
      *  js that uses our browserslistrc file to detrmine transforms and polyfills
@@ -28,6 +30,7 @@ module.exports = (env = {}) => {
         main: './src/js/entry.js',
         // an example of a second entry - page specific javascript for the about page
         // about: './src/pages/about.js',
+        polyfills: './src/js/polyfills.js',
       },
 
       output: {
@@ -116,7 +119,7 @@ module.exports = (env = {}) => {
                        *  set this to true if you would like to see what polyfills and transforms
                        *  are being used based on your browserlist
                       **/
-                      debug: false,
+                      debug: isProduction,
                     },
                   ],
                 ],
@@ -149,8 +152,9 @@ module.exports = (env = {}) => {
     /** MODULES CONFIG
      *  --------------------------------------------------------------------------------------------
      *  in this config we produce a version of our client
-     *  js that uses esmodules: true in the babel config to minimise transforms and polyfills
-     *  look at Serving Modern JS in the readme for more info.
+     *  js that uses @babel/preset-modules in the babel config to minimise transforms and polyfills
+     *  look at `Serving more modern JavaScript to browsers that support modules`
+     *  in the readme for more info.
     **/
     {
       /** mode
@@ -180,6 +184,18 @@ module.exports = (env = {}) => {
         return {};
       })(),
 
+      // https://github.com/babel/preset-modules#important-minification
+      optimization: {
+        minimizer: [
+          new TerserPlugin({
+            terserOptions: {
+              ecma: 8,
+              safari10: true,
+            },
+          }),
+        ],
+      },
+
       plugins: [
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development'),
@@ -201,15 +217,16 @@ module.exports = (env = {}) => {
               loader: 'babel-loader',
               options: {
                 presets: [
+                  // https://github.com/babel/preset-modules
                   [
-                    '@babel/preset-env',
+                    '@babel/preset-modules',
                     {
-                      useBuiltIns: 'usage',
-                      corejs: '3.4',
-                      debug: false,
-                      targets: {
-                        esmodules: true,
-                      },
+                      // set loose false if you need function.prototype.name in IE...
+                      // https://github.com/babel/preset-modules#options
+                      loose: true,
+                      // useBuiltIns: 'usage',
+                      // corejs: '3.4',
+                      // debug: isProduction,
                     },
                   ],
                 ],

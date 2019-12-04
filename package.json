@@ -25,6 +25,7 @@
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
+    "@babel/preset-modules": "^0.1.1",
     "autoprefixer": "^9.6.5",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -45,13 +46,14 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-scss": "^3.12.1",
     "stylelint-selector-bem-pattern": "^2.0.0",
+    "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
   },
   "scripts": {
     "test": "echo \"For goodness sake. Write Some Tests.\" && exit 1",
     "clean": "rm -rf dist",
-    "rev": "node-file-rev dist/main.js dist/main.modules.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
+    "rev": "node-file-rev dist/main.js dist/main.modules.js dist/polyfills.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
     "eleventy:default": "npx @11ty/eleventy",
     "eleventy:watch": "npx @11ty/eleventy --watch",
     "styles:lint": "stylelint src/styles/**/*.scss --color",

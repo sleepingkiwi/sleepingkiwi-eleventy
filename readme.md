@@ -28,6 +28,26 @@ __[light-server]__ is very useful in helping to achieve this because it gives me
 
 ### Serving more modern JavaScript to browsers that support modules
 
+This is currently a little complex but will hopefully become simpler over time!
+
+Serving more modern code (less babel transformations) to modern browsers by targeting browsers that support [modules](https://v8.dev/features/modules) (browser support is a [very good 88%+ of traffic](https://caniuse.com/#feat=es6-module)) is widely recommend and gives big file size savings to modern browsers. However there are several implementation details that are tricky! [Modern Script Loading by Jason Miller](https://jasonformat.com/modern-script-loading/) is probably the best reference to the multiple problems of serving code in this way.
+
+#### Building two bundles
+
+This is handled by our webpack config. We output two configs, one which uses [@babel/preset-modules](https://github.com/babel/preset-modules) for modern browsers and the other which uses
+
+#### Serving the JavaScript to the right browsers
+
+We are currently using a bit of inline JavaScript to detect support and serve the correct file. Additionally we use preload tags to preload the modern script (older script is not preloaded). This method is discussed in more length [on the next.js repo](https://github.com/zeit/next.js/issues/7563#issuecomment-509823285).
+
+If we decide not to use this inline JavaScript then *Option 3* from [Modern Script Loading](https://jasonformat.com/modern-script-loading/) would be a strong candidate for an alternative. [It's the method preact-cli use](https://github.com/preactjs/preact-cli/blob/master/packages/cli/lib/resources/body-end.ejs)
+
+### Cutting the mustard or ignoring nomodule JavaScript
+
+There's an argument that if our no JavaScript version of the site is strong enough then we can serve no JavaScript at all to browsers that don't support a basic subset of features. We could potentially *only* serve the modern JS and just let older browsers use the JavaAScript free version of the site or we could cut the mustard like the BBC did in the past by adding feature detection to our inline JavaScript that writes out the script tags.
+
+We can determine what features to detect or whether to serve the fall-back JavaScript on a per-project basis.
+
 ### Progressive enhancement
 
 ### Preact for complex/stateful JavaScript
@@ -41,6 +61,14 @@ __[light-server]__ is very useful in helping to achieve this because it gives me
 ### Cache busting (adding new files to be cache busted)
 
 We use [node-file-rev] for cache busting, currently we manually specify which files to cache bust in the `npm run rev` script. This is simple but if you generate lots of individual files that need to be cache busted it could be worth looking at automating this a little more.
+
+### Loading polyfills
+
+We load a [small fetch polyfill](https://github.com/developit/unfetch) in the head of `_includes/layouts/base.njk`. If you don't need it, delete it!
+
+Most other required polyfills are bundled with our code by Core JS thanks to the Babel `preset-env` but fetch [isn't polyfilled by Core JS](https://github.com/zloirock/core-js#missing-polyfills)
+
+Because all browsers that support ES modules also support fetch we use `nomodule` to avoid loading this script when it isn't required. _If you want to load other polyfills you should check whether this method of loading is suitable_
 
 ### Authentication
 
