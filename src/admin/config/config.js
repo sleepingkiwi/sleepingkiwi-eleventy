@@ -58,6 +58,13 @@ const config = {
           create: false,
           fields: [
             {
+              label: 'Home Page',
+              name: 'homePageInstructions',
+              widget: 'instructions',
+              instructions: 'The home page has a fixed structure but you can customise the content in each block here.',
+              required: false,
+            },
+            {
               label: 'Layout',
               name: 'layout',
               widget: 'hidden',
@@ -99,7 +106,15 @@ const config = {
       slug: '{{slug}}',
       preview_path: 'pages/{{slug}}',
       create: true,
+      description: 'Empty pages with no fixed content. You can add whatever you want by stacking content blocks.',
       fields: [
+        {
+          label: 'Custom Page',
+          name: 'genericPageInstructions',
+          widget: 'instructions',
+          instructions: 'Use the content blocks below to add content to this page.',
+          required: false,
+        },
         {
           label: 'Layout',
           name: 'layout',
@@ -162,6 +177,13 @@ const config = {
           file: 'src/_data/social.json',
           fields: [
             {
+              label: 'Details of your social media accounts',
+              name: 'socialInstructions',
+              widget: 'instructions',
+              instructions: 'These are all optional. \nIncluding your details for a service will enable the social icon for that service in the site footer.',
+              required: false,
+            },
+            {
               label: 'Your Twitter Handle',
               name: 'twitter',
               widget: 'string',
@@ -183,6 +205,13 @@ const config = {
           delete: false,
           file: 'src/_data/navigation--primary.json',
           fields: [
+            {
+              label: 'Links for the primary navigation',
+              name: 'navInstructions',
+              widget: 'instructions',
+              instructions: 'Add links for site navigation.',
+              required: false,
+            },
             {
               label: 'Items',
               name: 'items',

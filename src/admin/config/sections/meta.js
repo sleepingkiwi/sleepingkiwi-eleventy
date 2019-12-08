@@ -7,10 +7,10 @@
 
 const metaConfig = (forGlobal) => [
   {
-    label: '',
+    label: `${forGlobal ? 'Site' : 'Page'} details, SEO, Social sharing`,
     name: 'metaInstructions',
     widget: 'instructions',
-    instructions: forGlobal ? 'These are the default settings which will be used on every page that does not set it\'s own values for these fields.' : 'These fields are all optional but it is recommended that you fill them in where possible. Any field you leave blank will fallback to the values set in the Global Settings',
+    instructions: forGlobal ? 'Default settings for SEO and social sharing. \nThese will be used on any page that does not provide it\'s own SEO/Social details.' : 'These fields are all optional but it is recommended that you fill them in where possible. \nAny field you leave blank will fallback to the values set in the Global Settings',
     required: false,
   },
   {
@@ -35,7 +35,7 @@ const metaConfig = (forGlobal) => [
     required: false,
   },
   {
-    label: `${forGlobal ? 'site' : 'page'} title`,
+    label: `Canonical URL`,
     name: 'canonical',
     widget: 'string',
     hint: '🛑 You probably don\'t need to set this. You should only set this if the canonical URL of this page is different to it\'s permalink.',
