@@ -1,5 +1,7 @@
 // TODO: break this into modules...
 
+import { metaConfigPage, metaConfigGlobal } from './sections/meta';
+
 const config = {
   // ref https://www.netlifycms.org/docs/beta-features/#manual-initialization
   load_config_file: false,
@@ -74,41 +76,12 @@ const config = {
               required: true,
             },
             {
-              label: 'SEO Meta Title',
-              name: 'metaTitle',
-              widget: 'string',
-              required: false,
-              hint: 'Default title which shows in the browser tab/search engines. You can overwrite this individually for each page.',
-            },
-            {
-              label: 'SEO Meta Description',
-              name: 'metaDesc',
-              widget: 'string',
-              required: false,
-            },
-            {
-              label: 'Post Feed Heading',
-              name: 'postsHeading',
-              widget: 'string',
-              default: 'Latest posts',
-            },
-            {
-              label: 'Archive Link Text',
-              name: 'archiveButtonText',
-              widget: 'string',
-              default: 'See all posts',
-            },
-            {
-              label: 'Social Image',
-              name: 'socialImage',
-              widget: 'image',
-              required: false,
-            },
-            {
               label: 'Body',
               name: 'body',
               widget: 'markdown',
             },
+            // include all of the social & meta options at the end
+            ...metaConfigPage,
           ], // fields
         }, // END HOME PAGE
       ], // files
@@ -145,28 +118,12 @@ const config = {
           required: false,
         },
         {
-          label: 'SEO Meta Title',
-          name: 'metaTitle',
-          widget: 'string',
-          required: false,
-        },
-        {
-          label: 'SEO Meta Description',
-          name: 'metaDesc',
-          widget: 'string',
-          required: false,
-        },
-        {
-          label: 'Social Image',
-          name: 'socialImage',
-          widget: 'image',
-          required: false,
-        },
-        {
           label: 'Body',
           name: 'body',
           widget: 'markdown',
         },
+        // include all of the social & meta options at the end
+        ...metaConfigPage,
       ], // fields
     }, // END CUSTOM PAGES
 
@@ -179,75 +136,38 @@ const config = {
     {
       label: 'Global Settings',
       name: 'globals',
+      description: 'Settings that apply globally or that do not belong to individual pages',
       files: [
-        /** Site Data
+        /** Meta Data, SEO, Social defaults
          *  ----------------------------------------------------------------------------------------
-         *  general site info and defaults for social media info
+         *  some of these are required. All can be overwritten by individual templates
         **/
         {
-          label: 'Site Data',
-          name: 'site_data',
+          label: 'Site details, SEO, Social sharing defaults',
+          name: 'meta',
           delete: false,
-          file: 'src/_data/site.json',
+          file: 'src/_data/meta.json',
+          fields: [
+            ...metaConfigGlobal,
+          ],
+        },
+        /** Social Accounts
+         *  ----------------------------------------------------------------------------------------
+         *  For using wherever we end up using them
+        **/
+        {
+          label: 'Social Media',
+          name: 'social_media',
+          delete: false,
+          file: 'src/_data/social.json',
           fields: [
             {
-              label: 'Site Name',
-              name: 'title',
-              widget: 'string',
-            },
-            {
-              label: 'Site Url',
-              name: 'url',
-              widget: 'string',
-            },
-            {
-              label: 'Author Name',
-              name: 'authorName',
-              widget: 'string',
-            },
-            {
-              label: 'Author Email Address',
-              name: 'authorEmail',
-              widget: 'string',
-            },
-            {
-              label: 'Author Twitter Handle',
-              name: 'authorHandle',
+              label: 'Your Twitter Handle',
+              name: 'twitter',
               widget: 'string',
               required: false,
-            },
-            {
-              label: 'Footer Short Description',
-              name: 'shortDesc',
-              widget: 'string',
-            },
-            {
-              label: 'Maximum Posts Per Page',
-              name: 'maxPostsPerPage',
-              widget: 'number',
-              default: 5,
-            },
-            {
-              label: 'Show Theme Credit',
-              name: 'showThemeCredit',
-              widget: 'boolean',
-              default: true,
-            },
-            {
-              label: 'Enable Third Party Comments Area',
-              name: 'enableThirdPartyComments',
-              widget: 'boolean',
-              default: false,
-            },
-            {
-              label: 'Payment Pointer (Web Monetization: https://bit.ly/2kTRI1b)',
-              name: 'paymentPointer',
-              widget: 'string',
-            },
-            {
-              label: 'Favicon path (EG: /images/favicon.png)',
-              name: 'faviconPath',
-              widget: 'string',
+              hint: 'does not need to include the @ symbol',
+              pattern: ['^[^@].+', 'please do not include the preceding @ symbol'],
             },
           ], // fields
         }, // END SITE DATA

@@ -10,7 +10,7 @@ permalink: '/admin/index.html'
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Include the script that builds the page and powers Netlify CMS -->
-  <script type="module" src="{{rev['/admin.modules.js'] if rev else '/admin.modules.js'}}"></script>
+  <!-- Include the script that builds the page and powers Netlify CMS. -->
+  <script type="module" src="{{rev['/admin.modules.js'] or '/admin.modules.js'}}"></script>
 </body>
 </html>

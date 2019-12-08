@@ -1,3 +1,4 @@
 ---
-Layout: 'layouts/base'
+layout: layouts/home
 ---
+# hi

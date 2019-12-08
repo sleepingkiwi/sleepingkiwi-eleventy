@@ -55,7 +55,7 @@
   "scripts": {
     "test": "echo \"For goodness sake. Write Some Tests.\" && exit 1",
     "clean": "rm -rf dist && rm -f src/_data/rev.json",
-    "rev": "node-file-rev dist/admin.js dist/main.js dist/main.modules.js dist/polyfills.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
+    "rev": "node-file-rev dist/admin.modules.js dist/main.js dist/main.modules.js dist/polyfills.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
     "eleventy:default": "npx @11ty/eleventy",
     "eleventy:watch": "npx @11ty/eleventy --watch",
     "styles:lint": "stylelint src/styles/**/*.scss --color",

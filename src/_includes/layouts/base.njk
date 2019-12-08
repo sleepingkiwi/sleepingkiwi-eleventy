@@ -4,15 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{site.title}}</title>
+
+  {#
+    meta data, SEO and social
+    -
+    these pull from the meta.json in _data but are overwritten by frontmatter in templates
+    if the same key exists
+  #}
+  <title>{{meta.title}}</title>
+  <meta name="title" content="{{meta.title}}">
+  <meta property="og:title" content="{{meta.title}}">
+  <meta property="twitter:title" content="{{meta.title}}">
+
+  <meta name="description" content="{{meta.description}}">
+  <meta property="og:description" content="{{meta.description}}">
+  <meta property="twitter:description" content="{{meta.description}}">
+
+  <link rel="canonical" href="{{meta.canonical or page.url}}">
+  <meta property="og:url" content="{{meta.canonical or page.url}}">
+  <meta property="twitter:url" content="{{meta.canonical or page.url}}">
+
+  <meta property="og:type" content="website">
+  {# <meta property="twitter:card" content="{{meta.twitterCard or 'summary_large_image'}}"> #}
+
+  {% if meta.socialImage %}
+    <meta property="og:image" content="{{meta.socialImage.src}}">
+    <meta property="twitter:image" content="{{meta.socialImage.src}}">
+    <meta property="og:image:width" content="{{meta.socialImage.width}}" />
+    <meta property="og:image:height" content="{{meta.socialImage.height}}" />
+    <meta property="og:image:alt" content="{{meta.socialImageAlt or ''}}" />
+  {% endif %}
+
 
   {#
     Loading scripts and styles.
     -
     See `Serving more modern JavaScript` and `Cache busting` in readme.md
   #}
-  <link rel="preload" as="script" href="{{rev['/main.modules.js'] if rev else '/main.modules.js'}}" crossorigin>
-  <link rel="stylesheet" href="{{rev['/styles/main.css'] if rev else '/styles/main.css'}}">
+  <link rel="preload" as="script" href="{{rev['/main.modules.js'] or '/main.modules.js'}}" crossorigin>
+  <link rel="stylesheet" href="{{rev['/styles/main.css'] or '/styles/main.css'}}">
 
   {#
     Loading polyfills for older browsers.
@@ -20,7 +50,7 @@
     make sure this loading method is suitable for the polyfills you want to load.
     Look at `Loading polyfills` in readme.md for more info
   #}
-  <script nomodule src="{{rev['/polyfills.js'] if rev else '/polyfills.js'}}"></script>
+  <script nomodule src="{{rev['/polyfills.js'] or '/polyfills.js'}}"></script>
 
   <script>
     // more modern script for more modern browsers
@@ -32,7 +62,7 @@
       document.head.appendChild(s);
     }
 
-    $loadjs('{{rev['/main.modules.js'] if rev else '/main.modules.js'}}', '{{rev['/main.js'] if rev else '/main.js'}}');
+    $loadjs('{{rev['/main.modules.js'] or '/main.modules.js'}}', '{{rev['/main.js'] or '/main.js'}}');
 
     document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ');
   </script>
@@ -44,10 +74,5 @@
 </head>
 <body>
   {{ content | safe }}
-
-  <script>
-    // there is also a modules version in
-  </script>
-  <script src=""></script>
 </body>
 </html>
