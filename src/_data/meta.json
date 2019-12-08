@@ -1,3 +1,4 @@
 {
-  "title": "sleepingkiwi eleventy"
+  "title": "sleepingkiwi eleventy",
+  "description": "A starting point for building static sites with eleventy using netlify CMS for content"
 }
