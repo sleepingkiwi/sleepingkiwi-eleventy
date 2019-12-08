@@ -163,7 +163,10 @@ module.exports = (env = {}) => {
       **/
       mode: isProduction ? 'production' : 'development',
 
-      entry: { main: './src/js/entry.js' },
+      entry: {
+        main: './src/js/entry.js',
+        admin: './src/admin/admin.js',
+      },
 
       output: {
         path: path.resolve(__dirname, 'dist'),
@@ -212,7 +215,9 @@ module.exports = (env = {}) => {
         rules: [
           {
             test: /\.m?js$/,
-            exclude: /(node_modules|bower_components)/,
+            exclude: [
+              /(node_modules|bower_components)/,
+            ],
             use: {
               loader: 'babel-loader',
               options: {

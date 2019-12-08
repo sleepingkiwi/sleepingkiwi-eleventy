@@ -15,6 +15,7 @@
   "homepage": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme",
   "dependencies": {
     "core-js": "^3.4.0",
+    "netlify-cms": "^2.9.7",
     "preact": "^10.0.5",
     "preact-router": "^3.1.0",
     "prop-types": "^15.7.2",
@@ -52,8 +53,8 @@
   },
   "scripts": {
     "test": "echo \"For goodness sake. Write Some Tests.\" && exit 1",
-    "clean": "rm -rf dist",
-    "rev": "node-file-rev dist/main.js dist/main.modules.js dist/polyfills.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
+    "clean": "rm -rf dist && rm -f src/_data/rev.json",
+    "rev": "node-file-rev dist/admin.js dist/main.js dist/main.modules.js dist/polyfills.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
     "eleventy:default": "npx @11ty/eleventy",
     "eleventy:watch": "npx @11ty/eleventy --watch",
     "styles:lint": "stylelint src/styles/**/*.scss --color",

@@ -1,50 +1,55 @@
-# refs: https://www.netlifycms.org/docs/configuration-options/
-# https://github.com/netlify/netlify-cms/blob/master/example/config.yml
-{
+// TODO: break this into modules...
+
+const config = {
+  // ref https://www.netlifycms.org/docs/beta-features/#manual-initialization
+  load_config_file: false,
+  // refs: https://www.netlifycms.org/docs/configuration-options/
+  // https://github.com/netlify/netlify-cms/blob/master/example/config.yml
   backend: {
     name: 'git-gateway',
     branch: 'master',
   },
 
-  # logo_url: https://your-site.com/images/logo.svg,
+  // logo_url: https://your-site.com/images/logo.svg,
 
   site_url: 'https://sleeping.kiwi/sleepingkiwi-eleventy',
   display_url: 'https://sleeping.kiwi/sleepingkiwi-eleventy',
 
-  # Media files will be stored in the repo under this dir
+  // Media files will be stored in the repo under this dir
   media_folder: 'src/images',
-  # the built site has an uploads directory at root
+  // the built site has an uploads directory at root
   public_folder: 'images',
 
-  # media_library:
-  #   name: cloudinary
-  #   output_filename_only: false # we actually want this to be true but it breaks previews.
-  #   # see: https://github.com/netlify/netlify-cms/issues/1934
-  #   # our workaround: we split the string in preact.
-  #   config:
-  #     cloud_name: sleepingkiwi
-  #     api_key: 673936733892368
+  // media_library:
+  //   name: cloudinary
+  //   output_filename_only: false // we actually want this to be true but it breaks previews.
+  //   // see: https://github.com/netlify/netlify-cms/issues/1934
+  //   // our workaround: we split the string in preact.
+  //   config:
+  //     cloud_name: sleepingkiwi
+  //     api_key: 673936733892368
 
-  # optional, enables publishing workflow
+  // optional, enables publishing workflow
   publish_mode: 'editorial_workflow',
 
-  # All of our site content!
+  // All of our site content!
   collections: [
-    ## FIXED PAGES
-    #  -
-    #  These are the pages required by the site that require config
-    #  they cannot be deleted in the CMS
-    ##
+    /** Fixed Pages
+     *  --------------------------------------------------------------------------------------------
+     *  These are the pages required by the site that require config
+     *  they cannot be deleted in the CMS
+    **/
     {
       name: 'pages',
       label: 'Fixed Pages',
       description: 'These are the pages required by the site that you can configure',
       files: [
-        ## HOME PAGE
+        /** Home Page
+         *  ----------------------------------------------------------------------------------------
+        **/
         {
           name: 'home',
           label: 'Homepage',
-          description: 'This is the home page!',
           delete: false,
           file: 'src/index.md',
           slug: '{{slug}}',
@@ -60,6 +65,13 @@
               label: 'Title',
               name: 'title',
               widget: 'string',
+            },
+            {
+              label: 'Advanced image test',
+              name: 'advancedImage',
+              widget: 'extraImage',
+              hint: 'testing functionality...',
+              required: false,
             },
             {
               label: 'SEO Meta Title',
@@ -97,16 +109,16 @@
               name: 'body',
               widget: 'markdown',
             },
-          ], # fields
-        }, # END HOME PAGE
-      ], # files
-    }, # END FIXED PAGES
+          ], // fields
+        }, // END HOME PAGE
+      ], // files
+    }, // END FIXED PAGES
 
 
-    ## CUSTOM PAGES
-    #  -
-    #  These are generic pages that can be added by CMS users
-    ##
+    /** Custom Pages
+     *  --------------------------------------------------------------------------------------------
+     *  These are generic pages that can be added by CMS users
+    **/
     {
       name: 'generic_pages',
       label: 'Custom Pages',
@@ -155,23 +167,23 @@
           name: 'body',
           widget: 'markdown',
         },
-      ], # fields
-    }, # END CUSTOM PAGES
+      ], // fields
+    }, // END CUSTOM PAGES
 
 
-    ## GLOBAL SETTINGS
-    #  -
-    #  settings that apply globally or to large areas of the site.
-    #  usually these are written as json to the _data dir
-    ##
+    /** Global Settings
+     *  --------------------------------------------------------------------------------------------
+     *  settings that apply globally or to large areas of the site.
+     *  usually these are written as json to the _data dir
+    **/
     {
       label: 'Global Settings',
       name: 'globals',
       files: [
-        ## SITE DATA
-        #  -
-        #  general site info and defaults for social media info
-        ##
+        /** Site Data
+         *  ----------------------------------------------------------------------------------------
+         *  general site info and defaults for social media info
+        **/
         {
           label: 'Site Data',
           name: 'site_data',
@@ -237,43 +249,48 @@
               name: 'faviconPath',
               widget: 'string',
             },
-          ], # fields
-        }, # END SITE DATA
+          ], // fields
+        }, // END SITE DATA
 
-        ## HEADER NAV
-        #  -
-        #  add content links to the header.
-        ##
+
+        /** Header Nav
+         *  ----------------------------------------------------------------------------------------
+         *  add content links to the header.
+        **/
         {
           label: 'Header Navigation',
           name: 'nav',
           delete: false,
           file: 'src/_data/navigation--primary.json',
           fields: [
-            label: 'Items',
-            name: 'items',
-            widget: 'list',
-            fields: [
-              {
-                label: 'Text',
-                name: 'text',
-                widget: 'string',
-              },
-              {
-                label: 'Url',
-                name: 'url',
-                widget: 'string',
-              },
-              {
-                label: 'Is url to external site?',
-                name: 'external',
-                widget: 'boolean',
-                required: false,
-              },
-            ], # fields
-          ], # fields
-        }, # END HEADER NAV
-      ], # files
-    }, # END GLOBAL SETTINGS
-  ], # collections
-}
+            {
+              label: 'Items',
+              name: 'items',
+              widget: 'list',
+              fields: [
+                {
+                  label: 'Text',
+                  name: 'text',
+                  widget: 'string',
+                },
+                {
+                  label: 'Url',
+                  name: 'url',
+                  widget: 'string',
+                },
+                {
+                  label: 'Is url to external site?',
+                  name: 'external',
+                  widget: 'boolean',
+                  required: false,
+                },
+              ], // fields
+            },
+          ], // fields
+        }, // END HEADER NAV
+      ], // files
+    }, // END GLOBAL SETTINGS
+  ], // collections
+};
+
+export default config;

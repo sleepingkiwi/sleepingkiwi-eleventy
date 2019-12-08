@@ -11,8 +11,8 @@
     -
     See `Serving more modern JavaScript` and `Cache busting` in readme.md
   #}
-  <link rel="preload" as="script" href="{{rev['/main.modules.js']}}" crossorigin>
-  <link rel="stylesheet" href="{{rev['/styles/main.css']}}">
+  <link rel="preload" as="script" href="{{rev['/main.modules.js'] if rev else '/main.modules.js'}}" crossorigin>
+  <link rel="stylesheet" href="{{rev['/styles/main.css'] if rev else '/styles/main.css'}}">
 
   {#
     Loading polyfills for older browsers.
@@ -20,7 +20,7 @@
     make sure this loading method is suitable for the polyfills you want to load.
     Look at `Loading polyfills` in readme.md for more info
   #}
-  <script nomodule src="{{rev['/polyfills.js']}}"></script>
+  <script nomodule src="{{rev['/polyfills.js'] if rev else '/polyfills.js'}}"></script>
 
   <script>
     // more modern script for more modern browsers
@@ -32,7 +32,7 @@
       document.head.appendChild(s);
     }
 
-    $loadjs('{{rev['/main.modules.js']}}', '{{rev['/main.js']}}');
+    $loadjs('{{rev['/main.modules.js'] if rev else '/main.modules.js'}}', '{{rev['/main.js'] if rev else '/main.js'}}');
 
     document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ');
   </script>

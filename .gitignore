@@ -65,3 +65,4 @@ node_modules
 /todo.md
 .vscode
 compilation-stats.json
+/src/_data/rev.json
