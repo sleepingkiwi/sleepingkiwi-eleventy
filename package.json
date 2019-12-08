@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme",
   "dependencies": {
+    "colorthief": "^2.3.0",
     "core-js": "^3.4.0",
     "netlify-cms": "^2.9.7",
     "preact": "^10.0.5",

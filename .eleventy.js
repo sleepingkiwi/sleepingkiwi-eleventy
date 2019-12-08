@@ -1,7 +1,6 @@
 module.exports = (eleventyConfig) => {
-  // eleventyConfig.addPassthroughCopy('src/images')
-
-  eleventyConfig.addPassthroughCopy('src/admin/config.yml');
+  // eleventyConfig.addPassthroughCopy('src/admin/config.yml');
+  eleventyConfig.addPassthroughCopy('src/images');
 
   return {
     dir: {

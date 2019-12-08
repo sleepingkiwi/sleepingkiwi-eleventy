@@ -1,4 +1,4 @@
-/** ExtraImage control component
+/** ExtraImage control component - like a normal image but so extra!
  *  ------------------------------------------------------------------------------------------------
  *  we're using the global createClass exposed by netlify-cms so we don't have to import our
  *  own version of React...
@@ -25,11 +25,40 @@
 /* eslint-disable object-shorthand */
 
 
+import ColorThief from 'colorthief/dist/color-thief.umd';
+
+const colorThief = new ColorThief();
+
+
 const ExtraImageControl = window.createClass({
+  imageLoadPromise: Promise.resolve(),
+
   handleChange: function handleChange(src) {
-    console.log('got a change');
-    console.log(src);
-    this.props.onChange(src);
+    if (src === '') {
+      this.props.onChange({
+        src,
+        width: null,
+        height: null,
+        dominant: null,
+      });
+      this.imageLoadPromise = Promise.resolve();
+      return;
+    }
+
+    this.imageLoadPromise = new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        this.props.onChange({
+          src,
+          width: img.width,
+          height: img.height,
+          dominant: colorThief.getColor(img),
+        });
+        resolve('image loaded');
+      };
+      img.onerror = () => reject(Error('could not load image'));
+      img.src = src;
+    });
   },
 
   // we need to provide our own shouldComponentUpdate because the default Widget one does
@@ -45,35 +74,68 @@ const ExtraImageControl = window.createClass({
   },
 
   isValid: function isValid() {
-    // Do internal validation
-    console.log('validating');
-    console.log(this.props);
-    return { error: { message: 'Your error message.' } };
+    return this.imageLoadPromise;
   },
 
   render: function render() {
+    const styles = {
+      details: {
+        display: this.props.value && this.props.value.src !== '' ? 'block' : 'none',
+        padding: '16px 16px 0',
+        margin: '0',
+        // backgroundColor: 'rgb(223, 223, 227)',
+        borderRadius: '5px',
+        fontSize: '0.8rem',
+        lineHeight: 1.5,
+        color: '#888',
+      },
+      dominant: {
+        display: 'inline-block',
+        verticalAlign: 'middle',
+        height: '0.8rem',
+        width: '0.8rem',
+        padding: '0.2rem',
+        borderRadius: '100px',
+        backgroundColor: this.props.value && this.props.value.dominant ? `rgb(${this.props.value.dominant[0]}, ${this.props.value.dominant[1]}, ${this.props.value.dominant[2]})` : '#f7f7f7',
+      },
+    };
+
+    // get the standard image widget
     const imageWidget = window.CMS.getWidget('image').control;
+
+    // render everything
     return window.h(
       'div',
       {
-        className: 'joke-div',
+        className: this.props.classNameWrapper,
       },
       [
         window.h(
           imageWidget,
           {
             ...this.props,
+            // we only allow single image uploads for this component currently
+            field: this.props.field.set('allow_multiple', false),
             // we use the image component almost as is, but capture it's onChange value
             onChange: this.handleChange,
             // because we hijacked onChange and our value contains too much info
             // we also need to update the value ourselves!
-            value: this.props.value,
+            value: this.props.value ? this.props.value.src || '' : '',
           },
         ),
         window.h(
           'p',
-          {},
-          this.props.value ? this.props.value.length : 'unset',
+          {
+            style: styles.details,
+          },
+          [
+            window.h('strong', {}, 'Dimensions: '),
+            window.h('span', {}, this.props.value ? `${this.props.value.width || '0'}px by ${this.props.value.height || '0'}px` : ''),
+            window.h('br'),
+            window.h('strong', {}, 'Dominant Colour: '),
+            window.h('span', { style: styles.dominant }, ''),
+            window.h('small', {}, this.props.value ? ` rgb(${this.props.value.dominant[0]}, ${this.props.value.dominant[1]}, ${this.props.value.dominant[2]})` : ''),
+          ],
         ),
       ],
     );

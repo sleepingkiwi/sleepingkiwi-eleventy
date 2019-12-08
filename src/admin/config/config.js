@@ -71,7 +71,7 @@ const config = {
               name: 'advancedImage',
               widget: 'extraImage',
               hint: 'testing functionality...',
-              required: false,
+              required: true,
             },
             {
               label: 'SEO Meta Title',
