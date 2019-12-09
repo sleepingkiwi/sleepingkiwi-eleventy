@@ -1,7 +1,7 @@
 {
   "name": "sleepingkiwi-eleventy",
   "version": "1.0.0",
-  "description": "figuring out eleventy and assessing feasibility for several static + CMS projects",
+  "description": "A starting point for building static sites with eleventy using netlify CMS for content",
   "keywords": [],
   "author": "sleepingkiwi",
   "license": "UNLICENSED",

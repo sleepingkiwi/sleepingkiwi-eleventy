@@ -31,7 +31,8 @@ const colorThief = new ColorThief();
 
 
 const ExtraImageControl = window.createClass({
-  imageLoadPromise: Promise.resolve(),
+  imageLoadPromise: false,
+  imageLoaded: false,
 
   handleChange: function handleChange(src) {
     if (src === '') {
@@ -41,10 +42,12 @@ const ExtraImageControl = window.createClass({
         height: null,
         dominant: null,
       });
-      this.imageLoadPromise = Promise.resolve();
+      this.imageLoadPromise = false;
+      this.imageLoaded = false;
       return;
     }
 
+    this.imageLoaded = false;
     this.imageLoadPromise = new Promise((resolve, reject) => {
       const img = new Image();
       img.onload = () => {
@@ -54,7 +57,8 @@ const ExtraImageControl = window.createClass({
           height: img.height,
           dominant: colorThief.getColor(img),
         });
-        resolve('image loaded');
+        resolve(true);
+        this.imageLoaded = true;
       };
       img.onerror = () => reject(Error('could not load image'));
       img.src = src;
@@ -74,13 +78,18 @@ const ExtraImageControl = window.createClass({
   },
 
   isValid: function isValid() {
-    return this.imageLoadPromise;
+    return this.imageLoaded || imageLoadPromise;
   },
 
   render: function render() {
+    // value is sometimes passed as an immutable map - in that case we want to convert it to
+    // a regular object before we use it...
+    const value = typeof this.props.value.toJS === 'function'
+      ? this.props.value.toJS()
+      : this.props.value;
     const styles = {
       details: {
-        display: this.props.value && this.props.value.src !== '' ? 'block' : 'none',
+        display: value && value.src !== '' ? 'block' : 'none',
         padding: '16px 16px 0',
         margin: '0',
         // backgroundColor: 'rgb(223, 223, 227)',
@@ -96,7 +105,7 @@ const ExtraImageControl = window.createClass({
         width: '0.8rem',
         padding: '0.2rem',
         borderRadius: '100px',
-        backgroundColor: this.props.value && this.props.value.dominant ? `rgb(${this.props.value.dominant[0]}, ${this.props.value.dominant[1]}, ${this.props.value.dominant[2]})` : '#f7f7f7',
+        backgroundColor: value && value.dominant ? `rgb(${value.dominant[0]}, ${value.dominant[1]}, ${value.dominant[2]})` : '#f7f7f7',
       },
     };
 
@@ -120,7 +129,7 @@ const ExtraImageControl = window.createClass({
             onChange: this.handleChange,
             // because we hijacked onChange and our value contains too much info
             // we also need to update the value ourselves!
-            value: this.props.value ? this.props.value.src || '' : '',
+            value: value ? value.src || '' : '',
           },
         ),
         window.h(
@@ -130,11 +139,11 @@ const ExtraImageControl = window.createClass({
           },
           [
             window.h('strong', {}, 'Dimensions: '),
-            window.h('span', {}, this.props.value ? `${this.props.value.width || '0'}px by ${this.props.value.height || '0'}px` : ''),
+            window.h('span', {}, value ? `${value.width || '0'}px by ${value.height || '0'}px` : ''),
             window.h('br'),
             window.h('strong', {}, 'Dominant Colour: '),
             window.h('span', { style: styles.dominant }, ''),
-            window.h('small', {}, this.props.value ? ` rgb(${this.props.value.dominant[0]}, ${this.props.value.dominant[1]}, ${this.props.value.dominant[2]})` : ''),
+            window.h('small', {}, value && value.dominant ? ` rgb(${value.dominant[0]}, ${value.dominant[1]}, ${value.dominant[2]})` : ''),
           ],
         ),
       ],

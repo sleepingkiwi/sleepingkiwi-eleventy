@@ -13,7 +13,7 @@ const ExtraImagePreview = window.createClass({
   // eslint-disable-next-line object-shorthand
   render: function render() {
     const { value } = this.props;
-    return window.h('p', {}, value.src || '');
+    return window.h('p', {}, (value && value.src) || '');
   },
 });
 
