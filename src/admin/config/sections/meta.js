@@ -35,6 +35,12 @@ const metaConfig = (forGlobal) => [
     required: false,
   },
   {
+    label: 'Social Image Alt',
+    name: 'socialImageAlt',
+    widget: 'text',
+    hint: 'A description of the contents of the Social Image. If you upload a social image you should also fill in this field.',
+  },
+  {
     label: `Canonical URL`,
     name: 'canonical',
     widget: 'string',
