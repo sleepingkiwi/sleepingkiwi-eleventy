@@ -58,7 +58,7 @@ const ExtraImageControl = window.createClass({
         this.imageLoaded = true;
       };
       img.onerror = () => reject(Error('could not load image'));
-      img.src = src;
+      img.src = this.props.getAsset(src).toString();
     });
   },
 

@@ -207,7 +207,7 @@ module.exports = (env = {}) => {
         new webpack.SourceMapDevToolPlugin({
           filename: 'sourcemaps/[file].map',
           test: /\.(js|jsx|css)($|\?)/i,
-          exclude: /admin\..+\.js/,
+          // exclude: /admin\..+\.js/,
         }),
       ],
 

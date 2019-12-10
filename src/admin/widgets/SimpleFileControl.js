@@ -3,6 +3,8 @@ const SimpleFileControl = window.createClass({
   isValid: function isValid() {
     const { value, getAsset } = this.props;
     console.log(getAsset(value));
+    console.log(getAsset(value).toString());
+    console.log(getAsset(value).toBase64());
     return { error: { message: `Your value was ${value}` } };
   },
 
