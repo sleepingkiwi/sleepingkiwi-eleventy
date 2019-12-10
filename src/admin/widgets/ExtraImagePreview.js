@@ -12,8 +12,27 @@
 const ExtraImagePreview = window.createClass({
   // eslint-disable-next-line object-shorthand
   render: function render() {
-    const { value } = this.props;
-    return window.h('p', {}, (value && value.src) || '');
+    const imageWidget = window.CMS.getWidget('image').preview;
+
+    // custom previews with a value of object are treated weirdly
+    // see: https://github.com/netlify/netlify-cms/issues/2150 for full details
+    const value = this.props.value || this.props.entry.get('data').get(this.props.field.get('name')).toJS();
+
+    if (!value.src || value.src === '') {
+      return null;
+    }
+
+    return window.h(
+      'img',
+      {
+        src: this.props.getAsset(value.src || ''),
+        style: {
+          maxWidth: '100%',
+          display: 'block',
+          marginBottom: '12px',
+        }
+      },
+    );
   },
 });
 

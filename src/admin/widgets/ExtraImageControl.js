@@ -32,7 +32,6 @@ const colorThief = new ColorThief();
 
 const ExtraImageControl = window.createClass({
   imageLoadPromise: false,
-  imageLoaded: false,
 
   handleChange: function handleChange(src) {
     if (src === '') {
@@ -43,11 +42,9 @@ const ExtraImageControl = window.createClass({
         dominant: null,
       });
       this.imageLoadPromise = false;
-      this.imageLoaded = false;
       return;
     }
 
-    this.imageLoaded = false;
     this.imageLoadPromise = new Promise((resolve, reject) => {
       const img = new Image();
       img.onload = () => {
@@ -78,13 +75,18 @@ const ExtraImageControl = window.createClass({
   },
 
   isValid: function isValid() {
-    return this.imageLoaded || imageLoadPromise;
+    // value is sometimes passed as an immutable map - in that case we want to convert it to
+    // a regular object before we use it...
+    const value = this.props.value && typeof this.props.value.toJS === 'function'
+      ? this.props.value.toJS()
+      : this.props.value;
+    return value && value.src ? true : this.imageLoadPromise;
   },
 
   render: function render() {
     // value is sometimes passed as an immutable map - in that case we want to convert it to
     // a regular object before we use it...
-    const value = typeof this.props.value.toJS === 'function'
+    const value = this.props.value && typeof this.props.value.toJS === 'function'
       ? this.props.value.toJS()
       : this.props.value;
     const styles = {

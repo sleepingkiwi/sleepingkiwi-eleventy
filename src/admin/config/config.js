@@ -83,6 +83,13 @@ const config = {
               required: true,
             },
             {
+              label: 'File Test',
+              name: 'filetest',
+              widget: 'simpleFileControl',
+              hint: 'testing functionality...',
+              required: true,
+            },
+            {
               label: 'Body',
               name: 'body',
               widget: 'markdown',
@@ -152,6 +159,9 @@ const config = {
       label: 'Global Settings',
       name: 'globals',
       description: 'Settings that apply globally or that do not belong to individual pages',
+      editor: {
+        preview: false,
+      },
       files: [
         /** Meta Data, SEO, Social defaults
          *  ----------------------------------------------------------------------------------------
