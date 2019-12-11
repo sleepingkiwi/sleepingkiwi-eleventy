@@ -18,18 +18,20 @@ const config = {
   display_url: 'https://sleeping.kiwi/sleepingkiwi-eleventy',
 
   // Media files will be stored in the repo under this dir
+  // however because we use cloudinary currently this is ignored
   media_folder: 'src/images',
   // the built site has an uploads directory at root
   public_folder: 'images',
 
-  // media_library:
-  //   name: cloudinary
-  //   output_filename_only: false // we actually want this to be true but it breaks previews.
-  //   // see: https://github.com/netlify/netlify-cms/issues/1934
-  //   // our workaround: we split the string in preact.
-  //   config:
-  //     cloud_name: sleepingkiwi
-  //     api_key: 673936733892368
+  // comment this out to upload images directly to github
+  media_library: {
+    name: 'cloudinary',
+    output_filename_only: false,
+    config: {
+      cloud_name: 'sleepingkiwi',
+      api_key: '673936733892368',
+    },
+  },
 
   // optional, enables publishing workflow
   publish_mode: 'editorial_workflow',
@@ -76,16 +78,16 @@ const config = {
               widget: 'string',
             },
             {
-              label: 'Advanced image test',
+              label: 'Extra Image test',
               name: 'advancedImage',
               widget: 'extraImage',
-              hint: 'testing functionality...',
+              showDetails: false,
               required: true,
             },
             {
-              label: 'File Test',
-              name: 'filetest',
-              widget: 'simpleFileControl',
+              label: 'Regular image',
+              name: 'regularImage',
+              widget: 'image',
               hint: 'testing functionality...',
               required: true,
             },

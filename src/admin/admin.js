@@ -20,8 +20,6 @@ import ExtraImageControl from './widgets/ExtraImageControl';
 import ExtraImagePreview from './widgets/ExtraImagePreview';
 import InstructionsControl from './widgets/InstructionsControl';
 
-import SimpleFileControl from './widgets/SimpleFileControl';
-
 
 /** our cms configuration as a JS object
  *  ------------------------------------------------------------------------------------------------
@@ -33,7 +31,6 @@ import config from './config/config';
  *  ------------------------------------------------------------------------------------------------
 **/
 CMS.registerWidget('extraImage', ExtraImageControl, ExtraImagePreview);
-CMS.registerWidget('simpleFileControl', SimpleFileControl);
 CMS.registerWidget('instructions', InstructionsControl);
 
 /** start the cms

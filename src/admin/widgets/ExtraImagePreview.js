@@ -30,7 +30,8 @@ const ExtraImagePreview = window.createClass({
           maxWidth: '100%',
           display: 'block',
           marginBottom: '12px',
-        }
+        },
+        alt: value.alt || '',
       },
     );
   },

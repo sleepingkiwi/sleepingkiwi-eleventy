@@ -146,7 +146,7 @@ module.exports = (env = {}) => {
           },
         ],
       },
-    }, // nomodules config (heavily transpiled, includes admin)
+    }, // nomodules config (heavily transpiled)
 
 
     /** MODULES CONFIG
@@ -191,6 +191,7 @@ module.exports = (env = {}) => {
       optimization: {
         minimizer: [
           new TerserPlugin({
+            sourceMap: true,
             terserOptions: {
               ecma: 8,
               safari10: true,
@@ -199,16 +200,18 @@ module.exports = (env = {}) => {
         ],
       },
 
+      devtool: isProduction ? 'source-map' : 'eval-source-map',
+
       plugins: [
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development'),
         }),
 
-        new webpack.SourceMapDevToolPlugin({
-          filename: 'sourcemaps/[file].map',
-          test: /\.(js|jsx|css)($|\?)/i,
-          // exclude: /admin\..+\.js/,
-        }),
+        // new webpack.SourceMapDevToolPlugin({
+        //   filename: 'sourcemaps/[file].map',
+        //   test: /\.(js|jsx|css)($|\?)/i,
+        //   // exclude: /admin\..+\.js/,
+        // }),
       ],
 
       module: {
@@ -247,6 +250,12 @@ module.exports = (env = {}) => {
                 ].filter((mightBeNull) => mightBeNull !== null),
               },
             },
+          },
+          // we want to include the sourcemap for the admin cms side specifically
+          {
+            test: /netlify-cms\.js$/,
+            use: ['source-map-loader'],
+            enforce: 'pre',
           },
         ],
       },
