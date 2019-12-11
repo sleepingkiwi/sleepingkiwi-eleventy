@@ -200,19 +200,22 @@ module.exports = (env = {}) => {
         ],
       },
 
-      devtool: isProduction ? 'source-map' : 'eval-source-map',
+      // source maps in dev.
+      // production uses the plugin below to exclude admin
+      devtool: isProduction ? false : 'eval-source-map',
 
       plugins: [
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development'),
         }),
 
-        // new webpack.SourceMapDevToolPlugin({
-        //   filename: 'sourcemaps/[file].map',
-        //   test: /\.(js|jsx|css)($|\?)/i,
-        //   // exclude: /admin\..+\.js/,
-        // }),
-      ],
+        // exclude the admin sourcemap in production because it big
+        isProduction ? new webpack.SourceMapDevToolPlugin({
+          filename: '[file].map',
+          test: /\.(js|jsx|css)($|\?)/i,
+          exclude: /admin\..+\.js/,
+        }) : null,
+      ].filter((mightBeNull) => mightBeNull !== null),
 
       module: {
         rules: [
@@ -251,8 +254,9 @@ module.exports = (env = {}) => {
               },
             },
           },
-          // we want to include the sourcemap for the admin cms side specifically
-          {
+          // we want to include the sourcemap for the admin cms side
+          // but only in dev because it's flipping huge
+          isProduction ? {} : {
             test: /netlify-cms\.js$/,
             use: ['source-map-loader'],
             enforce: 'pre',
