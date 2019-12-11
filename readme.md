@@ -5,12 +5,15 @@ A starting point for building static sites with [eleventy] using [netlify CMS] f
 - Styled with [Sass]/SCSS, browser prefixes added with [Autoprefixer] and minified with [CSS nano] through [PostCSS], linted by [stylelint]
 - Client script transpiled by [babel], bundled by [webpack], linted by [eslint]
 - Served in development by [light-server] (see _Using CLI tools directly_ below)
+- includes a couple of custom widgets for [netlify CMS] to simplify image handling.
 
 ---
 
 ## 👻 to do
 
-make this readme useful for when nothing makes sense in a few months.
+- make this readme more useful for when nothing makes sense in a few months.
+- move custom image widgets into their own repo
+- revisit image handling once [these issues](https://github.com/netlify/netlify-cms/issues/2955#issuecomment-564461031) are resolved. See _Cloudinary for images_ below.
 
 ---
 
@@ -58,6 +61,14 @@ We can determine what features to detect or whether to serve the fall-back JavaS
 
 > Things to remember or gotchas
 
+### Cloudinary for images
+
+This repo is setup to use [Cloudinary] as the media library for [netlify CMS]. There were multiple reasons behind this decision but primarily it is easier to handle responsive images with a Cloudinary integration.
+
+> **For a new project:** remember to set up new Cloudinary settings in the config file!
+
+We initially planned to store the primary image upload in the repo (so that we had ownership of content and it was all centrally located) and then use Cloudinary to [fetch remote images](https://cloudinary.com/documentation/fetch_remote_images) to generate and serve the various responsive sizes. However, currently, storing images in the repo can be unintuitive. Specifically we had issues with previews, validation etc. becoming unavailable until builds had completed. [This is currently being addressed](https://github.com/netlify/netlify-cms/issues/2955#issuecomment-564461031) so we may change the way we handle media going forwards!
+
 ### Cache busting (adding new files to be cache busted)
 
 We use [node-file-rev] for cache busting, currently we manually specify which files to cache bust in the `npm run rev` script. This is simple but if you generate lots of individual files that need to be cache busted it could be worth looking at automating this a little more.
@@ -98,3 +109,4 @@ As a result, the config for authentication is located largely on [netlify]
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [CSS nano]: https://cssnano.co/
 [node-file-rev]: https://github.com/lukasoppermann/node-file-rev
+[cloudinary]: https://cloudinary.com

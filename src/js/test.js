@@ -1,3 +1,3 @@
-export const butts = () => 'butts';
+export const soModern = () => 'wow.';
 
-export const oneButt = () => butts().substr(0, 4);
+export const soFunctional = () => Array.from(soModern()).map((char) => char.toUpperCase());

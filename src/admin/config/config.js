@@ -1,6 +1,8 @@
 // TODO: break this into modules...
 
 import { metaConfigPage, metaConfigGlobal } from './sections/meta';
+import homeConfig from './sections/home';
+import genericContentBlocks from './sections/generic';
 
 const config = {
   // ref https://www.netlifycms.org/docs/beta-features/#manual-initialization
@@ -48,58 +50,8 @@ const config = {
       label: 'Fixed Pages',
       description: 'These are the pages required by the site that you can configure',
       files: [
-        /** Home Page
-         *  ----------------------------------------------------------------------------------------
-        **/
-        {
-          name: 'home',
-          label: 'Homepage',
-          delete: false,
-          file: 'src/index.md',
-          slug: '{{slug}}',
-          create: false,
-          fields: [
-            {
-              label: 'Home Page',
-              name: 'homePageInstructions',
-              widget: 'instructions',
-              instructions: 'The home page has a fixed structure but you can customise the content in each block here.',
-              required: false,
-            },
-            {
-              label: 'Layout',
-              name: 'layout',
-              widget: 'hidden',
-              default: 'layouts/base',
-            },
-            {
-              label: 'Title',
-              name: 'title',
-              widget: 'string',
-            },
-            {
-              label: 'Extra Image test',
-              name: 'advancedImage',
-              widget: 'extraImage',
-              showDetails: false,
-              required: true,
-            },
-            {
-              label: 'Regular image',
-              name: 'regularImage',
-              widget: 'image',
-              hint: 'testing functionality...',
-              required: true,
-            },
-            {
-              label: 'Body',
-              name: 'body',
-              widget: 'markdown',
-            },
-            // include all of the social & meta options at the end
-            ...metaConfigPage,
-          ], // fields
-        }, // END HOME PAGE
+        // Home Page
+        homeConfig,
       ], // files
     }, // END FIXED PAGES
 
@@ -142,10 +94,14 @@ const config = {
           required: false,
         },
         {
-          label: 'Body',
-          name: 'body',
-          widget: 'markdown',
+          label: 'Hero image',
+          name: 'hero',
+          widget: 'extraImage',
+          showDetails: true,
+          required: true,
+          hint: 'Minimum width of 1,920px recommended. Anything above 2,500px will be cropped to 2,500px'
         },
+        ...genericContentBlocks,
         // include all of the social & meta options at the end
         ...metaConfigPage,
       ], // fields

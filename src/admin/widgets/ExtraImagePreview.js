@@ -6,7 +6,8 @@
  *  Disabling object shorthand:
  *  we have to use function istead of arrows because `this` is lexically scoped in arrows
  *  and comes out as undefined in our bundled code if we don't...
- *  eventually thesewidgets can live in their own repo with a proper React dependency
+ *  -
+ *  eventually these widgets can live in their own repo with a proper React dependency
 **/
 
 const ExtraImagePreview = window.createClass({

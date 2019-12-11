@@ -1,3 +1,5 @@
-import { butts, oneButt } from './test';
+import { soModern, soFunctional } from './test';
 
-console.log(`Hello ${butts()} and ${oneButt()}`);
+console.log(`Oh. ${soModern()}`);
+
+soFunctional().forEach((l) => console.log(l));

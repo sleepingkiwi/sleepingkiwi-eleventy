@@ -19,6 +19,7 @@ import CMS, { init } from 'netlify-cms';
 import ExtraImageControl from './widgets/ExtraImageControl';
 import ExtraImagePreview from './widgets/ExtraImagePreview';
 import InstructionsControl from './widgets/InstructionsControl';
+import * as ColorWidget from 'netlify-cms-widget-color';
 
 
 /** our cms configuration as a JS object
@@ -32,6 +33,7 @@ import config from './config/config';
 **/
 CMS.registerWidget('extraImage', ExtraImageControl, ExtraImagePreview);
 CMS.registerWidget('instructions', InstructionsControl);
+CMS.registerWidget('colour', ColorWidget.Control);
 
 /** start the cms
  *  ------------------------------------------------------------------------------------------------

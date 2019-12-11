@@ -1,3 +1,10 @@
+/** Instructions widget
+ *  ------------------------------------------------------------------------------------------------
+ *  this is very hacky but I wanted a nice way to inject styled instructions into the editor!
+ *  -
+ *  currently I'm just overlaying/hiding all of the default styling...
+**/
+
 /** Disabling object shorthand:
  *  ------------------------------------------------------------------------------------------------
  *  we have to use function instead of arrows because `this` is lexically scoped in arrow funcs

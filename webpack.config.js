@@ -18,6 +18,8 @@ module.exports = (env = {}) => {
      *  -
      *  in this first config we produce a version of our client
      *  js that uses our browserslistrc file to detrmine transforms and polyfills
+     *  we also bundle any polyfills that we need for older browsers.
+     *  look at `Loading polyfills` in the readme for more info.
     **/
     {
       /** mode
@@ -28,20 +30,16 @@ module.exports = (env = {}) => {
 
       entry: {
         main: './src/js/entry.js',
-        // an example of a second entry - page specific javascript for the about page
-        // about: './src/pages/about.js',
         polyfills: './src/js/polyfills.js',
       },
 
       output: {
         path: path.resolve(__dirname, 'dist'),
-        // we handle cachebusting elsewhere at the moment
+        // we handle cachebusting directly in package.json with `node-file-rev`
         filename: '[name].js',
-        /** Debug comments in output?
-         *  ----------------------------------------------------------------------------------------
-         *  outputs comments in the bundled files with details of path/tree shaking
-         *  should be false in production, true for development
-        **/
+
+        // outputs comments in the bundled files with details of path/tree shaking
+        // should be false in production, true for development
         pathinfo: !isProduction,
       },
 
@@ -64,6 +62,7 @@ module.exports = (env = {}) => {
         // development doesn't show performance hints currently
         return {};
       })(),
+
 
       /** webpack plugins
        *  ------------------------------------------------------------------------------------------
@@ -152,7 +151,7 @@ module.exports = (env = {}) => {
     /** MODULES CONFIG
      *  --------------------------------------------------------------------------------------------
      *  in this config we produce a version of our client
-     *  js that uses @babel/preset-modules in the babel config to minimise transforms and polyfills
+     *  js that uses @babel/preset-modules to minimise transforms and polyfills
      *  look at `Serving more modern JavaScript to browsers that support modules`
      *  in the readme for more info.
     **/
@@ -263,6 +262,6 @@ module.exports = (env = {}) => {
           },
         ],
       },
-    }, // modules config (less heavily transpiled, only client js)
+    }, // modules config (less heavily transpiled)
   ];
 };

@@ -1,4 +1,4 @@
-/** ExtraImage control component - like a normal image but so extra!
+/** ExtraImage control component - like a normal image but extra...
  *  ------------------------------------------------------------------------------------------------
  *  we're using the global createClass exposed by netlify-cms so we don't have to import our
  *  own version of React...
@@ -13,7 +13,7 @@
  *  further ref:
  *  https://www.softwire.com/insights/implementing-a-custom-netlify-cms-widget/
  *  -
- *  eventually these widgets can live in their own repo with a proper React dependency
+ *  eventually these widgets should live in their own repo with a proper React dependency
 **/
 
 

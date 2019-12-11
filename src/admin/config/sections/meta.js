@@ -31,6 +31,7 @@ const metaConfig = (forGlobal) => [
     label: 'Social Image',
     name: 'socialImage',
     widget: 'extraImage',
+    showDetails: true,
     hint: `Image that is used when this ${forGlobal ? 'site' : 'page'} is shared on social media. It should ideally be 1200 x 630px.`,
     required: false,
   },

@@ -14,9 +14,11 @@
   },
   "homepage": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme",
   "dependencies": {
+    "@pake/react-color": "^3.0.0",
     "colorthief": "^2.3.0",
     "core-js": "^3.4.0",
     "netlify-cms": "^2.9.7",
+    "netlify-cms-widget-color": "^3.0.1",
     "preact": "^10.0.5",
     "preact-router": "^3.1.0",
     "prop-types": "^15.7.2",
