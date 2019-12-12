@@ -1,4 +1,18 @@
 {
   "title": "sleepingkiwi eleventy",
-  "description": "A starting point for building static sites with eleventy using netlify CMS for content"
+  "description": "A starting point for building static sites with eleventy using netlify CMS for content.",
+  "socialImage": {
+    "src": "https://res.cloudinary.com/sleepingkiwi/image/upload/v1576143898/sleepingkiwi-eleventy/social.png",
+    "base": "https://res.cloudinary.com/sleepingkiwi/image/upload/",
+    "version": "v1576143898",
+    "filename": "sleepingkiwi-eleventy/social.png",
+    "width": 1200,
+    "height": 630,
+    "dominant": [
+      164,
+      204,
+      228
+    ],
+    "alt": "The word 'social' in a blue rectangle"
+  }
 }
