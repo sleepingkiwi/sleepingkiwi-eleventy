@@ -33,10 +33,10 @@ genericContentBlocks:
     type: oneColumn
   - backgroundColour: false
     leftColumnContent:
-      - images:
+      - images: null
         imagesList:
           - image:
-              alt: ''
+              alt: Green square
               base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
               dominant:
                 - 4
@@ -49,18 +49,18 @@ genericContentBlocks:
               version: v1576046342
               width: 300
           - image:
-              alt: ''
+              alt: The social image
               base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
               dominant:
+                - 164
                 - 204
-                - 204
-                - 204
-              filename: sleepingkiwi-eleventy/90x90_nscf0p.png
-              height: 90
+                - 228
+              filename: sleepingkiwi-eleventy/social.png
+              height: 630
               src: >-
-                https://res.cloudinary.com/sleepingkiwi/image/upload/v1576064160/sleepingkiwi-eleventy/90x90_nscf0p.png
-              version: v1576064160
-              width: 90
+                https://res.cloudinary.com/sleepingkiwi/image/upload/v1576143898/sleepingkiwi-eleventy/social.png
+              version: v1576143898
+              width: 1200
         type: images
     rightColumnContent:
       - text: >-
@@ -83,3 +83,4 @@ meta:
     alt: Does an alt tag without an image overwrite?
   title: Demo Page
 ---
+
