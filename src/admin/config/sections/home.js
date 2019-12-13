@@ -8,7 +8,6 @@ const homeConfig = {
   label: 'Homepage',
   delete: false,
   file: 'src/index.md',
-  format: 'json-frontmatter',
   slug: '{{slug}}',
   create: false,
   fields: [

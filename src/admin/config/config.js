@@ -66,7 +66,6 @@ const config = {
       label: 'Custom Pages',
       folder: 'src/pages',
       slug: '{{slug}}',
-      format: 'json-frontmatter',
       preview_path: 'pages/{{slug}}',
       create: true,
       description: 'Empty pages with no fixed content. You can add whatever you want by stacking content blocks.',
