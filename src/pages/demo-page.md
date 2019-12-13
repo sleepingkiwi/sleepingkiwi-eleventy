@@ -46,6 +46,18 @@ genericContentBlocks:
               https://res.cloudinary.com/sleepingkiwi/image/upload/v1576046342/sleepingkiwi-eleventy/300by300-b_eolzec.png
             version: v1576046342
             width: 300
+          - alt: Green square
+            base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
+            dominant:
+              - 4
+              - 84
+              - 84
+            filename: sleepingkiwi-eleventy/300by300-b_eolzec.png
+            height: 300
+            src: >-
+              https://res.cloudinary.com/sleepingkiwi/image/upload/v1576046342/sleepingkiwi-eleventy/300by300-b_eolzec.png
+            version: v1576046342
+            width: 300
         type: images
     rightColumnContent:
       - text: >-

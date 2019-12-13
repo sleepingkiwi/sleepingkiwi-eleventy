@@ -17,7 +17,13 @@ const ExtraImagePreview = window.createClass({
 
     // custom previews with a value of object are treated weirdly
     // see: https://github.com/netlify/netlify-cms/issues/2150 for full details
-    const value = this.props.value || this.props.entry.get('data').get(this.props.field.get('name')).toJS();
+    let value;
+    if (this.props.value) {
+      value = this.props.value;
+    } else {
+      const data = this.props.entry.get('data').get(this.props.field.get('name'));
+      value = data ? data.toJS() : {};
+    }
 
     if (!value.src || value.src === '') {
       return null;
