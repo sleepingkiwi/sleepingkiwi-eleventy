@@ -20,6 +20,7 @@ genericContentBlocks:
     content:
       - header: Some big text
         preHeader: Here it comes
+        textAlign: center
         type: header
       - text: >-
           And here's some real content. Probably telling you to click the button
