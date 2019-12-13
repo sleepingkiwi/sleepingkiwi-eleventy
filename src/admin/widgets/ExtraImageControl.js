@@ -152,7 +152,7 @@ const ExtraImageControl = window.createClass({
   },
 
   render: function render() {
-    // console.log(this.props);
+    console.log(this.props);
     // console.log(window.CMS);
 
     // value is sometimes passed as an immutable map - in that case we want to convert it to

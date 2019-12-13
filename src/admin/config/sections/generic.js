@@ -95,16 +95,18 @@ const contentBlockContentTypes = {
       fields: [
         {
           label: 'Images',
-          name: 'images',
+          name: 'imagesList',
           widget: 'list',
           required: false,
-          field: {
-            label: 'Image',
-            name: 'image',
-            widget: 'extraImage',
-            showDetails: true,
-            required: false,
-          },
+          fields: [
+            {
+              label: 'Image',
+              name: 'image',
+              widget: 'extraImage',
+              showDetails: true,
+              required: false,
+            },
+          ],
         },
       ],
     },
