@@ -13,7 +13,7 @@
 const ExtraImagePreview = window.createClass({
   // eslint-disable-next-line object-shorthand
   render: function render() {
-    const imageWidget = window.CMS.getWidget('image').preview;
+    // const imageWidget = window.CMS.getWidget('image').preview;
 
     // custom previews with a value of object are treated weirdly
     // see: https://github.com/netlify/netlify-cms/issues/2150 for full details

@@ -7,9 +7,10 @@
 
 const metaConfig = (forGlobal) => [
   {
-    label: `${forGlobal ? 'Site' : 'Page'} details, SEO, Social sharing`,
+    label: `${forGlobal ? 'Site' : 'Page'} details for SEO, Social sharing`,
     name: 'metaInstructions',
     widget: 'instructions',
+    flavour: forGlobal ? 'header' : 'vanilla',
     instructions: forGlobal ? 'Default settings for SEO and social sharing. \nThese will be used on any page that does not provide it\'s own SEO/Social details.' : 'These fields are all optional but it is recommended that you fill them in where possible. \nAny field you leave blank will fallback to the values set in the Global Settings',
     required: false,
   },
@@ -36,13 +37,7 @@ const metaConfig = (forGlobal) => [
     required: false,
   },
   {
-    label: 'Social Image Alt',
-    name: 'socialImageAlt',
-    widget: 'text',
-    hint: 'A description of the contents of the Social Image. If you upload a social image you should also fill in this field.',
-  },
-  {
-    label: `Canonical URL`,
+    label: 'Canonical URL',
     name: 'canonical',
     widget: 'string',
     hint: '🛑 You probably don\'t need to set this. You should only set this if the canonical URL of this page is different to it\'s permalink.',

@@ -17,9 +17,9 @@ import CMS, { init } from 'netlify-cms';
  *  we should move these into their own repo.
 **/
 import ExtraImageControl from './widgets/ExtraImageControl';
+import ColourControl from './widgets/ColourControl';
 import ExtraImagePreview from './widgets/ExtraImagePreview';
 import InstructionsControl from './widgets/InstructionsControl';
-import * as ColorWidget from 'netlify-cms-widget-color';
 
 
 /** our cms configuration as a JS object
@@ -32,8 +32,10 @@ import config from './config/config';
  *  ------------------------------------------------------------------------------------------------
 **/
 CMS.registerWidget('extraImage', ExtraImageControl, ExtraImagePreview);
+CMS.registerWidget('colour', ColourControl);
 CMS.registerWidget('instructions', InstructionsControl);
-CMS.registerWidget('colour', ColorWidget.Control);
+
+// console.log(CMS);
 
 /** start the cms
  *  ------------------------------------------------------------------------------------------------

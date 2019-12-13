@@ -39,11 +39,12 @@ const ExtraImageControl = window.createClass({
       ? this.props.value.toJS()
       : this.props.value || {};
 
+    this.props.onChange({
+      src,
+      alt: value.alt || '',
+    });
+
     if (src === '') {
-      this.props.onChange({
-        src,
-        alt: value.alt || '',
-      });
       this.imageLoadPromise = false;
       return;
     }
@@ -88,9 +89,9 @@ const ExtraImageControl = window.createClass({
         this.imageLoaded = true;
       };
       img.onerror = () => {
-        this.props.onChange({src: ''});
+        this.props.onChange({ src: '' });
         reject(Error('could not load image'));
-      }
+      };
       img.crossOrigin = 'Anonymous'; // needed for colour thief to work on images from cloudinary
       // ref:  https://lokeshdhakar.com/projects/color-thief/
       img.src = src;
@@ -98,7 +99,7 @@ const ExtraImageControl = window.createClass({
   },
 
 
-  handleAlt: function(e) {
+  handleAlt: function handleAlt(e) {
     const value = this.props.value && typeof this.props.value.toJS === 'function'
       ? this.props.value.toJS()
       : this.props.value || {};
@@ -128,7 +129,26 @@ const ExtraImageControl = window.createClass({
     const value = this.props.value && typeof this.props.value.toJS === 'function'
       ? this.props.value.toJS()
       : this.props.value;
-    return value && value.src ? this.props.field.get('required') : this.imageLoadPromise;
+
+    if (value && value.src) {
+      // we have a saved value and src! This happens on every change
+      if (value.width) {
+        // we only get width after the promise has returned so in this case we have a full field
+        return true;
+      }
+
+      if (value.src === '') {
+        // the field is empty. it's only valid if it isn't required.
+        return !this.props.field.get('required');
+      }
+
+      // we don't have a width saved and the src isn't '' so we should be loading!
+      return this.imageLoadPromise;
+    }
+
+    // there's no value or src - the field has never been interacted with.
+    // it's valid if it's not required.
+    return !this.props.field.get('required');
   },
 
   render: function render() {
@@ -230,7 +250,7 @@ const ExtraImageControl = window.createClass({
                   this.props.hasActiveStyle ? this.props.classNameLabelActive : null,
                 ].filter((maybeNull) => maybeNull !== null).join(' '),
               },
-              'Alt text'
+              'Alt text',
             ),
             window.h(
               'input',
@@ -243,8 +263,8 @@ const ExtraImageControl = window.createClass({
                 onBlur: this.props.setInactiveStyle,
                 className: this.props.classNameWrapper,
               },
-            )
-          ]
+            ),
+          ],
         ),
         value && value.src && showDeets && window.h(
           'div',
@@ -264,9 +284,9 @@ const ExtraImageControl = window.createClass({
                     style: { ...styles.path, ...styles.pathBase },
                     title: 'base',
                   },
-                  this.props.value.base,
+                  value.base,
                 ),
-              ]
+              ],
             ),
             window.h(
               'span',
@@ -280,9 +300,9 @@ const ExtraImageControl = window.createClass({
                     style: { ...styles.path, ...styles.pathVersion },
                     title: 'version',
                   },
-                  this.props.value.version,
+                  value.version,
                 ),
-              ]
+              ],
             ),
             window.h(
               'span',
@@ -297,7 +317,7 @@ const ExtraImageControl = window.createClass({
                   },
                   '/',
                 ),
-              ]
+              ],
             ),
             window.h(
               'span',
@@ -311,9 +331,9 @@ const ExtraImageControl = window.createClass({
                     style: { ...styles.path, ...styles.pathFilename },
                     title: 'filename',
                   },
-                  this.props.value.filename,
+                  value.filename,
                 ),
-              ]
+              ],
             ),
           ],
         ),

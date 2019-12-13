@@ -1,6 +1,7 @@
 // TODO: break this into modules...
 
-import { metaConfigPage, metaConfigGlobal } from './sections/meta';
+import { metaConfigGlobal } from './sections/meta';
+import pageSettings from './sections/pageSettings';
 import homeConfig from './sections/home';
 import genericContentBlocks from './sections/generic';
 
@@ -65,6 +66,7 @@ const config = {
       label: 'Custom Pages',
       folder: 'src/pages',
       slug: '{{slug}}',
+      format: 'json-frontmatter',
       preview_path: 'pages/{{slug}}',
       create: true,
       description: 'Empty pages with no fixed content. You can add whatever you want by stacking content blocks.',
@@ -73,7 +75,8 @@ const config = {
           label: 'Custom Page',
           name: 'genericPageInstructions',
           widget: 'instructions',
-          instructions: 'Use the content blocks below to add content to this page.',
+          instructions: 'This page can contain whatever you want!',
+          flavour: 'header',
           required: false,
         },
         {
@@ -99,11 +102,11 @@ const config = {
           widget: 'extraImage',
           showDetails: true,
           required: true,
-          hint: 'Minimum width of 1,920px recommended. Anything above 2,500px will be cropped to 2,500px'
+          hint: 'Minimum width of 1,920px recommended. Anything above 2,500px will be cropped to 2,500px',
         },
         ...genericContentBlocks,
-        // include all of the social & meta options at the end
-        ...metaConfigPage,
+        // include general page settings
+        ...pageSettings,
       ], // fields
     }, // END CUSTOM PAGES
 
@@ -149,6 +152,7 @@ const config = {
               name: 'socialInstructions',
               widget: 'instructions',
               instructions: 'These are all optional. \nIncluding your details for a service will enable the social icon for that service in the site footer.',
+              flavour: 'header',
               required: false,
             },
             {
@@ -178,6 +182,7 @@ const config = {
               name: 'navInstructions',
               widget: 'instructions',
               instructions: 'Add links for site navigation.',
+              flavour: 'header',
               required: false,
             },
             {

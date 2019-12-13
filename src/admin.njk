@@ -8,6 +8,33 @@ permalink: '/admin/index.html'
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <style>
+    {#
+      These are a bit of hack but until netlify-cms improves UI for nested lists they'll do...
+      -
+      We are having to target lists by id (derived from the name in config) because there's
+      no other way to do it via css right now...
+    #}
+    :root {
+      --colour-subtle-bg: #f6f6f6;
+    }
+
+    /* repeatable content blocks for generic page content */
+    div[id*=genericContentBlocks],
+    div[id*=content-field],
+    div[id*=leftColumnContent-field],
+    div[id*=rightColumnContent-field],
+    div[id*=images-field] {
+      border: 0;
+      background: var(--colour-subtle-bg);
+    }
+
+    /* no borders for nested objects in general */
+    div[class*=NestedObjectLabel] + div {
+      border: 0;
+    }
+  </style>
 </head>
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS. -->

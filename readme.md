@@ -1,11 +1,12 @@
 # sleepingkiwi eleventy starter
 
-A starting point for building static sites with [eleventy] using [netlify CMS] for content.
+A personal starting point for building static sites with [eleventy] using [netlify CMS] for content.
 
 - Styled with [Sass]/SCSS, browser prefixes added with [Autoprefixer] and minified with [CSS nano] through [PostCSS], linted by [stylelint]
 - Client script transpiled by [babel], bundled by [webpack], linted by [eslint]
 - Served in development by [light-server] (see _Using CLI tools directly_ below)
 - includes a couple of custom widgets for [netlify CMS] to simplify image handling.
+- includes several templates and examples of integrating [netlify CMS] with [eleventy]
 
 ---
 
@@ -37,7 +38,7 @@ Serving more modern code (less babel transformations) to modern browsers by targ
 
 #### Building two bundles
 
-This is handled by our webpack config. We output two configs, one which uses [@babel/preset-modules](https://github.com/babel/preset-modules) for modern browsers and the other which uses
+This is handled by the webpack config. We output two configs, one which uses [@babel/preset-modules](https://github.com/babel/preset-modules) for modern browsers and the other which uses [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env).
 
 #### Serving the JavaScript to the right browsers
 
