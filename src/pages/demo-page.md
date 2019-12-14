@@ -33,6 +33,34 @@ genericContentBlocks:
     type: oneColumn
   - backgroundColour: false
     leftColumnContent:
+      - image:
+          alt: Green square with a dot in it
+          base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
+          dominant:
+            - 4
+            - 84
+            - 84
+          filename: sleepingkiwi-eleventy/300by300-b_eolzec.png
+          height: 300
+          src: >-
+            https://res.cloudinary.com/sleepingkiwi/image/upload/v1576046342/sleepingkiwi-eleventy/300by300-b_eolzec.png
+          version: v1576046342
+          width: 300
+        type: image
+      - image:
+          alt: Grey rectangle with a hyphen in it
+          base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
+          dominant:
+            - 204
+            - 204
+            - 204
+          filename: sleepingkiwi-eleventy/90x90_nscf0p.png
+          height: 90
+          src: >-
+            https://res.cloudinary.com/sleepingkiwi/image/upload/v1576064160/sleepingkiwi-eleventy/90x90_nscf0p.png
+          version: v1576064160
+          width: 90
+        type: image
     rightColumnContent:
       - text: >-
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -54,3 +82,4 @@ meta:
     alt: Does an alt tag without an image overwrite?
   title: Demo Page
 ---
+
