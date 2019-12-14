@@ -68,7 +68,6 @@ const contentBlockContentTypes = {
           label: 'Text Content',
           name: 'text',
           widget: 'markdown',
-          required: false,
           buttons: [
             'bold',
             'italic',
@@ -89,24 +88,15 @@ const contentBlockContentTypes = {
       ],
     },
     {
-      label: 'Images',
-      name: 'images',
+      label: 'Image',
+      name: 'image',
       widget: 'object',
       fields: [
         {
-          label: 'Images',
-          name: 'imagesList',
-          widget: 'list',
-          required: false,
-          fields: [
-            {
-              label: 'Image',
-              name: 'image',
-              widget: 'extraImage',
-              showDetails: true,
-              required: false,
-            },
-          ],
+          label: 'Image',
+          name: 'image',
+          widget: 'extraImage',
+          showDetails: true,
         },
       ],
     },
