@@ -123,6 +123,42 @@ const config = {
         preview: false,
       },
       files: [
+        /** Site details
+         *  ----------------------------------------------------------------------------------------
+         *  Global info about the site, logo, copyright notice etc.
+        **/
+        {
+          label: 'Site Details',
+          name: 'site_details',
+          delete: false,
+          file: 'src/_data/site.json',
+          fields: [
+            {
+              label: 'Global Site Details',
+              name: 'socialInstructions',
+              widget: 'instructions',
+              instructions: 'Global info about the site, logo, copyright notice etc.',
+              flavour: 'header',
+              required: false,
+            },
+            {
+              label: 'Site name',
+              name: 'name',
+              widget: 'string',
+              required: true,
+            },
+            {
+              label: 'Copyright Text',
+              name: 'copyright',
+              widget: 'markdown',
+              required: true,
+              hint: 'shown on the footer of every page.',
+              default: '© Copyright. All Rights Reserved.',
+            },
+          ], // fields
+        }, // END SOCIAL
+
+
         /** Meta Data, SEO, Social defaults
          *  ----------------------------------------------------------------------------------------
          *  some of these are required. All can be overwritten by individual templates
@@ -136,6 +172,8 @@ const config = {
             ...metaConfigGlobal,
           ],
         },
+
+
         /** Social Accounts
          *  ----------------------------------------------------------------------------------------
          *  For using wherever we end up using them
@@ -159,11 +197,85 @@ const config = {
               name: 'twitter',
               widget: 'string',
               required: false,
-              hint: 'does not need to include the @ symbol',
+              hint: 'handle ony (not URL) - does not need to include the @ symbol',
               pattern: ['^[^@].+', 'please do not include the preceding @ symbol'],
             },
+            {
+              label: 'Your Instagram Handle',
+              name: 'instagram',
+              widget: 'string',
+              required: false,
+              hint: 'handle ony (not URL) - does not need to include the @ symbol',
+              pattern: ['^[^@].+', 'please do not include the preceding @ symbol'],
+            },
+            {
+              label: 'Full Facebook URL',
+              name: 'facebook',
+              widget: 'string',
+              required: false,
+              hint: 'should be the full URL to the Facebook profile/page you want to share',
+            },
+            {
+              label: 'Full LinkedIn URL',
+              name: 'linkedin',
+              widget: 'string',
+              required: false,
+              hint: 'should be the full URL to the LinkedIn profile/page you want to share',
+            },
+            {
+              label: 'Full Youtube URL',
+              name: 'youtube',
+              widget: 'string',
+              required: false,
+              hint: 'should be the full URL to the Youtube profile/page you want to share',
+            },
           ], // fields
-        }, // END SITE DATA
+        }, // END SOCIAL
+
+
+        /** Primary Nav
+         *  ----------------------------------------------------------------------------------------
+         *  add content links to the header and footer nav.
+        **/
+        {
+          label: 'Primary Navigation',
+          name: 'nav',
+          delete: false,
+          file: 'src/_data/navigation.json',
+          fields: [
+            {
+              label: 'Links for the primary navigation',
+              name: 'navInstructions',
+              widget: 'instructions',
+              instructions: 'Add links for site navigation.',
+              flavour: 'header',
+              required: false,
+            },
+            {
+              label: 'Items',
+              name: 'items',
+              widget: 'list',
+              fields: [
+                {
+                  label: 'Text',
+                  name: 'text',
+                  widget: 'string',
+                },
+                {
+                  label: 'Url',
+                  name: 'url',
+                  widget: 'string',
+                },
+                {
+                  label: 'Is url to external site?',
+                  name: 'external',
+                  widget: 'boolean',
+                  required: false,
+                },
+              ], // fields
+            },
+          ], // fields
+        }, // END PRIMARY NAV
 
 
         /** Header Nav
@@ -171,16 +283,16 @@ const config = {
          *  add content links to the header.
         **/
         {
-          label: 'Header Navigation',
-          name: 'nav',
+          label: 'Footer Sub Navigation',
+          name: 'footer_nav',
           delete: false,
-          file: 'src/_data/navigation--primary.json',
+          file: 'src/_data/subnavigation.json',
           fields: [
             {
-              label: 'Links for the primary navigation',
+              label: 'Links for the sub navigation',
               name: 'navInstructions',
               widget: 'instructions',
-              instructions: 'Add links for site navigation.',
+              instructions: 'This nav block appears right at the bottom of the site, under the copyright notice. It is intended for links to privacy policies, t&c\'s etc.',
               flavour: 'header',
               required: false,
             },

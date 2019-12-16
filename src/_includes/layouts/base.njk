@@ -1,77 +1,40 @@
 <!DOCTYPE html>
-<html class ="no-js" lang="en">
+<html class ='no-js' lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  {#
-    meta data, SEO and social
-    -
-    these pull from the meta.json in _data but are overwritten by frontmatter in templates
-    if the same key exists
-  #}
-  <title>{{meta.title}}</title>
-  <meta name="title" content="{{meta.title}}">
-  <meta property="og:title" content="{{meta.title}}">
-  <meta property="twitter:title" content="{{meta.title}}">
+  {% include 'partials/social-meta.njk' %}
 
-  <meta name="description" content="{{meta.description}}">
-  <meta property="og:description" content="{{meta.description}}">
-  <meta property="twitter:description" content="{{meta.description}}">
-
-  <link rel="canonical" href="{{meta.canonical or page.url}}">
-  <meta property="og:url" content="{{meta.canonical or page.url}}">
-  <meta property="twitter:url" content="{{meta.canonical or page.url}}">
-
-  <meta property="og:type" content="website">
-  {# <meta property="twitter:card" content="{{meta.twitterCard or 'summary_large_image'}}"> #}
-
-  {% if meta.socialImage %}
-  <meta property="og:image" content="{{meta.socialImage.src}}">
-  <meta property="twitter:image" content="{{meta.socialImage.src}}">
-  <meta property="og:image:width" content="{{meta.socialImage.width}}" />
-  <meta property="og:image:height" content="{{meta.socialImage.height}}" />
-  <meta property="og:image:alt" content="{{meta.socialImage.alt or ''}}" />
-  {% endif %}
-
-  {#
-    Loading scripts and styles.
-    -
-    See `Serving more modern JavaScript` and `Cache busting` in readme.md
-  #}
-  <link rel="preload" as="script" href="{{rev['/main.modules.js'] or '/main.modules.js'}}" crossorigin>
-  <link rel="stylesheet" href="{{rev['/styles/main.css'] or '/styles/main.css'}}">
-
-  {#
-    Loading polyfills for older browsers.
-    -
-    make sure this loading method is suitable for the polyfills you want to load.
-    Look at `Loading polyfills` in readme.md for more info
-  #}
-  <script nomodule src="{{rev['/polyfills.js'] or '/polyfills.js'}}"></script>
-
-  <script>
-    // more modern script for more modern browsers
-    function $loadjs(src, fallback) {
-      s = document.createElement('script');
-      // avoids double loading issues in Safari 10.1 which supports module but not nomodule...
-      if ('noModule' in s) s.type = 'module', s.src = src;
-      else s.src = fallback;
-      document.head.appendChild(s);
-    }
-
-    $loadjs('{{rev['/main.modules.js'] or '/main.modules.js'}}', '{{rev['/main.js'] or '/main.js'}}');
-
-    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ');
-  </script>
+  {% include 'partials/scripts-styles.njk' %}
 
   <!--
-      interested in how things work? Some of the weird bits are explained at
-      https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme
+    interested in how things work? Some of the weird bits are explained at
+    https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme
   -->
+
+  {#
+    entry point for child templates to inject content into head if needed!
+  #}
+  {% block head %}
+  {% endblock %}
 </head>
 <body>
-  {{ content | safe }}
+  {% include 'partials/site-header.njk' %}
+
+  {#
+    entry point for child templates to inject their main content!
+  #}
+  {% block content %}
+  {% endblock %}
+
+  {% include 'partials/site-footer.njk' %}
+
+  {#
+    entry point for child templates to inject content into foot if needed!
+  #}
+  {% block foot %}
+  {% endblock %}
 </body>
 </html>

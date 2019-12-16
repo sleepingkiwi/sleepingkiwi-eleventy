@@ -1,0 +1,22 @@
+{% if not currentNavigation %}
+  {# if we haven't set a navigation variable higher up we default to our primary one #}
+  {% set currentNavigation = navigation %}
+{% endif %}
+
+{% if currentNavigation.items %}
+  <nav class="nav">
+    <ul>
+      {% for item in currentNavigation.items %}
+        {% set currentAttribute = '' %}
+
+        {% if page.url == item.url %}
+          {% set currentAttribute = ' aria-current="page"' %}
+        {% endif %}
+
+        <li class="nav__item {{'nav__item--current' if page.url == item.url}}">
+          <a href="{{ item.url }}" {{ currentAttribute | safe }}>{{ item.text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

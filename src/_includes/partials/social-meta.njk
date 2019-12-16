@@ -1,0 +1,29 @@
+{#
+  meta data, SEO and social
+  -
+  these pull from the meta.json in _data but are overwritten by frontmatter in templates
+  if the same key exists
+#}
+<title>{{meta.title}}</title>
+<meta name="title" content="{{meta.title}}">
+<meta property="og:title" content="{{meta.title}}">
+<meta property="twitter:title" content="{{meta.title}}">
+
+<meta name="description" content="{{meta.description}}">
+<meta property="og:description" content="{{meta.description}}">
+<meta property="twitter:description" content="{{meta.description}}">
+
+<link rel="canonical" href="{{meta.canonical or page.url}}">
+<meta property="og:url" content="{{meta.canonical or page.url}}">
+<meta property="twitter:url" content="{{meta.canonical or page.url}}">
+
+<meta property="og:type" content="website">
+{# <meta property="twitter:card" content="{{meta.twitterCard or 'summary_large_image'}}"> #}
+
+{% if meta.socialImage.src %}
+<meta property="og:image" content="{{meta.socialImage.src}}">
+<meta property="twitter:image" content="{{meta.socialImage.src}}">
+<meta property="og:image:width" content="{{meta.socialImage.width}}" />
+<meta property="og:image:height" content="{{meta.socialImage.height}}" />
+<meta property="og:image:alt" content="{{meta.socialImage.alt or ''}}" />
+{% endif %}

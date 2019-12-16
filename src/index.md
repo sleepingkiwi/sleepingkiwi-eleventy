@@ -1,5 +1,5 @@
-{
-  "layout": "layouts/home",
-  "title": "Home"
-}
+---
+  layout: layouts/home
+  title: Home
+---
 # hi

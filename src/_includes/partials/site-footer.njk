@@ -1,0 +1,51 @@
+<footer role="contentinfo" class="site-footer">
+  <div class="wrap">
+    {#
+      site logo or name
+    #}
+    <div class="site-footer__logo">
+      <a href="/">
+        <span>{{ site.name }}</span>
+      </a>
+    </div>
+
+
+    {#
+      primary site nav
+    #}
+    <div class="site-footer__nav">
+      {% include 'components/nav.njk' %}
+    </div>
+
+
+    {#
+      social media
+    #}
+    <div class="site-footer__social">
+      {% include 'components/social-links-icons.njk' %}
+    </div>
+
+
+    {#
+      copyright notice
+    #}
+    {% if site.copyright %}
+    <div class="site-footer__copyright">
+      {{ site.copyright }}
+    </div>
+    {% endif %}
+
+
+    {#
+      sub nav
+      we do not render if there are no subnav items
+    #}
+    {% if subnavigation.items %}
+    <div class="site-footer__sub-nav">
+      {% set currentNavigation = subnavigation %}
+      {% include 'components/nav.njk' %}
+    </div>
+    {% endif %}
+
+  </div>
+</footer>

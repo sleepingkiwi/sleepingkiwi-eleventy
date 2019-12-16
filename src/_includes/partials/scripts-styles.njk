@@ -1,0 +1,31 @@
+{#
+  Loading scripts and styles.
+  -
+  See `Serving more modern JavaScript` and `Cache busting` in readme.md
+#}
+<link rel="preload" as="script" href="{{rev['/main.modules.js'] or '/main.modules.js'}}" crossorigin>
+
+<link rel="stylesheet" href="{{rev['/styles/main.css'] or '/styles/main.css'}}">
+
+{#
+  Loading polyfills for older browsers.
+  -
+  make sure this loading method is suitable for the polyfills you want to load.
+  Look at `Loading polyfills` in readme.md for more info
+#}
+<script nomodule src="{{rev['/polyfills.js'] or '/polyfills.js'}}"></script>
+
+<script>
+  // more modern script for more modern browsers
+  function $loadjs(src, fallback) {
+    s = document.createElement('script');
+    // avoids double loading issues in Safari 10.1 which supports module but not nomodule...
+    if ('noModule' in s) s.type = 'module', s.src = src;
+    else s.src = fallback;
+    document.head.appendChild(s);
+  }
+
+  $loadjs('{{rev['/main.modules.js'] or '/main.modules.js'}}', '{{rev['/main.js'] or '/main.js'}}');
+
+  document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ');
+</script>

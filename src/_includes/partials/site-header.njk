@@ -1,0 +1,21 @@
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header role="banner" class="site-header {{ 'site-header--transparent' if transparentHeader else 'site-header--opaque' }}">
+  <div class="wrap">
+    {#
+      site logo or name
+    #}
+    <div class="site-header__logo">
+      <a href="/">
+        <span>{{ site.name }}</span>
+      </a>
+    </div>
+
+
+    {#
+      site nav
+    #}
+    <div class="site-header__nav">
+      {% include 'components/nav.njk' %}
+    </div>
+  </div>
+</header>

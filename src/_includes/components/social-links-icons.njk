@@ -1,0 +1,11 @@
+{% if social | length > 0 %}
+  <ul class="social-links social-links--icons">
+    {% for key, item in social %}
+      <li class="social-links__item social-link social-link--{{key}}">
+        <a href="{{ constants.social[key].root }}{{ item }}" target="_blank">
+          {{ constants.social[key].icon.fallback }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
