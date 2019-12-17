@@ -1,0 +1,49 @@
+{#
+  Macro for building simple SVG icons.
+  -
+  references:
+  role="img" : https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Role_Img
+  fallbacks: https://css-tricks.com/a-complete-guide-to-svg-fallbacks/#fallback-inline-svg-imgtag
+#}
+
+{% macro svg(
+  colour='#fff',
+  name='',
+  width=0,
+  height=0,
+  viewBox='0 0 0 0',
+  paths=[],
+  fallback='',
+  role='img',
+  label=''
+) %}
+{% set pad = (height/width * 100) %}
+<div class="svg-wrap">
+  <div
+    class="svg-wrap__padder"
+    style="padding-bottom:{{ pad }}%;"
+  ></div>
+  <svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="{{width}}"
+    height="{{height}}"
+    viewBox="{{viewbox}}"
+    {% if role === 'img' %}
+      role="img"
+      aria-label="{{label or name}}"
+    {% endif %}
+  >
+    {% for path in paths %}
+      <path fill="{{ colour }}" d="{{ path }}"></path>
+    {% endfor %}
+
+    {% if fallback !== '' %}
+      <image src="{{ fallback }}" xlink:href="" />
+    {% else %}
+      {{label or name}}
+    {% endif %}
+  </svg>
+</div>
+{% endmacro %}

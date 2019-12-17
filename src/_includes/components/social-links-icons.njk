@@ -1,9 +1,19 @@
+{% from "macros/svg.njk" import svg %}
+
 {% if social | length > 0 %}
   <ul class="social-links social-links--icons">
     {% for key, item in social %}
       <li class="social-links__item social-link social-link--{{key}}">
         <a href="{{ constants.social[key].root }}{{ item }}" target="_blank">
-          {{ constants.social[key].icon.fallback }}
+          {{ svg(
+            colour=constants.social[key].colour,
+            name=constants.social[key].name,
+            width=constants.social[key].icon.width,
+            height=constants.social[key].icon.height,
+            viewBox=constants.social[key].icon.viewBox,
+            paths=constants.social[key].icon.paths,
+            fallback=constants.social[key].icon.fallback
+          ) }}
         </a>
       </li>
     {% endfor %}
