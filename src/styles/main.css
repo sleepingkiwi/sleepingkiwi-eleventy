@@ -1,0 +1,9 @@
+@import 'settings/colours.css';
+
+body {
+  background-color: var(--colour-test);
+
+  & p {
+    transition: transform ease 200ms;
+  }
+}
