@@ -164,7 +164,7 @@ const config = {
          *  some of these are required. All can be overwritten by individual templates
         **/
         {
-          label: 'Site details, SEO, Social sharing defaults',
+          label: 'Site meta, SEO, Social sharing defaults',
           name: 'meta',
           delete: false,
           file: 'src/_data/meta.json',

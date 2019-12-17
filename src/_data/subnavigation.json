@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "text": "Cookies & Privacy Policy",
+      "url": "/privacy",
+      "external": false
+    },
+    {
+      "text": "Website T&Cs",
+      "url": "/terms",
+      "external": false
+    }
+  ]
+}
