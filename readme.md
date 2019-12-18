@@ -2,7 +2,7 @@
 
 A personal starting point for building static sites with [eleventy] using [netlify CMS] for content.
 
-- Styled with [Sass]/SCSS, browser prefixes added with [Autoprefixer] and minified with [CSS nano] through [PostCSS], linted by [stylelint]
+- Styled using modern CSS enabled through `[postcss-preset-env]`. Browser prefixes added with [Autoprefixer] and minified with [CSS nano] all through [PostCSS], linted by [stylelint]
 - Client script transpiled by [babel], bundled by [webpack], linted by [eslint]
 - Served in development by [light-server] (see _Using CLI tools directly_ below)
 - includes a couple of custom widgets for [netlify CMS] to simplify image handling.
@@ -56,6 +56,12 @@ We can determine what features to detect or whether to serve the fall-back JavaS
 
 ### Preact for complex/stateful JavaScript
 
+### Using modern CSS with [PostCSS] and `[postcss-preset-env]`
+
+Previously I have used Sass heavily but in this starter I'm trying to use native (or upcoming) features of CSS.
+
+I'm trying not to use too many experimental features but details of the features that are enabled and a more in depth look at CSS structure can be found in `src/styles/readme.md`.
+
 ---
 
 ## Implementation notes
@@ -107,6 +113,7 @@ As a result, the config for authentication is located largely on [netlify]
 [babel]: https://babeljs.io/
 [light-server]: https://github.com/txchen/light-server
 [PostCSS]: https://postcss.org/
+[postcss-preset-env]: http://preset-env.cssdb.org/
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [CSS nano]: https://cssnano.co/
 [node-file-rev]: https://github.com/lukasoppermann/node-file-rev

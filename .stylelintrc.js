@@ -3,52 +3,64 @@
  *  ref: https://github.com/airbnb/css
 **/
 module.exports = {
-  plugins: [
-    require.resolve('stylelint-scss'),
-    require.resolve('stylelint-selector-bem-pattern'),
-  ],
+  plugins: [],
   extends: [
     require.resolve('stylelint-config-standard'),
   ],
   rules: {
+    // layout
     indentation: 2,
     'max-empty-lines': 2,
     'string-quotes': 'single',
-    'no-descending-specificity': null,
-    'no-duplicate-selectors': true,
-    'shorthand-property-no-redundant-values': true,
     'block-opening-brace-space-before': 'always',
     'block-no-empty': true,
     'rule-empty-line-before': ['always', {
-      'ignore': ['after-comment']
+      'ignore': ['after-comment'],
     }],
-    'length-zero-no-unit': true,
-    'number-no-trailing-zeros': true,
     'comment-empty-line-before': ['always', {
-      'ignore': ['stylelint-commands']
+      'ignore': ['stylelint-commands'],
     }],
     'comment-whitespace-inside': 'always',
-    'color-hex-case': 'lower',
-    'color-hex-length': 'long',
-    'color-no-invalid-hex': true,
-    'declaration-no-important': true,
     'declaration-colon-space-before': 'never',
     'declaration-colon-space-after': 'always-single-line',
     'declaration-block-single-line-max-declarations': 1,
     'declaration-block-trailing-semicolon': 'always',
+    'selector-list-comma-newline-after': 'always',
+    'value-list-comma-space-after': 'always-single-line',
+    'at-rule-empty-line-before': [
+      'always', {
+        'ignoreAtRules': ['import', 'first-nested'],
+      },
+    ],
+    'function-comma-space-after': 'always-single-line',
+    'function-comma-space-before': 'never',
+
+    // nice in theory - really annoying in practice
+    // see https://stylelint.io/user-guide/rules/no-descending-specificity#dom-limitations
+    'no-descending-specificity': null,
+
+    'no-duplicate-selectors': true,
+    'shorthand-property-no-redundant-values': true,
+    'length-zero-no-unit': true,
+    'number-no-trailing-zeros': true,
+    'color-hex-case': 'lower',
+    'color-hex-length': 'long',
+    'color-no-invalid-hex': true,
+    'at-rule-name-case': 'lower',
+    'declaration-no-important': true,
     'declaration-block-no-duplicate-properties': [
       true,
       {
         ignore: [
-          'consecutive-duplicates-with-different-values'
+          'consecutive-duplicates-with-different-values',
         ],
       },
     ],
     // use border: 0 instead pls
     'declaration-property-value-blacklist': {
-      '/^border/': ['none']
+      '/^border/': ['none'],
     },
-    // no ids in styles
+    // no ids in styles - disable on a case by case if you need one
     'selector-max-id': 0,
     'selector-max-compound-selectors': 4,
     'selector-no-qualifying-type': [
@@ -57,49 +69,9 @@ module.exports = {
         ignore: 'attribute',
       },
     ],
-    'selector-list-comma-newline-after': 'always',
+    // if you specifically need one disable per case!
     'value-no-vendor-prefix': true,
-    'value-list-comma-space-after': 'always-single-line',
-    'at-rule-empty-line-before': [
-      'always', {
-        'ignoreAtRules': ['import', 'first-nested']
-      }],
-    'at-rule-name-case': 'lower',
-    'function-comma-space-after': 'always-single-line',
-    'function-comma-space-before': 'never',
-    'plugin/selector-bem-pattern': {
-      'componentName': '[A-Z]+',
-      'componentSelectors': {
-        'initial': '^\\.{componentName}(?:-[a-z]+)?$',
-        'combined': '^\\.combined-{componentName}-[a-z]+$'
-      },
-      'utilitySelectors': '^\\.util-[a-z]+$'
-    },
-    // scss specific
-    'at-rule-blacklist': ['extend'],
+    // we enable css nesting through postcss but don't want it to get crazy...
     'max-nesting-depth': 3,
-    'scss/selector-no-redundant-nesting-selector': true,
-    'scss/double-slash-comment-whitespace-inside': 'always',
-    'scss/selector-no-redundant-nesting-selector': true,
-    // adding in the scss @ rules
-    'at-rule-no-unknown': [
-      true,
-      {
-        ignoreAtRules: [
-          'each',
-          'else',
-          'extend',
-          'for',
-          'function',
-          'if',
-          'include',
-          'mixin',
-          'return',
-          'while',
-          'warn',
-          'content',
-        ],
-      },
-    ],
   }, // rules
 }; // config object
