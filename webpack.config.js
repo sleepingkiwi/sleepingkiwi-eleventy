@@ -8,6 +8,7 @@ module.exports = (env = {}) => {
    *  Used throughout this config to check whether we're building for production or development
   **/
   const isProduction = env.production === true;
+  const isAdmin = env.admin === true; // we have seperated calls to process the admin scripts
 
   return [
     /** NOMODULES (browserlist) CONFIG
@@ -21,7 +22,8 @@ module.exports = (env = {}) => {
      *  we also bundle any polyfills that we need for older browsers.
      *  look at `Loading polyfills` in the readme for more info.
     **/
-    {
+    // admin scripts don't get nomodules bundle - admins need to use a modern browser!
+    isAdmin ? null : {
       /** mode
        *  ------------------------------------------------------------------------------------------
        *  see https://webpack.js.org/concepts/mode/
@@ -162,9 +164,10 @@ module.exports = (env = {}) => {
       **/
       mode: isProduction ? 'production' : 'development',
 
-      entry: {
-        main: './src/js/entry.js',
+      entry: isAdmin ? {
         admin: './src/admin/admin.js',
+      } : {
+        main: './src/js/entry.js',
       },
 
       output: {
@@ -263,5 +266,5 @@ module.exports = (env = {}) => {
         ],
       },
     }, // modules config (less heavily transpiled)
-  ];
+  ].filter((mightBeNull) => mightBeNull !== null);
 };

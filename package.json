@@ -61,17 +61,21 @@
     "rev": "node-file-rev dist/admin.modules.js dist/main.js dist/main.modules.js dist/polyfills.js dist/styles/main.css --manifest=src/_data/rev.json --root=dist",
     "eleventy:default": "npx @11ty/eleventy",
     "eleventy:watch": "npx @11ty/eleventy --watch",
-    "styles:lint": "stylelint src/styles/**/*.css --color",
-    "scripts:lint": "eslint src/**/*.js",
-    "styles:dev": "postcss ./src/styles/*.css --map --env='development' --verbose --dir ./dist/styles",
+    "lint:styles": "stylelint src/styles/**/*.css --color",
+    "lint:scripts": "eslint src/js/**/*.js",
+    "lint:admin": "eslint src/admin/**/*.js",
+    "lint:alljs": "eslint src/**/*.js",
+    "styles:dev": "npm run lint:styles && postcss ./src/styles/*.css --map --env='development' --verbose --dir ./dist/styles",
     "styles:prod": "postcss ./src/styles/*.css --map --env='production' --verbose --dir ./dist/styles",
-    "scripts:prod": "npm run scripts:lint && webpack --env.production --progress --color",
-    "scripts:dev": "npm run scripts:lint && webpack --env.production=false --env.development --progress --color ",
+    "scripts:prod": "webpack --env.production --color",
+    "scripts:dev": "npm run lint:scripts && webpack --env.production=false --env.development --color ",
+    "admin:prod": "webpack --env.production --env.admin --color",
+    "admin:dev": "npm run lint:admin && webpack --env.production=false --env.admin --env.development --color ",
     "scripts:stats": "webpack --profile --json --env.production > compilation-stats.json",
     "serve": "light-server -c .lightserverrc",
-    "dev": "npm-run-all clean styles:lint styles:dev scripts:dev eleventy:default --parallel eleventy:watch serve --print-label",
+    "dev": "npm-run-all clean styles:dev admin:dev scripts:dev eleventy:default --parallel eleventy:watch serve --print-label",
     "dev:debug": "DEBUG=* npm run dev",
     "start": "npm run dev",
-    "build": "run-s clean styles:lint styles:prod scripts:prod rev eleventy:default --print-label"
+    "build": "run-s clean lint:alljs lint:styles styles:prod admin:prod scripts:prod rev eleventy:default --print-label"
   }
 }
