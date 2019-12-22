@@ -1,0 +1,80 @@
+/** @font-face imports should happen here!
+ *  ------------------------------------------------------------------------------------------------
+ *  for this example we're importing multiple weights of the open source font Averia Serif
+ *  (http://iotic.com/averia/)
+**/
+
+@font-face {
+  font-family: 'Averia Serif Regular';
+  src:
+    url('/fonts/averiaseriflibre-regular-webfont.woff2') format('woff2'),
+    url('/fonts/averiaseriflibre-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Averia Serif Bold';
+  src:
+    url('/fonts/averiaseriflibre-bold-webfont.woff2') format('woff2'),
+    url('/fonts/averiaseriflibre-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Averia Serif Italic';
+  src:
+    url('/fonts/averiaseriflibre-italic-webfont.woff2') format('woff2'),
+    url('/fonts/averiaseriflibre-italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Averia Serif Bolditalic';
+  src:
+    url('/fonts/averiaseriflibre-bolditalic-webfont.woff2') format('woff2'),
+    url('/fonts/averiaseriflibre-bolditalic-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/** font families
+ *  ------------------------------------------------------------------------------------------------
+**/
+:root {
+  /*
+  these are quite nice default families.
+  but lately I prefer just using device fonts as the fallbacks...
+  -
+  --sans-serif: Helmet, Freesans, Tahoma, Geneva, sans-serif;
+  --serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+  */
+  --sans-serif: sans-serif;
+  --serif: serif;
+
+
+  /** Site font variables
+  *  ------------------------------------------------------------------------------------------------
+  **/
+  --ff-averia-regular: 'Averia Serif Regular', var(--serif);
+  --ff-averia-bold: 'Averia Serif Bold', var(--serif);
+  --ff-averia-italic: 'Averia Serif Italic', var(--serif);
+  --ff-averia-bolditalic: 'Averia Serif Bolditalic', var(--serif);
+
+  /*
+  the named font variables above aren't used directly
+  instead we distinguish between the main (body) font and heading fonts
+  */
+  --ff-body: var(--sans-serif);
+  --ff-heading: var(--ff-averia-regular);
+  --ff-heading-bold: var(--ff-averia-bold);
+  --ff-heading-italic: var(--ff-averia-italic);
+  --ff-heading-bolditalic: var(--ff-averia-bolditalic);
+}

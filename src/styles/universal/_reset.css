@@ -1,0 +1,41 @@
+/** Resetting CSS
+ *  ------------------------------------------------------------------------------------------------
+ *  largely just stripping margins etc.
+ *  includes two small fixes that feel like they should be part of normalise anyway.
+**/
+
+/* Remove default margin/padding */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+  this has been dropped from normalize becuse it's a bug fix for IE < 11
+  but it's a small rule and makes sense as a default anyway...
+*/
+svg { overflow: hidden; }
+
+/* why is this not the default? */
+pre { white-space: pre-wrap; }
+
+/* remove table spacing */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

@@ -5,6 +5,7 @@ const htmlPrettyTransform = require('./src/transforms/html-pretty.js');
 module.exports = (eleventyConfig) => {
   // copy these things to dist even though they are not templates!
   eleventyConfig.addPassthroughCopy('src/images');
+  eleventyConfig.addPassthroughCopy('src/fonts');
 
   // transforms modify a template’s output
   // https://www.11ty.dev/docs/config/#transforms

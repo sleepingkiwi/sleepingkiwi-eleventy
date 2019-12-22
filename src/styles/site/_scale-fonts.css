@@ -1,0 +1,23 @@
+/** scale all fonts at bigger screen sizes
+ *  ------------------------------------------------------------------------------------------------
+ *  we use relative font sizes everywhere so you only need to change the size on the root to scale
+ *  everywhere.
+ *  -
+ *  this is a silly example - normally it would make more sense to care about breakpoints etc.
+**/
+html {
+  font-size: 1rem;
+
+  /* the approach below would indefinitely increase size */
+  font-size: calc(1rem + 0.5vw);
+}
+
+
+@media (--max) {
+  /* this breakpoint is where our content stops scaling up because of max-widths... */
+
+  html {
+    /* do: calc(1rem + 0.5*content-limit-width) */
+    font-size: calc(1rem + calc(0.5 * var(--layout-max)));
+  }
+}

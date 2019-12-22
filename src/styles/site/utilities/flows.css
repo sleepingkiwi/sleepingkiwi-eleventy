@@ -1,0 +1,25 @@
+/** Flowing
+ *  ------------------------------------------------------------------------------------------------
+ *  flow adds consistent margin-top to child elements of a container with class .u-flows
+ *  margin-top is added to direct descendants apart from the first child.
+ *  the > * + * selector targets elements with a preceding sibling.
+ *  -
+ *  ref: https://24ways.org/2018/managing-flow-and-rhythm-with-css-custom-properties/
+**/
+
+/** em or rem?
+ *  ------------------------------------------------------------------------------------------------
+ *  look at `../settings/_layout.css` to explain choices
+**/
+.u-flows {
+  --flow-space: var(--bsu);
+}
+
+/** overwrite the default?
+ *  ------------------------------------------------------------------------------------------------
+ *  you can overwrite the default on individual elements by changing the value of --flow-space for
+ *  the element you want to change!
+**/
+.u-flows > * + * {
+  margin-top: var(--flow-space);
+}

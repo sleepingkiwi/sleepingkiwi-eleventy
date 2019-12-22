@@ -3,7 +3,9 @@
  *  ref: https://github.com/airbnb/css
 **/
 module.exports = {
-  plugins: [],
+  plugins: [
+    'stylelint-value-no-unknown-custom-properties',
+  ],
   extends: [
     require.resolve('stylelint-config-standard'),
   ],
@@ -17,9 +19,13 @@ module.exports = {
     'rule-empty-line-before': ['always', {
       'ignore': ['after-comment'],
     }],
-    'comment-empty-line-before': ['always', {
-      'ignore': ['stylelint-commands'],
-    }],
+    'comment-empty-line-before': [
+      'always',
+      {
+        ignore: ['after-comment', 'stylelint-commands'],
+        except: ['first-nested'],
+      },
+    ],
     'comment-whitespace-inside': 'always',
     'declaration-colon-space-before': 'never',
     'declaration-colon-space-after': 'always-single-line',
@@ -73,5 +79,19 @@ module.exports = {
     'value-no-vendor-prefix': true,
     // we enable css nesting through postcss but don't want it to get crazy...
     'max-nesting-depth': 3,
+    // custom properties
+    'csstools/value-no-unknown-custom-properties': [
+      true, {
+        'importFrom': [
+          'src/styles/settings/_brand.css',
+          'src/styles/settings/_breakpoints.css',
+          'src/styles/settings/_colours.css',
+          'src/styles/settings/_layout.css',
+          'src/styles/settings/_modular-scale.css',
+          'src/styles/settings/_z-index.css',
+          'src/styles/fonts/fonts.css',
+        ],
+      },
+    ],
   }, // rules
 }; // config object

@@ -1,0 +1,29 @@
+/** Defining breakpoints used by the site.
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+/* can be useful to have an mq that records when our layout will stop scaling */
+
+@custom-media --max screen and (min-width: var(--layout-max));
+
+
+/** General media queries
+ *  ------------------------------------------------------------------------------------------------
+ *  it's okay to have custom queries for specific bits of content!
+ *  if you do - name them appropriately!
+ *  these are just some general ones.
+**/
+
+@custom-media --vagabond screen and (min-width: 25em); /* 400px */
+
+@custom-media --serf screen and (min-width: 30.1em); /* 480px */
+
+@custom-media --yeoman screen and (min-width: 50em); /* 800px */
+
+@custom-media --squire screen and (min-width: 64.4em); /* 1030px */
+
+@custom-media --knight screen and (min-width: 77.5em); /* 1240px */
+
+@custom-media --princess screen and (min-width: 94em); /* 1500px */
+
+@custom-media --queen screen and (min-width: 112.5em); /* 1800px */

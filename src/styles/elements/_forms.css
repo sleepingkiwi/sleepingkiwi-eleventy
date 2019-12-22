@@ -1,0 +1,66 @@
+/** forms
+ *  ------------------------------------------------------------------------------------------------
+ *  opinionated defaults for forms and inputs...
+**/
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  line-height: 1.5;
+  font-weight: normal;
+
+  &:invalid {
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: var(--colour-subtle);
+    opacity: 0.8;
+  }
+
+  &:focus,
+  &:active {
+
+    &::placeholder {
+      color: var(--colour-primary);
+    }
+  }
+}
+
+/* pointy labels */
+label {
+  cursor: pointer;
+}
+
+/* no outlines... */
+input:focus,
+textarea:focus {
+  outline: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+select[multiple] {
+  vertical-align: top;
+}
+
+input[disabled],
+select[disabled],
+select[disabled] option,
+select[disabled] optgroup,
+textarea[disabled] {
+  box-shadow: none;
+  user-select: none;
+  pointer-events: none;
+  color: #888888;
+  cursor: default;
+}
+
+::-webkit-validation-bubble-message {
+  font-family: var(--ff-body);
+}

@@ -1,0 +1,27 @@
+/** global or base site css
+ *  ------------------------------------------------------------------------------------------------
+ *  Here's where you can put all of your site specific code that should apply globally or isn't
+ *  specific to any components etc.
+**/
+
+/* scale fonts based on screen size - included as an example - remove if you want! */
+@import '_scale-fonts.css';
+
+/** body defaults
+ *  ------------------------------------------------------------------------------------------------
+**/
+body {
+  line-height: 1.5;
+  font-family: var(--ff-body);
+  color: var(--colour-primary);
+  background-color: var(--colour-background-body);
+
+  /*
+    Sometimes required for skinny fonts - particularly for light on dark text.
+    Only applies on Mac OS.
+  */
+  /*
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  */
+}

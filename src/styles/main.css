@@ -1,9 +1,42 @@
-@import 'settings/colours.css';
+/** High level/core files
+ *  ------------------------------------------------------------------------------------------------
+ *  The base of our css. Global values and settings, fonts, resets, flow etc.
+ *  nothing in here should target a class.
+ *  -
+ *  you probably don't need to add any new files in these dirs but you will
+ *  want to change values in settings and fonts to establish your theme!
+ *  -
+ *  it should be rare to need to change values directly in `./universal` or `./elements`
+ *  -
+ *  Full details in `./readme.md`
+**/
+@import 'settings/settings.css';
+@import 'fonts/fonts.css';
+@import 'universal/universal.css';
+@import 'elements/elements.css';
 
-body {
-  background-color: var(--colour-test);
 
-  & p {
-    transition: transform ease 200ms;
-  }
-}
+/** Site styles
+ *  ------------------------------------------------------------------------------------------------
+ *  make your site look nice.
+ *  -
+ *  import things you use here.
+ *  If it's not imported anywhere it doesn't get bundled in the build.
+ *  -
+ *  do whatever you want with structure. global.css, /components etc. is just a suggestion.
+ *  I don't normally like utility styles (like .pad-left-sm.colour-primary)
+ *  but make an exception for .u-flows which is very useful
+**/
+@import 'site/site.css';
+@import 'site/utilities/flows.css';
+
+@import 'site/components/Wrap.css';
+
+
+/** Helpers & overrides
+ *  ------------------------------------------------------------------------------------------------
+ *  feel free to add your own.
+ *  these should probably come last
+ *  designed to be used for things like a11y helpers, print styles etc.
+**/
+@import 'helpers/helpers.css';

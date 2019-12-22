@@ -1,0 +1,37 @@
+/** Brand settings
+ *  ------------------------------------------------------------------------------------------------
+ *  this file's a bit generic. Used for brand specific settings that don't fall under the other
+ *  setting files!
+**/
+
+:root {
+  /** animations and transitions
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --time-transition: 600ms;
+  --time-transition-slow: calc(var(--time-transition) * 1.5);
+  --time-transition-fast: calc(var(--time-transition) * 0.5);
+
+
+  /** eases
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --ease-default: ease;
+  --ease-bounce: cubic-bezier(0.87, -0.41, 0.19, 1.44);
+  --ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+
+  /** box shadows
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --box-shadow-default: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --box-shadow-subtle: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+
+
+  /** border radius
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --radius-default: 4px;
+  --radius-small: calc(var(--radius-default) * 0.5);
+}

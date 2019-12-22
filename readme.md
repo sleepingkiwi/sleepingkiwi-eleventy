@@ -1,8 +1,18 @@
-# sleepingkiwi eleventy starter
+# kiw11ty - sleepingkiwi eleventy starter/reference
 
 A personal starting point for building static sites with [eleventy] using [netlify CMS] for content.
 
-- Styled using modern CSS enabled through `[postcss-preset-env]`. Browser prefixes added with [Autoprefixer] and minified with [CSS nano] all through [PostCSS], linted by [stylelint]
+- lots of opinions
+- lots of comments
+- more code than is sensible for an effective starter
+
+I use this repo to keep minimal examples of common problems I need to solve on static sites.
+
+It can be useful as a reference but if you want to start your own project from here delete all the bits you don't want!
+
+---
+
+- Styled using modern CSS enabled through [postcss-preset-env]. Browser prefixes added with [Autoprefixer] and minified with [CSS nano] all through [PostCSS], linted by [stylelint]
 - Client script transpiled by [babel], bundled by [webpack], linted by [eslint]
 - Served in development by [light-server] (see _Using CLI tools directly_ below)
 - includes a couple of custom widgets for [netlify CMS] to simplify image handling.
@@ -44,11 +54,11 @@ This is handled by the webpack config. We output two configs, one which uses [@b
 
 We are currently using a bit of inline JavaScript to detect support and serve the correct file. Additionally we use preload tags to preload the modern script (older script is not preloaded). This method is discussed in more length [on the next.js repo](https://github.com/zeit/next.js/issues/7563#issuecomment-509823285).
 
-If we decide not to use this inline JavaScript then *Option 3* from [Modern Script Loading](https://jasonformat.com/modern-script-loading/) would be a strong candidate for an alternative. [It's the method preact-cli use](https://github.com/preactjs/preact-cli/blob/master/packages/cli/lib/resources/body-end.ejs)
+If we decide not to use this inline JavaScript then *Option 3* from [Modern Script Loading](https://jasonformat.com/modern-script-loading/) would be a strong candidate for an alternative. [It's the method preact-cli use](https://github.com/preactjs/preact-cli/blob/master/packages/cli/lib/resources/body-end.ejs).
 
 ### Cutting the mustard or ignoring nomodule JavaScript
 
-There's an argument that if our no JavaScript version of the site is strong enough then we can serve no JavaScript at all to browsers that don't support a basic subset of features. We could potentially *only* serve the modern JS and just let older browsers use the JavaAScript free version of the site or we could cut the mustard like the BBC did in the past by adding feature detection to our inline JavaScript that writes out the script tags.
+There's an argument that if our no JavaScript version of the site is strong enough we could serve no JavaScript at all to browsers that don't support a basic subset of features. We could potentially *only* serve the modern JS and just let older browsers use the JavaAScript free version of the site or we could cut the mustard like the BBC did in the past by adding feature detection to our inline JavaScript that writes out the script tags.
 
 We can determine what features to detect or whether to serve the fall-back JavaScript on a per-project basis.
 
@@ -60,7 +70,7 @@ We can determine what features to detect or whether to serve the fall-back JavaS
 
 Previously I have used Sass heavily but in this starter I'm trying to use native (or upcoming) features of CSS.
 
-I'm trying not to use too many experimental features but details of the features that are enabled and a more in depth look at CSS structure can be found in `src/styles/readme.md`.
+I'm trying not to use too many experimental features but details of the features that are enabled and a more in depth look at CSS structure can be found in [`src/styles/readme.md`](src/styles/readme.md).
 
 ---
 

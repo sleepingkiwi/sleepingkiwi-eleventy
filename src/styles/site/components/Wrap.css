@@ -1,0 +1,28 @@
+/** Wrap component
+ *  ------------------------------------------------------------------------------------------------
+ *  just wraps content, centralised and width constrained
+**/
+
+.Wrap {
+  padding-right: var(--bsu);
+  padding-left: var(--bsu);
+  margin-right: auto;
+  margin-left: auto;
+  max-width: var(--layout-max);
+  max-width: calc(var(--layout-max) + calc(var(--bsu) * 2));
+}
+
+.Wrap--content {
+  max-width: var(--layout-content);
+  max-width: calc(var(--layout-content) + calc(var(--bsu) * 2));
+}
+
+.Wrap--columns {
+  max-width: var(--layout-columns);
+  max-width: calc(var(--layout-columns) + calc(var(--bsu) * 2));
+}
+
+.Wrap--readable {
+  max-width: var(--layout-readable);
+  max-width: calc(var(--layout-readable) + calc(var(--bsu) * 2));
+}

@@ -1,0 +1,68 @@
+/** Typography and weight
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+h1 {
+  font-size: var(--s6);
+}
+
+h2 {
+  font-size: var(--s5);
+}
+
+h3 {
+  font-size: var(--s4);
+}
+
+h4 {
+  font-size: var(--s3);
+}
+
+h5 {
+  font-size: var(--s2);
+}
+
+h6 {
+  font-size: var(--s1);
+}
+
+small {
+  font-size: var(--s-1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ff-heading);
+  font-weight: normal;
+
+  & strong {
+    font-weight: bold;
+    font-family: var(--ff-heading-bold);
+  }
+
+  & em {
+    font-style: italic;
+    font-family: var(--ff-heading-italic);
+  }
+
+  & strong em,
+  & em strong {
+    font-style: italic;
+    font-weight: bold;
+    font-family: var(--ff-heading-bolditalic);
+  }
+}
+
+strong {
+  font-weight: bold;
+}
+
+strong em,
+em strong {
+  font-style: italic;
+  font-weight: bold;
+}

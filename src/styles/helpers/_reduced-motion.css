@@ -1,0 +1,24 @@
+/** Repecting reduced motion settings
+ *  ------------------------------------------------------------------------------------------------
+ *  If a user has requested reduced motion through device settings it's nice to respect that!
+ *  This may be overkill and might require a little extra testing.
+ *  -
+ *  For reference see: See: https://github.com/mozdevs/cssremedy/issues/11
+**/
+
+/* stylelint-disable declaration-no-important */
+
+@media (prefers-reduced-motion: reduce) {
+
+  * {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* stylelint-enable declaration-no-important */

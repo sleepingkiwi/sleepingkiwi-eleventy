@@ -1,0 +1,21 @@
+:root {
+  /** primary colours
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --colour-primary: #344147;
+  --colour-secondary: #f6c450;
+  --colour-subtle: #576075;
+
+  /** inverted colours
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --colour-invert: #fff4e8;
+  --colour-invert-subtle: #f7e1c9;
+
+  /** backgrounds
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --colour-background-body: #f6fafc;
+  --colour-background-subtle: #ebeeef;
+  --colour-background-secondary: #ad2c3d;
+}

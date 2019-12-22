@@ -1,0 +1,91 @@
+/** Modular scale
+ *  ------------------------------------------------------------------------------------------------
+ *  We use a modular scale for typography and layout throughout the site.
+ *  By using a defined ratio we hopefully get a nice flow of typography/spacing rather than being
+ *  totally linear.
+ *  -
+ *  refs:
+ *  https://www.modularscale.com/?1&rem&1.25
+ *  https://type-scale.com/
+ *  https://24ways.org/2019/a-modern-typographic-scale/
+ *  https://every-layout.dev/rudiments/modular-scale/
+**/
+
+:root {
+  /** Ratio
+   *  ----------------------------------------------------------------------------------------------
+   *  We're using a Major Third scale (4:5 / 1.25) by default.
+   *  It's pretty close to the `8 point scale` that I've used in previous projects
+   *  -
+   *  other possibilites:
+   *  perfect fourth: 1.333
+   *  perfect fifth: 1.5
+   *  golden ratio: 1.61803398875
+   *  -
+   *  or use something like:  https://www.modularscale.com/?1&rem&1.25 to help pick another.
+  **/
+  --ratio: 1.25;
+
+
+  /** Base unit & em or rem?
+   *  ----------------------------------------------------------------------------------------------
+   *  using an em value makes the spacing relative to the font size of the element itself.
+   *  meaning elements with a bigger font-size will get more spacing.
+   *  -
+   *  rem is relative to root font-size so 1rem is the same everywhere but 1em is not.
+  **/
+  --s0: 1rem;
+
+
+  /** positive scale
+   *  ----------------------------------------------------------------------------------------------
+   *  equivalent to h6 through h1
+   *  at 1.25 ratio pixels would roughly be:
+   *  --s1: 1.25rem (20.00px)
+   *  --s2: 1.563rem (25.00px)
+   *  --s3: 1.953rem (31.25px)
+   *  --s4: 2.441rem (39.06px)
+   *  --s5: 3.052rem (48.83px)
+   *  --s6: 3.815rem (61.04px)
+  **/
+  --s1: calc(var(--s0) * var(--ratio));
+  --s2: calc(var(--s1) * var(--ratio));
+  --s3: calc(var(--s2) * var(--ratio));
+  --s4: calc(var(--s3) * var(--ratio));
+  --s5: calc(var(--s4) * var(--ratio));
+  --s6: calc(var(--s5) * var(--ratio));
+
+
+  /** negative scale
+   *  ----------------------------------------------------------------------------------------------
+   *  gets pretty small pretty fast
+   *  at 1.25 ratio pixels would roughly be:
+   *  --s-1: 0.8rem (12.80px)
+   *  --s-2: 0.64rem (10.24px)
+   *  --s-3: 0.512rem (8.19px)
+   *  --s-4: 0.41rem (6.55px)
+   *  --s-5: 0.328em (5.24px)
+   *  --s-6: 0.262em (4.19px)
+  **/
+  --s-1: calc(var(--s0) / var(--ratio));
+  --s-2: calc(var(--s-1) / var(--ratio));
+  --s-3: calc(var(--s-2) / var(--ratio));
+  --s-4: calc(var(--s-3) / var(--ratio));
+  --s-5: calc(var(--s-4) / var(--ratio));
+  --s-6: calc(var(--s-5) / var(--ratio));
+
+
+  /** spacing defaults
+   *  ----------------------------------------------------------------------------------------------
+   *  it's fine to use the whole scale but it's also nice to have some consistency.
+   *  this just sets the --s2 value as the default scale we use elsewhere.
+  **/
+  --base-spacing-unit: var(--s2);
+  --bsu-xxs: var(--s-6); /* 4.19 */
+  --bsu-xs: var(--s-3); /* 8.19 */
+  --bsu-s: var(--s-1); /* 12.8 */
+  --bsu: var(--base-spacing-unit); /* 25 */
+  --bsu-m: var(--s4); /* 39.06 */
+  --bsu-l: var(--s5); /* 48.83 */
+  --bsu-xl: var(--s5); /* 61.04 */
+}

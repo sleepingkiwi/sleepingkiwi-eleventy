@@ -1,0 +1,15 @@
+/** Body and HTML defaults
+ *  ------------------------------------------------------------------------------------------------
+ *  We set some of the stuff more specific to your theme in `../site/site.css`
+ *  this is just stuff I almost always end up setting.
+**/
+
+html {
+  font-size: 1rem; /* this is the default anyway... */
+  overflow-y: scroll; /* forces scrollbars so that there's no jump when a new one appears */
+}
+
+body {
+  min-height: 100vh; /* almost feels too opinionated but I almost never don't want this so... */
+  scroll-behavior: smooth; /* smooth scroll where supported */
+}

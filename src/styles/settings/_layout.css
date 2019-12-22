@@ -1,0 +1,11 @@
+/** Layouts
+ *  ------------------------------------------------------------------------------------------------
+ *  max widths for various situations!
+**/
+
+:root {
+  --layout-max: 125rem;
+  --layout-columns: 100rem;/* for double columns - 1600px-ish */
+  --layout-content: 75rem; /* for single columns - 1200px @ 16px */
+  --layout-readable: 50rem; /* for text content - 800px @ 16px */
+}

@@ -1,0 +1,14 @@
+/** Border Box for everything
+ *  ------------------------------------------------------------------------------------------------
+ *  honestly I can't remember when I last needed `content-box` but if you need it apply it on a
+ *  case by case basis!
+ *  -
+ *  I used to use inherit here but actually I typically want the opposite behaviour with the
+ *  content-box parent being an exception...
+**/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
