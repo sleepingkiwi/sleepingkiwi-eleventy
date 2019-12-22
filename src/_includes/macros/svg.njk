@@ -4,6 +4,15 @@
   references:
   role="img" : https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Role_Img
   fallbacks: https://css-tricks.com/a-complete-guide-to-svg-fallbacks/#fallback-inline-svg-imgtag
+  -
+  paths should be array of objects with the the following shape:
+  [
+    {
+      path: 'M31.939 6.092c-1...', // required
+      fill: '#bedecc', // optional
+      attr: 'stroke="black" stroke-linecap="round" stroke-dasharray="5,10,5"', // optional
+    }
+  ]
 #}
 
 {% macro svg(
@@ -36,7 +45,7 @@
     {% endif %}
   >
     {% for path in paths %}
-      <path fill="{{ colour }}" d="{{ path }}"></path>
+      <path fill="{{ path.fill or colour }}" d="{{ path.path }}" {{ path.attr or '' }}></path>
     {% endfor %}
 
     {% if fallback !== '' %}

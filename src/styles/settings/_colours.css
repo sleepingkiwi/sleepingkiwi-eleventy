@@ -2,9 +2,10 @@
   /** primary colours
    *  ----------------------------------------------------------------------------------------------
   **/
-  --colour-primary: #344147;
-  --colour-secondary: #f6c450;
-  --colour-subtle: #576075;
+  --colour-primary: #4e588e;
+  --colour-secondary: #985171;
+  --colour-highlight: #f6c450;
+  --colour-subtle: #898fb1;
 
   /** inverted colours
    *  ----------------------------------------------------------------------------------------------
@@ -15,7 +16,8 @@
   /** backgrounds
    *  ----------------------------------------------------------------------------------------------
   **/
-  --colour-background-body: #f6fafc;
-  --colour-background-subtle: #ebeeef;
-  --colour-background-secondary: #ad2c3d;
+  --colour-background-body: #ebeeef;
+  --colour-background-subtle: #fafdfd;
+  --colour-background-secondary: #f5ddc8;
+  --colour-background-pop: #993434;
 }

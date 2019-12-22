@@ -3,6 +3,7 @@
 import { metaConfigGlobal } from './sections/meta';
 import pageSettings from './sections/pageSettings';
 import homeConfig from './sections/home';
+import siteDetailsConfig from './sections/siteDetails';
 import genericContentBlocks from './sections/generic';
 
 const config = {
@@ -133,28 +134,7 @@ const config = {
           delete: false,
           file: 'src/_data/site.json',
           fields: [
-            {
-              label: 'Global Site Details',
-              name: 'socialInstructions',
-              widget: 'instructions',
-              instructions: 'Global info about the site, logo, copyright notice etc.',
-              flavour: 'header',
-              required: false,
-            },
-            {
-              label: 'Site name',
-              name: 'name',
-              widget: 'string',
-              required: true,
-            },
-            {
-              label: 'Copyright Text',
-              name: 'copyright',
-              widget: 'markdown',
-              required: true,
-              hint: 'shown on the footer of every page.',
-              default: '© Copyright. All Rights Reserved.',
-            },
+            ...siteDetailsConfig,
           ], // fields
         }, // END SOCIAL
 

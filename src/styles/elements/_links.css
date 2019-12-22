@@ -11,7 +11,7 @@ a {
 
   &:hover,
   &:focus {
-    color: var(--colour-primary);
+    color: var(--colour-highlight);
   }
 
   &:active {

@@ -1,4 +1,4 @@
-# kiw11ty - sleepingkiwi eleventy starter/reference
+# sleepity - sleepingkiwi eleventy starter/reference
 
 A personal starting point for building static sites with [eleventy] using [netlify CMS] for content.
 
@@ -6,17 +6,37 @@ A personal starting point for building static sites with [eleventy] using [netli
 - lots of comments
 - more code than is sensible for an effective starter
 
-I use this repo to keep minimal examples of common problems I need to solve on static sites.
-
-It can be useful as a reference but if you want to start your own project from here delete all the bits you don't want!
+> I use this repo to keep minimal examples of common problems I need to solve on static sites.\
+It is useful as a reference but delete all the bits you don't want before you use it!
 
 ---
 
-- Styled using modern CSS enabled through [postcss-preset-env]. Browser prefixes added with [Autoprefixer] and minified with [CSS nano] all through [PostCSS], linted by [stylelint]
-- Client script transpiled by [babel], bundled by [webpack], linted by [eslint]
-- Served in development by [light-server] (see _Using CLI tools directly_ below)
-- includes a couple of custom widgets for [netlify CMS] to simplify image handling.
-- includes several templates and examples of integrating [netlify CMS] with [eleventy]
+## Structure
+
+- Built with [eleventy]
+- Using [Nunjucks], JSON and JavaScript to template content
+- Data generated through [netlify CMS]
+- Templates and examples integrate [netlify CMS] with [eleventy]
+- Includes custom [netlify CMS] widgets to simplify image handling and admin layout
+
+## CSS
+
+- Styled using modern CSS transformed with [postcss-preset-env]
+- Browser prefixes added with [Autoprefixer]
+- Minified with [CSS nano]
+- All through [PostCSS]
+- linted by [stylelint]
+
+## JavaScript
+
+- Client script transpiled by [babel]
+- [Preact] for progressively enhanced components
+- Bundled by [webpack]
+- Linted by [eslint]
+
+## Development
+
+- Served in development by [light-server]
 
 ---
 
@@ -32,17 +52,17 @@ It can be useful as a reference but if you want to start your own project from h
 
 > Explanations of the thought process behind decisions made in this starter
 
-### Using CLI tools directly _(Moving away from a huge webpack config)_
+### Using CLI tools directly
 
-Traditionally I have used webpack to handle all aspects of bundling, linting, transpiling, etc. which is very useful when using webpack's dev server but results in huge config files.
+**Moving away from a huge webpack config** : Traditionally I have used webpack to handle all aspects of bundling, linting, transpiling, etc. which is very useful when using webpack's dev server but results in huge config files.
 
 With this project I've tried to use individual tooling more directly from the scripts in `package.json`
 
 __[light-server]__ is very useful in helping to achieve this because it gives me an easy way to watch multiple files, run browser sync and run npm commands on changes.
 
-### Serving more modern JavaScript to browsers that support modules
+### Serving modern JavaScript
 
-This is currently a little complex but will hopefully become simpler over time!
+**Modern JS for browsers that support modules**: This is currently a little complex but will hopefully become simpler over time!
 
 Serving more modern code (less babel transformations) to modern browsers by targeting browsers that support [modules](https://v8.dev/features/modules) (browser support is a [very good 88%+ of traffic](https://caniuse.com/#feat=es6-module)) is widely recommend and gives big file size savings to modern browsers. However there are several implementation details that are tricky! [Modern Script Loading by Jason Miller](https://jasonformat.com/modern-script-loading/) is probably the best reference to the multiple problems of serving code in this way.
 
@@ -66,9 +86,9 @@ We can determine what features to detect or whether to serve the fall-back JavaS
 
 ### Preact for complex/stateful JavaScript
 
-### Using modern CSS with [PostCSS] and `[postcss-preset-env]`
+### Modern CSS
 
-Previously I have used Sass heavily but in this starter I'm trying to use native (or upcoming) features of CSS.
+**Using modern CSS with [PostCSS] and [postcss-preset-env]**: Previously I have used Sass heavily but in this starter I'm trying to use native (or upcoming) features of CSS.
 
 I'm trying not to use too many experimental features but details of the features that are enabled and a more in depth look at CSS structure can be found in [`src/styles/readme.md`](src/styles/readme.md).
 
@@ -128,3 +148,4 @@ As a result, the config for authentication is located largely on [netlify]
 [CSS nano]: https://cssnano.co/
 [node-file-rev]: https://github.com/lukasoppermann/node-file-rev
 [cloudinary]: https://cloudinary.com
+[Nunjucks]: https://mozilla.github.io/nunjucks/
