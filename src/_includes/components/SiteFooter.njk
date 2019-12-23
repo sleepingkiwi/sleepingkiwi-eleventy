@@ -1,0 +1,77 @@
+{#
+  SiteFooter component
+  ---
+  CMS _data:
+    site
+  ---
+  args:
+    -
+  ---
+#}
+
+{% from "components/Logo.njk" import Logo with context %}
+{% from "components/Nav.njk" import Nav with context %}
+{% from "components/SocialLinks.njk" import SocialLinks with context %}
+
+{% macro SiteFooter(
+  transparent = true
+) %}
+<footer role="contentinfo" class="SiteFooter">
+  <div class="Wrap">
+    {#
+      site logo or name
+    #}
+    <div class="SiteFooter__logo">
+      <a href="/">
+        {{
+          Logo()
+        }}
+      </a>
+    </div>
+
+
+    {#
+      primary site nav
+    #}
+    <div class="SiteFooter__nav">
+      {{
+        Nav()
+      }}
+    </div>
+
+
+    {#
+      social media
+    #}
+    <div class="SiteFooter__social">
+      {{
+        SocialLinks()
+      }}
+    </div>
+
+
+    {#
+      copyright notice
+    #}
+    {% if site.copyright %}
+    <div class="SiteFooter__copyright">
+      {{ site.copyright }}
+    </div>
+    {% endif %}
+
+
+    {#
+      sub nav
+      we do not render at all if there are no subnav items
+    #}
+    {% if subnavigation.items %}
+    <div class="SiteFooter__sub-nav">
+      {{
+        Nav(subnavigation)
+      }}
+    </div>
+    {% endif %}
+
+  </div>
+</footer>
+{% endmacro %}

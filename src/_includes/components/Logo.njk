@@ -1,0 +1,32 @@
+{#
+  SocialLinks component
+  ---
+  CMS _data:
+    site
+  ---
+  args:
+    -
+  ---
+#}
+{% from "components/SvgWrap.njk" import SvgWrap with context %}
+
+{% macro Logo() %}
+<div class="Logo">
+  {% if site.logo.svg.width and (site.logo.svg.paths | length > 0) %}
+    {{
+      SvgWrap(
+        name=site.name,
+        width=site.logo.svg.width,
+        height=site.logo.svg.height,
+        viewBox=site.logo.svg.viewBox,
+        paths=site.logo.svg.paths,
+        fallback=site.logo.fallback.src or ''
+      )
+    }}
+  {% elif site.logo.fallback.src %}
+    <img src="{{site.logo.fallback.src}}" alt="{{site.logo.fallback.alt}}" width="{{site.logo.fallback.width}}" height="{{site.logo.fallback.height}}" class="site-header__logo__image">
+  {% else %}
+    <span>{{ site.name }}</span>
+  {% endif %}
+</div>
+{% endmacro %}

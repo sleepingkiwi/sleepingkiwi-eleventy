@@ -30,6 +30,7 @@
 @import 'site/site.css';
 @import 'site/utilities/flows.css';
 
+@import 'site/components/SvgWrap.css';
 @import 'site/components/Wrap.css';
 
 

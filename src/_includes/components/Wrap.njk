@@ -1,0 +1,25 @@
+{#
+  Wrap component
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    flavour=''
+      Optional
+      String
+  ---
+
+  references:
+  role="img" : https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Role_Img
+  fallbacks: https://css-tricks.com/a-complete-guide-to-svg-fallbacks/#fallback-inline-svg-imgtag
+#}
+
+{% macro Wrap(
+  flavour=''
+) %}
+{% set content = caller() %} {# ref: https://github.com/mozilla/nunjucks/issues/664 #}
+<div class="Wrap{{ ' Wrap--' if flavour }}{{ flavour }}">
+  {{ content }}
+</div>
+{% endmacro %}

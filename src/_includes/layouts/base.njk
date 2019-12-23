@@ -1,3 +1,6 @@
+{% from "components/SiteHeader.njk" import SiteHeader with context %}
+{% from "components/SiteFooter.njk" import SiteFooter with context %}
+
 <!DOCTYPE html>
 <html class ='no-js' lang="en">
 <head>
@@ -21,7 +24,16 @@
   {% endblock %}
 </head>
 <body>
-  {% include 'partials/site-header.njk' %}
+  {#
+    SiteHeader
+      transparentHeader is set through the cms as part of the pageSettings config that is used
+      on every page...
+  #}
+  <a class="skip-link visuallyhidden" href="#main-content">Skip to content</a>
+  {{
+    SiteHeader(transparentHeader | default(false))
+  }}
+
 
   {#
     entry point for child templates to inject their main content!
@@ -29,7 +41,10 @@
   {% block content %}
   {% endblock %}
 
-  {% include 'partials/site-footer.njk' %}
+
+  {{
+    SiteFooter()
+  }}
 
   {#
     entry point for child templates to inject content into foot if needed!

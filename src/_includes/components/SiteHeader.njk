@@ -1,0 +1,48 @@
+{#
+  SiteHeader component
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    transparent = true
+      Optional
+      Boolean
+  ---
+#}
+
+{% from "components/Logo.njk" import Logo with context %}
+{% from "components/Nav.njk" import Nav with context %}
+{% from "components/Wrap.njk" import Wrap with context %}
+
+{% macro SiteHeader(
+  transparent = false
+) %}
+<header role="banner" class="SiteHeader{{ ' SiteHeader--transparent' if transparent else ' SiteHeader--opaque' }}">
+
+  {% call Wrap() %} {# maximum width Wrap #}
+
+    {#
+      site logo or name
+    #}
+    <div class="SiteHeader__logo">
+      <a href="/">
+        {{
+          Logo()
+        }}
+      </a>
+    </div>
+
+
+    {#
+      site nav
+    #}
+    <div class="SiteHeader__nav">
+      {{
+        Nav()
+      }}
+    </div>
+
+  {% endcall %} {# Wrap #}
+</header>
+{% endmacro %}

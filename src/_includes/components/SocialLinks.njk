@@ -1,11 +1,23 @@
-{% from "macros/svg.njk" import svg %}
+{#
+  SocialLinks component
+  ---
+  CMS _data:
+    social
+    constants.social
+  ---
+  args:
+    -
+  ---
+#}
+{% from "components/SvgWrap.njk" import SvgWrap with context %}
 
+{% macro SocialLinks() %}
 {% if social | length > 0 %}
-  <ul class="social-links social-links--icons">
+  <ul class="SocialLinks SocialLinks--icons">
     {% for key, item in social %}
-      <li class="social-links__item social-link social-link--{{key}}">
+      <li class="SocialLinks__item social-link social-link--{{key}}">
         <a href="{{ constants.social[key].root }}{{ item }}" target="_blank">
-          {{ svg(
+          {{ SvgWrap(
             colour=constants.social[key].colour,
             name=constants.social[key].name,
             width=constants.social[key].icon.width,
@@ -19,3 +31,4 @@
     {% endfor %}
   </ul>
 {% endif %}
+{% endmacro %}

@@ -1,5 +1,39 @@
+{#
+  Nav component
+  ---
+  CMS _data:
+    navigation
+  ---
+  args:
+    currentNavigation
+      Optional
+      Object shape:
+        {
+          items: [...]
+            Required
+            Array
+              of shapes: {
+                text: "Cookies & Privacy Policy",
+                  Required
+                  String
+                url: "/privacy",
+                  Required
+                  String
+                external: false
+                  Required
+                  Boolean
+              }
+        }
+  ---
+#}
+
+{% macro Nav(
+  currentNavigation
+) %}
 {% if not currentNavigation %}
-  {# if we haven't set a navigation variable higher up we default to our primary one #}
+  {#
+    if we haven't been passed a navigation object, default to the global _data/navigation.json
+  #}
   {% set currentNavigation = navigation %}
 {% endif %}
 
@@ -20,3 +54,4 @@
     </ul>
   </nav>
 {% endif %}
+{% endmacro %}

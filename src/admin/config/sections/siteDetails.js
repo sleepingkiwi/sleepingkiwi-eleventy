@@ -32,7 +32,7 @@ const siteDetailsConfig = [
       },
       {
         label: 'SVG Logo',
-        name: 'logo',
+        name: 'svg',
         widget: 'object',
         fields: [
           {

@@ -1,0 +1,93 @@
+{#
+  SvgWrap component
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    colour='#fff',
+      Optional
+      String
+    name='',
+      Optional
+      String
+    width=0,
+      Optional
+      Number or String
+    height=0,
+      Optional
+      Number or String
+    viewBox='0 0 0 0',
+      Optional
+      String
+    paths=[],
+      Optional
+      Array
+        of Shapes: {
+          path: 'M31.939 6.092c-1...',
+            Required
+            String
+          fill: '#bedecc',
+            Optional
+            String
+          attr: 'stroke="black" stroke-linecap="round" stroke-dasharray="5,10,5"',
+            Optional
+            String
+        }
+    fallback='',
+      Optional
+      String
+    role='img',
+      Optional
+      String
+    label=''
+      Optional
+      String
+  ---
+
+  references:
+  role="img" : https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Role_Img
+  fallbacks: https://css-tricks.com/a-complete-guide-to-svg-fallbacks/#fallback-inline-svg-imgtag
+#}
+
+{% macro SvgWrap(
+  colour='#fff',
+  name='',
+  width=0,
+  height=0,
+  viewBox='0 0 0 0',
+  paths=[],
+  fallback='',
+  role='img',
+  label=''
+) %}
+{% set pad = (height/width * 100) %}
+<div class="SvgWrap">
+  <div
+    class="SvgWrap__padder"
+    style="padding-bottom:{{ pad }}%;"
+  ></div>
+  <svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="{{width}}"
+    height="{{height}}"
+    viewBox="{{viewBox}}"
+    {% if role === 'img' %}
+      role="img"
+      aria-label="{{label or name}}"
+    {% endif %}
+  >
+    {% for path in paths %}
+      <path {{ path.attr | safe or '' }} fill="{{ path.fill or colour }}" d="{{ path.path }}"></path>
+    {% endfor %}
+
+    {% if fallback !== '' %}
+      <image src="{{ fallback }}" xlink:href="" />
+    {% else %}
+      {{label or name}}
+    {% endif %}
+  </svg>
+</div>
+{% endmacro %}
