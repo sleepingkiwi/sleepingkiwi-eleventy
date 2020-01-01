@@ -20,6 +20,7 @@ import ExtraImageControl from './widgets/ExtraImageControl';
 import ColourControl from './widgets/ColourControl';
 import ExtraImagePreview from './widgets/ExtraImagePreview';
 import InstructionsControl from './widgets/InstructionsControl';
+import RelationWrappedControl from './widgets/RelationWrappedControl';
 
 
 /** our cms configuration as a JS object
@@ -32,6 +33,7 @@ import config from './config/config';
  *  ------------------------------------------------------------------------------------------------
 **/
 CMS.registerWidget('extraImage', ExtraImageControl, ExtraImagePreview);
+CMS.registerWidget('relationWrapped', RelationWrappedControl);
 CMS.registerWidget('colour', ColourControl);
 CMS.registerWidget('instructions', InstructionsControl);
 

@@ -41,19 +41,16 @@ h6 {
 
   & strong {
     font-weight: bold;
-    font-family: var(--ff-heading-bold);
   }
 
   & em {
     font-style: italic;
-    font-family: var(--ff-heading-italic);
   }
 
   & strong em,
   & em strong {
     font-style: italic;
     font-weight: bold;
-    font-family: var(--ff-heading-bolditalic);
   }
 }
 

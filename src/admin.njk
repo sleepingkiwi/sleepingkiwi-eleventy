@@ -34,6 +34,12 @@ permalink: '/admin/index.html'
     div[class*=NestedObjectLabel] + div {
       border: 0;
     }
+
+    /* hidden overflow cuts off dropdowns in objects */
+    div[class*=ControlContainer] > div,
+    div[class*=NestedObjectLabel] + div {
+      overflow: visible;
+    }
   </style>
 </head>
 <body>

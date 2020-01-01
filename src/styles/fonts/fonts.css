@@ -5,7 +5,7 @@
 **/
 
 @font-face {
-  font-family: 'Averia Serif Regular';
+  font-family: 'Averia Serif';
   src:
     url('/fonts/averiaseriflibre-regular-webfont.woff2') format('woff2'),
     url('/fonts/averiaseriflibre-regular-webfont.woff') format('woff');
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: 'Averia Serif Bold';
+  font-family: 'Averia Serif';
   src:
     url('/fonts/averiaseriflibre-bold-webfont.woff2') format('woff2'),
     url('/fonts/averiaseriflibre-bold-webfont.woff') format('woff');
@@ -25,7 +25,7 @@
 }
 
 @font-face {
-  font-family: 'Averia Serif Italic';
+  font-family: 'Averia Serif';
   src:
     url('/fonts/averiaseriflibre-italic-webfont.woff2') format('woff2'),
     url('/fonts/averiaseriflibre-italic-webfont.woff') format('woff');
@@ -35,7 +35,7 @@
 }
 
 @font-face {
-  font-family: 'Averia Serif Bolditalic';
+  font-family: 'Averia Serif';
   src:
     url('/fonts/averiaseriflibre-bolditalic-webfont.woff2') format('woff2'),
     url('/fonts/averiaseriflibre-bolditalic-webfont.woff') format('woff');
@@ -63,18 +63,12 @@
   /** Site font variables
   *  ------------------------------------------------------------------------------------------------
   **/
-  --ff-averia-regular: 'Averia Serif Regular', var(--serif);
-  --ff-averia-bold: 'Averia Serif Bold', var(--serif);
-  --ff-averia-italic: 'Averia Serif Italic', var(--serif);
-  --ff-averia-bolditalic: 'Averia Serif Bolditalic', var(--serif);
+  --ff-averia: 'Averia Serif', var(--serif);
 
   /*
   the named font variables above aren't used directly
   instead we distinguish between the main (body) font and heading fonts
   */
   --ff-body: var(--sans-serif);
-  --ff-heading: var(--ff-averia-regular);
-  --ff-heading-bold: var(--ff-averia-bold);
-  --ff-heading-italic: var(--ff-averia-italic);
-  --ff-heading-bolditalic: var(--ff-averia-bolditalic);
+  --ff-heading: var(--ff-averia);
 }

@@ -34,7 +34,7 @@ const ExtraImageControl = window.createClass({
   imageLoadPromise: false,
 
   handleChange: function handleChange(src) {
-    console.log('changed image');
+    // console.log('changed image');
     const value = this.props.value && typeof this.props.value.toJS === 'function'
       ? this.props.value.toJS()
       : this.props.value || {};
@@ -74,7 +74,32 @@ const ExtraImageControl = window.createClass({
       const base = (src.match(/https:\/\/res.cloudinary.com\/.+\/image\/upload\//) || [''])[0];
       const version = (src.match(/\/(v[0-9]+)\//) || ['', ''])[1];
       const filename = (version === '' ? src.split(base) : src.split(`${version}/`))[1] || '';
+      // console.log({
+      //   src,
+      //   base,
+      //   version,
+      //   filename,
+      // });
       img.onload = () => {
+        let dominant = [255, 255, 255];
+        // colorThief doesn't handle pure white images:
+        // https://github.com/lokesh/color-thief/issues/72
+        try {
+          dominant = colorThief.getColor(img);
+        } catch (error) {
+          /** START DEBUGGING **/
+          // TODO - remove this debugging code!
+          if (process.env.NODE_ENV !== 'production') {
+            // eslint-disable-next-line no-console
+            console.log({
+              message: 'Error thrown by colourThief trying to get that colour...',
+            });
+            // eslint-disable-next-line no-console
+            console.error(error);
+          }
+          /** END DEBUGGING **/
+          // image was probably white...
+        }
         this.props.onChange({
           src,
           base,
@@ -82,7 +107,7 @@ const ExtraImageControl = window.createClass({
           filename,
           width: img.width,
           height: img.height,
-          dominant: colorThief.getColor(img),
+          dominant,
           alt: value.alt || '',
         });
         resolve(true);
@@ -152,7 +177,7 @@ const ExtraImageControl = window.createClass({
   },
 
   render: function render() {
-    console.log(this.props);
+    // console.log(this.props);
     // console.log(window.CMS);
 
     // value is sometimes passed as an immutable map - in that case we want to convert it to
