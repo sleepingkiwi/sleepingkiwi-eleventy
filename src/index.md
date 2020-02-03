@@ -2,7 +2,7 @@
 layout: layouts/home
 title: Home
 hero:
-  header: This is the home page...
+  header: welcome
   hero:
     alt: 1920 x 1080
     base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
@@ -16,7 +16,7 @@ hero:
       https://res.cloudinary.com/sleepingkiwi/image/upload/v1576201524/sleepingkiwi-eleventy/download_qvssbn.png
     version: v1576201524
     width: 1920
-  preHeader: Home
+  preHeader: ''
 firstContentArea:
   cta: Check It Out
   ctaURL: 'https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme'
