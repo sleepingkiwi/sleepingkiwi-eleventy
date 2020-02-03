@@ -25,6 +25,7 @@ import RelationWrappedControl from './widgets/RelationWrappedControl';
 // and custom previews
 import PagePreview from './previews/PagePreview';
 import HomePreview from './previews/HomePreview';
+import ContactPreview from './previews/ContactPreview';
 
 
 /** our cms configuration as a JS object
@@ -47,6 +48,7 @@ CMS.registerWidget('instructions', InstructionsControl);
 **/
 CMS.registerPreviewTemplate('generic_page', PagePreview);
 CMS.registerPreviewTemplate('index', HomePreview);
+CMS.registerPreviewTemplate('contact', ContactPreview);
 
 
 /** register styles for the preview editor

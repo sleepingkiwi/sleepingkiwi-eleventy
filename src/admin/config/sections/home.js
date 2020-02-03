@@ -33,6 +33,34 @@ const homeConfig = {
       default: 'Home',
     },
     {
+      label: 'Hero Image and Page Title',
+      name: 'hero',
+      widget: 'object',
+      fields: [
+        {
+          label: 'Hero Image',
+          name: 'hero',
+          widget: 'extraImage',
+          showDetails: true,
+          required: true,
+          hint: 'Minimum width of 1,920px recommended. Anything above 3,000px will be cropped to 3,000px',
+        },
+        {
+          label: 'Pre-Header',
+          name: 'preHeader',
+          widget: 'string',
+          required: false,
+          hint: 'smaller text that appears above the header',
+        },
+        {
+          label: 'Header',
+          name: 'header',
+          widget: 'string',
+          required: false,
+        },
+      ],
+    },
+    {
       label: 'Home Page Content: One',
       name: 'homePageInstructionsOne',
       widget: 'instructions',
