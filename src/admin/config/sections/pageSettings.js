@@ -20,13 +20,6 @@ const pageSettings = [
     default: true,
     hint: 'Set to false if you would like a solid background behind the header on this page.',
   },
-  {
-    label: 'Show CTA in footer?',
-    name: 'footerCTA',
-    widget: 'boolean',
-    default: true,
-    hint: 'Set to false if you don\'t want the footer CTA on this page.',
-  },
   // include all of the social & meta options at the end
   ...metaConfigPage,
 ];

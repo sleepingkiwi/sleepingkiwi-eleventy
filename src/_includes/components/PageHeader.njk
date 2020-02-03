@@ -1,0 +1,56 @@
+{#
+  PageHeader
+  Hero image with header and pre-header text
+  These are just ContentSections with backgrond images and header text!
+  They get a special PageHeader class
+  because there's some custom styling relating to the site header/nav
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    pre=''
+      Optional
+      String
+    post=''
+      Optional
+      String
+    header=''
+      Optional
+      String
+    hero=''
+      Optional
+      String
+  ---
+#}
+
+{# import components #}
+{% from "components/HeaderText.njk" import HeaderText with context %}
+{% from "components/ContentSection.njk" import ContentSection with context %}
+
+{% macro PageHeader(
+  pre='',
+  post='',
+  header='',
+  hero=''
+) %}
+
+  {% call ContentSection(
+    class='PageHeader',
+    secondaryColour=true,
+    backgroundImage=hero
+  ) %}
+
+    {{
+      HeaderText(
+        pre=pre,
+        post=post,
+        header=header,
+        priority='h1',
+        align='center'
+      )
+    }}
+
+  {% endcall %} {# ContentSection #}
+
+{% endmacro %}

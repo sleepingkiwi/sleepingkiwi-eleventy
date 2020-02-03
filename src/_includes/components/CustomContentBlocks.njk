@@ -1,0 +1,77 @@
+{#
+  CustomContentBlocks
+  Handling rendering for the repeatable blocks of generic content added in the CMS!
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    contentBlocks=[]
+      Array containing the following types:
+        header
+        text
+        quote
+        image
+        cta
+      See the generic.js config file or individual Components for details on each type
+  ---
+#}
+
+{# import components #}
+{% from "components/HeaderText.njk" import HeaderText with context %}
+{% from "components/RichText.njk" import RichText with context %}
+{% from "components/QuoteText.njk" import QuoteText with context %}
+{% from "components/InlineImage.njk" import InlineImage with context %}
+{% from "components/CTA.njk" import CTA with context %}
+
+{% macro CustomContentBlocks(
+  contentBlocks=[]
+) %}
+
+  {% if contentBlocks | length > 0 %}
+    {% for contentBlock in contentBlocks %}
+
+      {% if contentBlock.type === 'header' %}
+        {{
+          HeaderText(
+            pre=contentBlock.preHeader,
+            header=contentBlock.header,
+            priority='h2',
+            align=contentBlock.textAlign
+          )
+        }}
+      {% elif contentBlock.type === 'text' %}
+        {{
+          RichText(
+            content=contentBlock.text,
+            align=contentBlock.textAlign
+          )
+        }}
+      {% elif contentBlock.type === 'quote' %}
+        {{
+          QuoteText(
+            quote=contentBlock.quoteText,
+            attribution=contentBlock.quoteAttribution,
+            align=contentBlock.textAlign
+          )
+        }}
+      {% elif contentBlock.type === 'image' %}
+        {{
+          InlineImage(
+            img=contentBlock.image
+          )
+        }}
+      {% elif contentBlock.type === 'cta' %}
+        {{
+          CTA(
+            text=contentBlock.cta,
+            url=contentBlock.ctaURL,
+            align=contentBlock.textAlign
+          )
+        }}
+      {% endif %}
+
+    {% endfor %}
+  {% endif %}
+
+{% endmacro %}

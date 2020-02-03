@@ -2,6 +2,8 @@
 
 A personal starting point for building static sites with [eleventy] using [netlify CMS] for content.
 
+[Visit the live site for this repo](https://musing-jennings-33f578.netlify.com/)
+
 - lots of opinions
 - lots of comments
 - more code than is sensible for an effective starter
@@ -84,7 +86,11 @@ We can determine what features to detect or whether to serve the fall-back JavaS
 
 ### Progressive enhancement
 
+👻 **to do:** outline some coherent examples from real projects or bring in small examples...
+
 ### Preact for complex/stateful JavaScript
+
+👻 **to do:** outline some coherent examples from real projects or bring in small examples...
 
 ### Modern CSS
 

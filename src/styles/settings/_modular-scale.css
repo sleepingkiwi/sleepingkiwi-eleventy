@@ -87,5 +87,11 @@
   --bsu: var(--base-spacing-unit); /* 25 */
   --bsu-m: var(--s4); /* 39.06 */
   --bsu-l: var(--s5); /* 48.83 */
-  --bsu-xl: var(--s5); /* 61.04 */
+  --bsu-xl: var(--s6); /* 61.04 */
+
+
+  /** site specific
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --section-padding: calc(var(--bsu-xl) * 2); /* top and bottom of content blocks */
 }

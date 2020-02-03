@@ -1,0 +1,16 @@
+/** Page headers are basically just sections with pre-specified classes
+ *  ------------------------------------------------------------------------------------------------
+ *  there's not a lot of custom styling on top of the default section stuff
+**/
+
+/*
+  overwrite top padding to be twice the normal section if there's a floating header
+  only after the menu starts floating
+*/
+
+@media (--menu-floats) {
+
+  .with-transparent-header .PageHeader {
+    padding-top: calc(var(--section-padding) * 1.5);
+  }
+}

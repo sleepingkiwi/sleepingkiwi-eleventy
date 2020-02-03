@@ -1,0 +1,35 @@
+/** Gapping
+ *  ------------------------------------------------------------------------------------------------
+ *  consistent spacing around children of a flex container regardless of which edge they're up
+ *  against. Thank goodness.
+ *  negative margins and an intermediary wrapper make it all happen.
+ *  ref: https://absolutely.every-layout.dev/layouts/cluster/
+**/
+
+.u-gaps {
+  --gap: var(--bsu);
+
+  overflow: hidden;
+}
+
+/* intermediary wrapper - overwrite these defaults as needed */
+.u-gaps > * {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  /*
+    these negative margins on the parent pull children tight so they line up to the edge.
+    -
+    This is why we have an intermidiary element and is explained in more depth at:
+    https://absolutely.every-layout.dev/layouts/cluster/
+    -
+    it's the `* -1` that cleverly converts this value into a negative margin
+  */
+  margin: calc(var(--gap) / 2 * -1);
+}
+
+.u-gaps > * > * {
+  margin: calc(var(--gap) / 2);
+}

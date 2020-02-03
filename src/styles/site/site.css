@@ -15,6 +15,9 @@ body {
   font-family: var(--ff-body);
   color: var(--colour-primary);
   background-color: var(--colour-background-body);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   /*
     Sometimes required for skinny fonts - particularly for light on dark text.
@@ -25,3 +28,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   */
 }
+
+/** lock scrolling if popups are active
+ *  ------------------------------------------------------------------------------------------------
+**/
+.js--has-popup {
+  height: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/** if we want main content not to float centrally:
+ *  ------------------------------------------------------------------------------------------------
+**/
+/* .site-main {
+  flex: 1;
+} */

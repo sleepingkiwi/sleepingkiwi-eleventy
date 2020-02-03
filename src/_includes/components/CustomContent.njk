@@ -1,0 +1,102 @@
+{#
+  CustomContent
+  Handling rendering for the repeatable blocks of generic content added in the CMS!
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    customContent=[]
+      Array of shape: {
+        backgroundColour: true
+          Boolean
+        backgroundImage:
+          ExtraImageWidget object
+        collapseTop: false
+          Boolean
+        type:
+          oneOf['oneColumn', 'twoColumns']
+        columnWeighting:
+          oneOf['left', 'even', 'right']
+        columnAlignment:
+          oneOf['top', 'center', 'bottom']
+
+        // IF twoColumns:
+        leftColumnContent:
+          GenericContentBlock objects
+        rightColumnContent:
+          GenericContentBlock objects
+
+        // IF oneColumn
+        content:
+          GenericContentBlock objects
+      }
+  ---
+#}
+
+{# import components #}
+{% from "components/ContentSection.njk" import ContentSection with context %}
+{% from "components/CustomContentBlocks.njk" import CustomContentBlocks with context %}
+{% from "components/ContentColumns.njk" import ContentColumns with context %}
+
+{% macro CustomContent(
+  customContent=[]
+) %}
+  {% if customContent | length > 0 %}
+    {% for section in customContent %}
+
+      {% call ContentSection(
+        class='CustomContent',
+        secondaryColour=section.backgroundColour,
+        backgroundImage=section.backgroundImage,
+        collapseTop=section.collapseTop
+      ) %}
+        {% if section.type === 'oneColumn' %}
+          {# data in a single column #}
+          {{
+            CustomContentBlocks(section.content)
+          }}
+        {% else %}
+          {# Left column #}
+          {% call ContentColumns(
+            class='',
+            weight=(section.columnWeighting | default('left')),
+            alignment=(section.columnAlignment | default('center'))
+          ) %}
+            {#
+              columns expect exactly 2 children so we wrap in divs
+            #}
+            <div>
+              {{
+                CustomContentBlocks(section.leftColumnContent)
+              }}
+            </div>
+            <div>
+              {{
+                CustomContentBlocks(section.rightColumnContent)
+              }}
+            </div>
+          {% endcall %}
+        {% endif %}
+      {% endcall %} {# ContentSection #}
+
+    {% endfor %}
+
+    {#
+      Debug
+    #}
+    {#
+    <div
+      class="Debug"
+      style="max-width: 800px; margin: 0 auto; padding: 24px; background: #eee; word-break: break-word;"
+    >
+      <h4>
+        Custom Content Debug:
+      </h4>
+      <pre>
+  {{customContent | dump | safe | replace('":"', ' : ') | replace(',"', ',<br><br>') | replace('"', "") | replace('{', '<div style="padding-left:24px;">{<br>') | replace('}', '<br>}</div>')}}
+      </pre>
+    </div>
+    #}
+  {% endif %}
+{% endmacro %}

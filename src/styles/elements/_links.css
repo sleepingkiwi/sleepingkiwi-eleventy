@@ -6,8 +6,8 @@ a {
   color: var(--colour-secondary);
   text-decoration: none;
   transition:
-    color var(--time-transition) ease-in-out,
-    background var(--time-transition) ease-in-out;
+    color var(--time-transition) var(--ease-default),
+    background var(--time-transition) var(--ease-default);
 
   &:hover,
   &:focus {

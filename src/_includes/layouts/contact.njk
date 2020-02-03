@@ -1,0 +1,62 @@
+{#
+  Extend base template
+#}
+{% extends 'layouts/base.njk' %}
+
+{#
+  Import components
+#}
+{% from "components/PageHeader.njk" import PageHeader with context %}
+{% from "components/CustomContent.njk" import CustomContent with context %}
+{% from "components/HeaderText.njk" import HeaderText with context %}
+{% from "components/RichText.njk" import RichText with context %}
+{% from "components/ContentSection.njk" import ContentSection with context %}
+{% from "components/ContactForm.njk" import ContactForm with context %}
+{% from "components/Wrap.njk" import Wrap with context %}
+
+{% block content %}
+  <main id="main-content" class="site-main site-main--contact" tabindex="-1">
+    {{
+      PageHeader(
+        pre=hero.preHeader,
+        header=hero.header,
+        hero=hero.hero
+      )
+    }}
+
+    {% call ContentSection(
+      class='ContactFormSection',
+      secondaryColour=false
+    ) %}
+      {{
+        HeaderText(
+          pre=formContentArea.preHeader,
+          header=formContentArea.header,
+          priority='h2',
+          align='center'
+        )
+      }}
+      {{
+        RichText(
+          content=formContentArea.text,
+          align='center'
+        )
+      }}
+      {{
+        ContactForm(
+          labels={
+            name: formContentArea.labels.name,
+            email: formContentArea.labels.email,
+            subject: formContentArea.labels.subject,
+            message: formContentArea.labels.message,
+            sendMessage: formContentArea.labels.sendMessage
+          }
+        )
+      }}
+    {% endcall %} {# ContentSection #}
+
+    {{
+      CustomContent(genericContentBlocks)
+    }}
+  </main>
+{% endblock %}

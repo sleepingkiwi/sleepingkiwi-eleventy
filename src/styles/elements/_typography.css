@@ -3,19 +3,38 @@
 **/
 
 h1 {
-  font-size: var(--s6);
-}
-
-h2 {
   font-size: var(--s5);
 }
 
-h3 {
+h2 {
   font-size: var(--s4);
 }
 
-h4 {
+h3 {
   font-size: var(--s3);
+}
+
+h4 {
+  font-size: var(--s2);
+}
+
+@media (--column-break) {
+
+  h1 {
+    font-size: var(--s6);
+  }
+
+  h2 {
+    font-size: var(--s5);
+  }
+
+  h3 {
+    font-size: var(--s4);
+  }
+
+  h4 {
+    font-size: var(--s3);
+  }
 }
 
 h5 {

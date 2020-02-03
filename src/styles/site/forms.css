@@ -1,0 +1,164 @@
+/** Low level form styling - not specific to a given page or component
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+.form {
+
+  & input,
+  & select,
+  & textarea {
+    display: block;
+    width: 100%;
+    padding: var(--bsu-xs) var(--bsu-s);
+    background: white;
+    border: 2px solid var(--colour-subtler);
+  }
+
+  & textarea {
+    resize: vertical;
+    min-height: calc((var(--bsu-xs) * 2) + (1rem * 1.5 * 4)); /* four lines */
+  }
+}
+
+.form__input-group {
+
+  & label {
+    display: block;
+  }
+
+  & label + input,
+  & label + textarea,
+  & label + select {
+    margin-top: var(--bsu-s);
+  }
+}
+
+/* integrated labels */
+.form__input-group--integrated {
+  display: flex;
+
+  & input,
+  & select,
+  & label {
+    display: block;
+    padding: var(--bsu-xs) var(--bsu-s);
+    background: white;
+    border: 2px solid var(--colour-subtler);
+    line-height: 1.5;
+  }
+
+  & label {
+    border-right: 0;
+    padding-right: 0;
+    color: var(--colour-subtle);
+  }
+
+  & input,
+  & select {
+    border-left: 0;
+    flex: 1;
+  }
+}
+
+.form__input-group--integrated-textarea {
+
+  & textarea,
+  & label {
+    display: block;
+    flex: 1;
+    padding: var(--bsu-xs) var(--bsu-s);
+    background: white;
+    border: 2px solid var(--colour-subtler);
+    line-height: 1.5;
+  }
+
+  & label {
+    border-bottom: 0;
+    padding-bottom: 0;
+    color: var(--colour-subtle);
+  }
+
+  & textarea {
+    border-top: 0;
+  }
+}
+
+/** multiple inputs
+ *  ------------------------------------------------------------------------------------------------
+ *  uses our utility class .u-stacks
+ *  see the css file for utilities/stacks.css for more detail!
+**/
+.form__split-inputs {
+  /*
+    before this container width all children will stack
+    - play with the value to find something that looks best!
+  */
+  --stack-before: 30rem;
+}
+
+.form__split-inputs--submits {
+  justify-content: flex-start;
+}
+
+
+/** submits
+ *  ------------------------------------------------------------------------------------------------
+**/
+.form__submit {
+  /* tone down CTA in submit areas */
+  & .CTA .CTA__a {
+    font-size: 0.9em;
+  }
+
+  & .CTA {
+    display: inline-block;
+    flex: 0;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  & .CTA .Wrap {
+    padding: 0;
+  }
+}
+
+
+/** JS styles
+ *  ------------------------------------------------------------------------------------------------
+**/
+.js--validate-me {
+
+  & button[type='submit'] {
+
+    &::after {
+      content: 'All form fields are required';
+      font-family: var(--ff-body);
+      color: var(--colour-subtler);
+      font-weight: normal;
+      font-size: 0.8em;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transition: opacity var(--time-transition) var(--ease-default);
+
+      /* margin-top: calc(var(--bsu-s) * -1); *//* pull up against button margin... */
+    }
+  }
+}
+
+.js--validate-me--invalid {
+
+  & button[type='submit'] {
+    pointer-events: none;
+    color: var(--colour-subtle);
+    background: var(--colour-subtler);
+
+    /* margin-bottom: var(--bsu-s); *//* if we want ewxtra space for the message... */
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}

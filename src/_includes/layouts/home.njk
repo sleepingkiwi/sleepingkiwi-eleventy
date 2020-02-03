@@ -1,7 +1,75 @@
+{#
+  Extend base template
+#}
 {% extends 'layouts/base.njk' %}
 
+{#
+  Import components
+#}
+{% from "components/PageHeader.njk" import PageHeader with context %}
+{% from "components/CustomContent.njk" import CustomContent with context %}
+{% from "components/ContentSection.njk" import ContentSection with context %}
+{% from "components/Wrap.njk" import Wrap with context %}
+{% from "components/HeaderText.njk" import HeaderText with context %}
+{% from "components/RichText.njk" import RichText with context %}
+{% from "components/InlineImage.njk" import InlineImage with context %}
+{% from "components/CTA.njk" import CTA with context %}
+
 {% block content %}
-  <main id="main-content" class="site-main site-main--home" tabindex="-1">
-    {{ content | safe }}
+  <main id="main-content" class="site-main site-main--page" tabindex="-1">
+    {{
+      PageHeader(
+        pre=hero.preHeader,
+        header=hero.header,
+        hero=hero.hero
+      )
+    }}
+
+    {#
+      An example of a fixed content area
+      in a real life site these might make up a bulk of your fixed page templates...
+    #}
+    {% call ContentSection(
+      class='HomepageMain',
+      secondaryColour=true
+    ) %}
+      {% call Wrap(flavour='maximum', flows=true) %}
+        <div class="HomepageMain__primary u-flows">
+          {{
+            HeaderText(
+              pre=firstContentArea.preHeader,
+              header=firstContentArea.header,
+              priority='h2',
+              align='left'
+            )
+          }}
+          {{
+            RichText(
+              content=firstContentArea.text,
+              align='left'
+            )
+          }}
+          {{
+            CTA(
+              text=firstContentArea.cta,
+              url=firstContentArea.ctaURL,
+              align='left'
+            )
+          }}
+        </div>
+        <div class="HomepageMain__image">
+          {{
+            InlineImage(
+              img=firstContentArea.image,
+              forcePadding=100
+            )
+          }}
+        </div>
+      {% endcall %}
+    {% endcall %} {# ContentSection #}
+
+    {{
+      CustomContent(genericContentBlocks)
+    }}
   </main>
 {% endblock %}

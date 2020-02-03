@@ -5,7 +5,13 @@
 
 :root {
   --layout-max: 125rem;
-  --layout-columns: 100rem;/* for double columns - 1600px-ish */
+  --layout-columns: 90rem;/* for double columns - 1440px-ish */
   --layout-content: 75rem; /* for single columns - 1200px @ 16px */
-  --layout-readable: 50rem; /* for text content - 800px @ 16px */
+  --layout-readable: 40rem; /* for text content - 640px @ 16px */
+
+  /** column widths
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --column-light: 35%;
+  --column-heavy: 65%;
 }

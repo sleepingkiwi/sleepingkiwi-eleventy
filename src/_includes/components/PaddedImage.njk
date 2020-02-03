@@ -1,0 +1,54 @@
+{#
+  PaddedImage.
+  Wrap for images that saves space for them
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    dominant=[]
+      Optional
+      Array of three numbers
+    padding=100
+      Number
+    maxWidth=0
+      Optional
+      Number - used to make sure smaller images aren't stretched up...
+    paddingWasForced=false
+      Boolean
+  ---
+#}
+
+{% macro PaddedImage(
+  dominant=[],
+  padding=100,
+  maxWidth=0,
+  paddingWasForced=false,
+  contain=false
+) %}
+{% set content = caller() %} {# ref: https://github.com/mozilla/nunjucks/issues/664 #}
+
+  <div
+    class="PaddedImage{{ ' PaddedImage--forced-ratio' if paddingWasForced }}{{ ' PaddedImage--forced-ratio--contain' if paddingWasForced and contain }}"
+    style="
+    {% if maxWidth > 0 -%}
+      max-width: {{ maxWidth }}px;
+      {%- endif %}
+      {% if dominant | length === 3 -%}
+      background-color:rgb(
+        {{ dominant[0] }},
+        {{ dominant[1] }},
+        {{ dominant[2] }}
+      );
+      {%- endif %}
+    "
+  >
+
+    {{ content }}
+
+    <div
+      class="PaddedImage__padder"
+      style="padding-bottom: {{padding}}%;"
+    ></div>
+  </div>
+{% endmacro %}

@@ -1,0 +1,65 @@
+
+/** Column layout
+ *  ------------------------------------------------------------------------------------------------
+**/
+.ContentColumns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: var(--layout-columns);
+  max-width: calc(var(--layout-columns) + calc(var(--bsu) * 2));
+
+  & > * {
+    flex-basis: 100%;
+  }
+}
+
+
+@media (--column-break) {
+
+  .ContentColumns {
+    padding-right: var(--bsu);
+    padding-left: var(--bsu);
+
+    & > * {
+      flex-basis: 50%;
+    }
+
+    & > *:last-child {
+      margin-top: 0;
+    }
+  }
+
+  .ContentColumns--weighted-left {
+
+    & > *:first-child {
+      flex-basis: var(--column-heavy);
+    }
+
+    & > *:last-child {
+      flex-basis: var(--column-light);
+    }
+  }
+
+  .ContentColumns--weighted-right {
+
+    & > *:first-child {
+      flex-basis: var(--column-light);
+    }
+
+    & > *:last-child {
+      flex-basis: var(--column-heavy);
+    }
+  }
+}
+
+.ContentColumns--aligned-top {
+  align-items: flex-start;
+}
+
+.ContentColumns--aligned-bottom {
+  align-items: flex-end;
+}

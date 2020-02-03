@@ -1,0 +1,94 @@
+/** .ContentSection
+ *  ------------------------------------------------------------------------------------------------
+ *  every block of content that shares spacing etc.
+**/
+
+.ContentSection {
+  padding: var(--section-padding) 0;
+  position: relative;
+  z-index: var(--z-sections);
+
+  /* centralise in vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 2;
+    opacity: 0.6;
+  }
+}
+
+.ContentSection--back-secondary {
+  color: var(--colour-invert);
+  background-color: var(--colour-subtler);
+}
+
+.ContentSection--with-back {
+  color: var(--colour-invert);
+}
+
+.ContentSection--no-back {
+  min-height: 0;
+  padding: var(--bsu-l) 0;
+
+  &::after {
+    content: none;
+  }
+}
+
+
+/** If our content contains an immediate wrap we disable padding on mobile sizes
+ *  ------------------------------------------------------------------------------------------------
+**/
+.ContentSection__content > .Wrap {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (--edge-to-edge-ends) {
+
+  .ContentSection__content > .Wrap {
+    padding-left: var(--bsu);
+    padding-right: var(--bsu);
+  }
+}
+
+
+/** This class is for content that's meant to trail the section above.
+ *  ------------------------------------------------------------------------------------------------
+ *  min-height and padding are dropped...
+**/
+.ContentSection--top-collapse {
+  padding-top: 0;
+  min-height: 0;
+}
+
+.ContentSection__content {
+  z-index: 3;
+  position: relative;
+}
+
+.ContentSection__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+
+  & img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

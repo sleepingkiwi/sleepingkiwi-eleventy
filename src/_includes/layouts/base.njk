@@ -13,8 +13,9 @@
   {% include 'partials/scripts-styles.njk' %}
 
   <!--
-    interested in how things work? Some of the weird bits are explained at
-    https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme
+    interested in how things work?
+    Source code, including a breakdown of all the tools used, for this website can be found at:
+    https://github.com/sleepingkiwi-eleventy#readme
   -->
 
   {#
@@ -23,11 +24,15 @@
   {% block head %}
   {% endblock %}
 </head>
-<body>
+<body
+  class="{{ 'with-transparent-header' if transparentHeader else 'with-opaque-header'}}"
+  id="top"
+>
   {#
     SiteHeader
-      transparentHeader is set through the cms as part of the pageSettings config that is used
-      on every page...
+      transparentHeader is set through the cms as part of the pageSettings config
+      we're using it as an example of a global 'flag'
+      - it's also being used to set a class on the body tag for styling.
   #}
   <a class="skip-link visuallyhidden" href="#main-content">Skip to content</a>
   {{

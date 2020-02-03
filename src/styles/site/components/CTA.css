@@ -1,0 +1,41 @@
+/** CTA Buttons
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+.CTA {
+  text-align: center;
+
+  & .CTA__a {
+    text-align: center;
+    display: inline-block;
+    padding: var(--bsu-s) var(--bsu-l);
+    vertical-align: top;
+    background: var(--colour-secondary);
+    color: var(--colour-invert);
+    border-radius: var(--radius-button);
+    font-family: var(--ff-heading);
+    font-weight: bold;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition:
+      color var(--time-transition) ease-in-out,
+      background var(--time-transition) ease-in-out;
+
+    &:hover,
+    &:focus {
+      background: var(--colour-primary);
+    }
+  }
+}
+
+@media (--column-break) {
+
+  .CTA--align-right {
+    text-align: right;
+  }
+
+  .CTA--align-left {
+    text-align: left;
+  }
+}

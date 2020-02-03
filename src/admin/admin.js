@@ -22,6 +22,10 @@ import ExtraImagePreview from './widgets/ExtraImagePreview';
 import InstructionsControl from './widgets/InstructionsControl';
 import RelationWrappedControl from './widgets/RelationWrappedControl';
 
+// and custom previews
+import PagePreview from './previews/PagePreview';
+import HomePreview from './previews/HomePreview';
+
 
 /** our cms configuration as a JS object
  *  ------------------------------------------------------------------------------------------------
@@ -36,6 +40,22 @@ CMS.registerWidget('extraImage', ExtraImageControl, ExtraImagePreview);
 CMS.registerWidget('relationWrapped', RelationWrappedControl);
 CMS.registerWidget('colour', ColourControl);
 CMS.registerWidget('instructions', InstructionsControl);
+
+
+/** register preview bits
+ *  ------------------------------------------------------------------------------------------------
+**/
+CMS.registerPreviewTemplate('generic_page', PagePreview);
+CMS.registerPreviewTemplate('index', HomePreview);
+
+
+/** register styles for the preview editor
+ *  ------------------------------------------------------------------------------------------------
+ *  because file names are cache busted we make the file name available as a global in
+ *  admin.njk
+**/
+// eslint-disable-next-line no-undef
+CMS.registerPreviewStyle(_global_mainStylePath);
 
 // console.log(CMS);
 

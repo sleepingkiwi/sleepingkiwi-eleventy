@@ -1,0 +1,40 @@
+{#
+  Content Columns
+  Just a wrapper for content! We have a couple args but mostly just wrap up children.
+  Styled to handle exactly 2 children...
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    class=''
+      String
+      Optional
+    weight='left'
+      oneOf['left', 'even', 'right']
+    alignment='center'
+      oneOf['top', 'center', 'bottom']
+  ---
+#}
+
+{# import components #}
+{% from "components/ContentSection.njk" import ContentSection with context %}
+{% from "components/CustomContentBlocks.njk" import CustomContentBlocks with context %}
+
+{% macro ContentColumns(
+  class='',
+  weight='left',
+  alignment='center'
+) %}
+  <div
+    class="ContentColumns {{
+      class
+    }} ContentColumns--weighted-{{
+      weight
+    }} ContentColumns--aligned-{{
+      alignment
+    }} u-flows"
+  >
+    {{ content }}
+  </div>
+{% endmacro %}

@@ -1,7 +1,26 @@
+{#
+  Extend base template
+#}
 {% extends 'layouts/base.njk' %}
+
+{#
+  Import components
+#}
+{% from "components/PageHeader.njk" import PageHeader with context %}
+{% from "components/CustomContent.njk" import CustomContent with context %}
 
 {% block content %}
   <main id="main-content" class="site-main site-main--page" tabindex="-1">
-    {{ content | safe }}
+    {{
+      PageHeader(
+        pre=hero.preHeader,
+        header=hero.header,
+        hero=hero.hero
+      )
+    }}
+
+    {{
+      CustomContent(genericContentBlocks)
+    }}
   </main>
 {% endblock %}

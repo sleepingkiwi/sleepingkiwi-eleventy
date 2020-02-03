@@ -4,8 +4,9 @@
   **/
   --colour-primary: #4e588e;
   --colour-secondary: #985171;
-  --colour-highlight: #f6c450;
+  --colour-highlight: #ffce5b;
   --colour-subtle: #898fb1;
+  --colour-subtler: #b3bdc1;
 
   /** inverted colours
    *  ----------------------------------------------------------------------------------------------
@@ -20,4 +21,9 @@
   --colour-background-subtle: #fafdfd;
   --colour-background-secondary: #f5ddc8;
   --colour-background-pop: #993434;
+
+  /** utility
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --colour-error: #993434;
 }

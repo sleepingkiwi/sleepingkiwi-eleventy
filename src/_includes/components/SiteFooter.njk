@@ -12,12 +12,12 @@
 {% from "components/Logo.njk" import Logo with context %}
 {% from "components/Nav.njk" import Nav with context %}
 {% from "components/SocialLinks.njk" import SocialLinks with context %}
+{% from "components/Wrap.njk" import Wrap with context %}
+{% from "components/CTA.njk" import CTA with context %}
 
-{% macro SiteFooter(
-  transparent = true
-) %}
+{% macro SiteFooter() %}
 <footer role="contentinfo" class="SiteFooter">
-  <div class="Wrap">
+  {% call Wrap(flows=true) %} {# maximum width Wrap with flow #}
     {#
       site logo or name
     #}
@@ -43,9 +43,23 @@
     {#
       social media
     #}
-    <div class="SiteFooter__social">
+    <div class="SiteFooter__social u-gaps">
       {{
         SocialLinks()
+      }}
+    </div>
+
+
+    {#
+      back to top
+    #}
+    <div class="SiteFooter__back-to-top CTA">
+      {{
+        CTA(
+          text=(site.backToTop | default('Back to top')),
+          url='#top',
+          align='center'
+        )
       }}
     </div>
 
@@ -55,7 +69,9 @@
     #}
     {% if site.copyright %}
     <div class="SiteFooter__copyright">
-      {{ site.copyright }}
+      <small>
+        {{ site.copyright }}
+      </small>
     </div>
     {% endif %}
 
@@ -72,6 +88,6 @@
     </div>
     {% endif %}
 
-  </div>
+  {% endcall %} {# Wrap #}
 </footer>
 {% endmacro %}

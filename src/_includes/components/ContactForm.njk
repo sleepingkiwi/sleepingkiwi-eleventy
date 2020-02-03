@@ -1,0 +1,102 @@
+{#
+  ContactForm
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    labels={
+      name
+        String
+        Optional
+      email
+        String
+        Optional
+      subject
+        String
+        Optional
+      message
+        String
+        Optional
+      sendMessage
+        String
+        Optional
+    }
+  ---
+#}
+
+{# import components #}
+{% from "components/Wrap.njk" import Wrap with context %}
+{% from "components/CTA.njk" import CTA with context %}
+
+{% macro ContactForm(
+  labels={},
+  cta='',
+  ctaURL=''
+) %}
+<form
+  class="ContactForm form js--validate-me js--validate-me--invalid"
+  name="contact-form"
+  method="POST"
+  data-netlify="true"
+>
+  {% call Wrap(flavour='readable', flows=true) %} {# readable width Wrap with flow #}
+    <div class="form__split-inputs u-stacks">
+      <div class="form__split-inputs__intermidiary">
+        <div class="form__input-group--integrated">
+          <label for="name">{{ labels.name | default('name') }}</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            class="js--required"
+          >
+        </div>
+
+        <div class="form__input-group--integrated">
+          <label for="email">{{ labels.email | default('email') }}</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            class="js--required"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form__input-group--integrated">
+      <label for="subject">{{ labels.subject | default('subject') }}</label>
+      <input
+        type="text"
+        name="subject"
+        id="subject"
+        required
+        class="js--required"
+      >
+    </div>
+
+    <div class="form__input-group--integrated-textarea">
+      <label for="message">{{ labels.message | default('message') }}</label>
+      <textarea
+        name="message"
+        id="message"
+        required
+        class="js--required"
+      ></textarea>
+    </div>
+
+
+    {{
+      CTA(
+        text=labels.sendMessage | default('Send Message'),
+        align='center',
+        submit=true
+      )
+    }}
+
+  {% endcall %} {# wrap #}
+</form>
+{% endmacro %}

@@ -1,0 +1,70 @@
+/** Stacking
+ *  ------------------------------------------------------------------------------------------------
+ *  usage:
+    <div class="u-stacks">
+      <div> <!-- intermediary element is needed -->
+        <div>Stack</div>
+        <div>These</div>
+        <div>Children</div>
+      </div>
+    </div>
+**/
+
+/** Stack based on the size of the container
+ *  ------------------------------------------------------------------------------------------------
+ *  This is my favourite css 'trick'
+ *  it's an example of the Flexbox Holy Albatross:
+ *  http://www.heydonworks.com/article/the-flexbox-holy-albatross-reincarnated
+ *  But it also incorporates the intermediary element from our .u-gaps class
+ *  to allow for consistent 'gap' style spacing!
+ *  -
+ *  layout is explained in depth at:
+ *  https://absolutely.every-layout.dev/layouts/switcher
+ *  but in essence:
+ *  children sit horizontally above a given parent width, before that they stack vertically!
+**/
+
+.u-stacks {
+  /*
+    before this width children will stack
+    - it should be overwritten on a case-by-case basis
+  */
+  --stack-before: 30rem;
+  --gap: var(--bsu);
+}
+
+/* intermediary wrapper */
+.u-stacks > * {
+  display: flex;
+  flex-wrap: wrap;
+
+  /*
+    these negative margins on the parent pull children tight so they line up to the edge.
+    see utilities/gaps.css file
+  */
+  margin: calc((var(--gap) / 2) * -1);
+}
+
+/* the actual children components */
+.u-stacks > * > * {
+  flex-grow: 1;
+
+  /* read https://absolutely.every-layout.dev/layouts/switcher/#the-solution */
+  /*
+    basically generates a huge positive or negative value for flex-basis.
+    value is negative if container (represented here as 100%) is bigger than --stack-before value
+    because negative flex-basis is invalid our children fall back to flex-grow: 1; which means they
+    all share the row.
+    It also means we can use flex-grow: 2; to make a double wide child etc.
+  */
+  flex-basis: calc((var(--stack-before) - (100% - var(--gap))) * 999);
+  margin: calc(var(--gap) / 2);
+}
+
+/* if you want to prevent horizontal layout with too many children */
+/*
+.u-stacks > * > :nth-last-child(n+5),
+.u-stacks > * > :nth-last-child(n+5) ~ * {
+  flex-basis: 100%;
+}
+*/

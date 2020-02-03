@@ -72,10 +72,9 @@ const RelationWrappedControl = window.createClass({
           relationWidget,
           {
             ...this.props,
-            // we use the image component almost as is, but capture it's onChange value
+            // we use the component almost as is, but capture it's onChange value
             onChange: this.handleChange,
-            // because we hijacked onChange and our value contains too much info
-            // we also need to update the value ourselves!
+            // because we hijacked onChange we need to update the value ourselves!
             value: this.props.value || '',
           },
         ),

@@ -11,6 +11,7 @@
   --time-transition: 600ms;
   --time-transition-slow: calc(var(--time-transition) * 1.5);
   --time-transition-fast: calc(var(--time-transition) * 0.5);
+  --time-transition-snap: calc(var(--time-transition) * 0.25);
 
 
   /** eases
@@ -34,4 +35,5 @@
   **/
   --radius-default: 4px;
   --radius-small: calc(var(--radius-default) * 0.5);
+  --radius-button: 15% 85% 17% 83% / 53% 53% 47% 47%;
 }

@@ -1,0 +1,62 @@
+{#
+  HeaderText
+  pre, post and header text! Used inside page headers, heros etc.
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    pre=''
+      Optional
+      String
+    post=''
+      Optional
+      String
+    header=''
+      Optional
+      String
+    align='left'
+      OneOf: ['left', 'right', 'center']
+    priority='h2'
+      OneOf: ['h1', 'h2', 'h3'... etc.]
+  ---
+#}
+
+{# import components #}
+{% from "components/Wrap.njk" import Wrap with context %}
+
+{% macro HeaderText(
+  pre='',
+  post='',
+  header='',
+  align='left',
+  priority='h2'
+) %}
+<header
+  class="HeaderText
+    HeaderText--align-{{ align }}
+    HeaderText--colour-{{ 'dark' if dark else 'light' }}"
+>
+  {% call Wrap(flavour='readable', flows=false) %} {# readable width Wrap with no flow #}
+    {% if pre %}
+      <p class="HeaderText__pre">
+        {{ pre }}
+      </p>
+    {% endif %}
+
+    {% if header %}
+      <{{ priority }}
+        class="HeaderText__header"
+      >
+        {{ header }}
+      </{{ priority }}>
+    {% endif %}
+
+    {% if post %}
+      <p class="HeaderText__post">
+        {{ post }}
+      </p>
+    {% endif %}
+  {% endcall %} {# wrap #}
+</header>
+{% endmacro %}

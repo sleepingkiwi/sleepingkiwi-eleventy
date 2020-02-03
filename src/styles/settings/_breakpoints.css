@@ -1,12 +1,3 @@
-/** Defining breakpoints used by the site.
- *  ------------------------------------------------------------------------------------------------
-**/
-
-/* can be useful to have an mq that records when our layout will stop scaling */
-
-@custom-media --max screen and (min-width: var(--layout-max));
-
-
 /** General media queries
  *  ------------------------------------------------------------------------------------------------
  *  it's okay to have custom queries for specific bits of content!
@@ -27,3 +18,24 @@
 @custom-media --princess screen and (min-width: 94em); /* 1500px */
 
 @custom-media --queen screen and (min-width: 112.5em); /* 1800px */
+
+
+/** Defining breakpoints used by the site.
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+/* can be useful to have an mq that records when our layout will stop scaling */
+
+@custom-media --max screen and (min-width: var(--layout-max));
+
+/* this one is when our columns generally break */
+
+@custom-media --column-break --squire;
+
+/* this is where we stop displaying edge-to-edge content for slim devices */
+
+@custom-media --edge-to-edge-ends --yeoman;
+
+/* this is where the menu starts floating (it's always relative/solid back on mobile) */
+
+@custom-media --menu-floats --yeoman;

@@ -1,0 +1,35 @@
+{#
+  RichText
+  text from the markdown editor
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    content=''
+      Optional
+      String
+    align='left'
+      OneOf: ['left', 'right', 'center']
+  ---
+#}
+
+{# import components #}
+{% from "components/Wrap.njk" import Wrap with context %}
+
+{% macro RichText(
+  content='',
+  align='left'
+) %}
+<div
+  class="RichText RichText--align-{{ align }}"
+>
+  {% call Wrap(flavour='readable', flows=true) %} {# readable width Wrap with flow #}
+
+    {% if content %}
+      {{ content | markdownify | safe }}
+    {% endif %}
+
+  {% endcall %} {# wrap #}
+</div>
+{% endmacro %}

@@ -1,0 +1,86 @@
+{#
+  InilineImage.
+  Appears in single or double column content.
+  This is a very generic way to handle images that we don't know much about.
+  For bespoke layout we have different enforced ratios/srcset etc.
+  But for custom content these assumptions probably are fine!
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    img={}
+      ExtraImageWidget object
+      Shape of: {
+        alt : 'some string',
+        base : https://res.cloudinary.com/coolguy/image/upload/,
+        dominant:[58,49,48],
+        filename : stock%20images/Screenshot_2019-11-07_at_12.38.17_porup4.png,
+        height:804,
+        src : https://res.cloudinary.com/coolguy/image/upload/v1577892372/stock%20images/Screenshot_2019-11-07_at_12.38.17_porup4.png,
+        version : v1577892372,
+        width:964
+      }
+    lazy=false
+      Boolean
+    forcePadding
+      Number
+      Optional
+  ---
+#}
+
+{# import components #}
+{% from "components/PaddedImage.njk" import PaddedImage with context %}
+{% from "components/Wrap.njk" import Wrap with context %}
+
+{% macro InlineImage(
+  img={},
+  lazy=false,
+  forcePadding,
+  contain=false
+) %}
+  {# render nothing if there's not src #}
+  {% if img.src %}
+    <div class="InlineImage">
+      {% call Wrap(flavour='content', flows=true) %} {# content width Wrap with flow #}
+        {# we wrap everything in a padded image container #}
+        {% call PaddedImage(
+          dominant=img.dominant | default([]),
+          padding=forcePadding or ((img.height/img.width)*100),
+          maxWidth=img.width,
+          paddingWasForced=true if forcePadding else false,
+          contain=contain
+        ) %}
+        {#
+          developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
+          css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/
+          -
+          sizing is a little arbitrary - these images might be in columns or might not but we let the
+          browser assume they're full screen width...
+          -
+          Our single column content is capped at 1200px in _layout.css settings file,
+          multi-column content caps out at 1600 due to split content images shouldn't exceed 1200px
+          wide in multi-columns either.
+          (these are a bit of a magic number - you'll need to remember to update here if they change)
+          -
+          We tell the browser that over 1200px wide the image will always be 1200px
+          this let's browser pick out the best resolution for high dpi screens
+          -
+          cloudinary ref:
+          https://cloudinary.com/documentation/image_transformation_reference
+        #}
+          <img
+            src="{{ img.base }}w_1200,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }}"
+            srcset="{{ img.base }}w_600,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 600w,
+              {{ img.base }}w_1200,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 1200w,
+              {{ img.base }}w_1800,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 1800w,
+              {{ img.base }}w_2400,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 2400w"
+            sizes="(min-width: 1200px) 1200px, 100vw"
+            alt="{{ img.alt | default('') }}"
+            {{ 'loading=lazy' if lazy }}
+          >
+        {% endcall %} {# PaddedImage #}
+      {% endcall %} {# Wrap #}
+    </div>
+  {% endif %}
+{% endmacro %}

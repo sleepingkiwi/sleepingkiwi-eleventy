@@ -1,0 +1,86 @@
+{#
+  ContentSection
+  Almost every content block on the site is one of these.
+  There are a few variants for single/double column and various background options.
+  You could rop this approach or add more options to suit your site...
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    class='',
+      String
+      Optional (adds custom classes to the <section> tag)
+    secondaryColour=false,
+      Boolean
+    backgroundImage={}
+      ExtraImageWidget object
+      Optional
+    id=''
+      String
+      Optional
+    collapseTop=false, // give the CMS editor some control over padding consecutive sections...
+    lazy=false, // if this has a background can we defer loading it?
+    isAChild=false // does it not constitute a whole <section>?
+  ---
+#}
+
+{# import components #}
+{% from "components/BackgroundImageFull.njk" import BackgroundImageFull with context %}
+
+{% macro ContentSection(
+  class='',
+  secondaryColour=false,
+  backgroundImage={},
+  id='',
+  collapseTop=false,
+  lazy=false,
+  isAChild=false
+) %}
+{% set content = caller() %} {# ref: https://github.com/mozilla/nunjucks/issues/664 #}
+
+  <{{ 'section' if not isAChild else 'div'}}
+    class="ContentSection {{
+      class
+    }} ContentSection--{{
+      'with-back' if backgroundImage.src else 'no-back'
+    }} ContentSection--back-{{
+      'secondary' if secondaryColour else 'primary'
+    }} ContentSection--{{
+      'top-collapse' if collapseTop else 'uncollapsed'
+    }}"
+
+    {% if id %}
+      id={{id}}
+    {% endif %}
+
+    {% if backgroundImage and (backgroundImage.dominant | length === 3) -%}
+      style="background-color:rgb(
+        {{backgroundImage.dominant[0]}},
+        {{backgroundImage.dominant[1]}},
+        {{backgroundImage.dominant[2]}}
+      );"
+    {%- endif %}
+  >
+
+    {#
+      The actual content.
+      This will be one or two columns of stuff!
+    #}
+    <div class="ContentSection__content u-flows">
+      {{ content }}
+    </div>
+
+    {#
+      backgrounds for various screen sizes
+      -
+      see comments in BackgroundImageFull for details
+    #}
+    {% if backgroundImage.src %}
+      <div class="ContentSection__back">
+        {{ BackgroundImageFull(backgroundImage, lazy) }}
+      </div>
+    {% endif %}
+  </{{ 'section' if not isAChild else 'div'}}>
+
+{% endmacro %}

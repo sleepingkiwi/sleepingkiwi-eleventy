@@ -22,6 +22,8 @@ module.exports = (ctx) => ({
         remove: false,
       },
     },
+    // give fallbacks for most calc() usage
+    'postcss-calc': {},
     cssnano: ctx.env === 'production'
       ? {
         preset: 'default',

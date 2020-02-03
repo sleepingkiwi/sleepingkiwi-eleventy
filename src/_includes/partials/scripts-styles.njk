@@ -13,6 +13,11 @@
 #}
 <script nomodule src="{{rev['/polyfills.js'] or '/polyfills.js'}}"></script>
 
+{#
+  More details in the readme.
+  Another option is to not load JS at all for sites that don't meet a minimum feature detection
+  see https://github.com/sleepingKiwi/sylvarna for an example of this
+#}
 <script>
   // more modern script for more modern browsers
   function $loadjs(src, fallback) {

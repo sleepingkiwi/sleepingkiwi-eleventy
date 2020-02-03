@@ -20,7 +20,7 @@
 ) %}
 <header role="banner" class="SiteHeader{{ ' SiteHeader--transparent' if transparent else ' SiteHeader--opaque' }}">
 
-  {% call Wrap() %} {# maximum width Wrap #}
+  {% call Wrap(flavour='columns') %} {# columns width Wrap #}
 
     {#
       site logo or name

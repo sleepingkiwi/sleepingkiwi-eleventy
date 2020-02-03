@@ -1,0 +1,62 @@
+{#
+  Full width background images.
+  this component is just a convenient way of not having to fill out the srcset things
+  in multiple places...
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    img={}
+      ExtraImageWidget object
+      Shape of: {
+        alt : 'some string',
+        base : https://res.cloudinary.com/coolguy/image/upload/,
+        dominant:[58,49,48],
+        filename : stock%20images/Screenshot_2019-11-07_at_12.38.17_porup4.png,
+        height:804,
+        src : https://res.cloudinary.com/coolguy/image/upload/v1577892372/stock%20images/Screenshot_2019-11-07_at_12.38.17_porup4.png,
+        version : v1577892372,
+        width:964
+      }
+  ---
+#}
+
+
+{#
+  backgrounds for various screen sizes at 100vw
+  -
+  developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
+  css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/
+  -
+  using an img because it works better with srcset
+  rather than trying to fight with multiple background images
+  we scale it with object-fit in css
+  -
+  currently making 500 1,000 2,000 3,000px versions available and letting browsers pick!
+  1,000 is fallback for browsers that don't support srcset. We are assuming older browsers are
+  on less powerful devices....
+  -
+  we scale down quality more on background images than on others normally we use q_auto:good or
+  q_auto:best but for backgrounds we can use q_auto:eco
+  -
+  cloudinary ref:
+  https://cloudinary.com/documentation/image_transformation_reference
+#}
+{% macro BackgroundImageFull(
+  img={},
+  lazy=false
+) %}
+  {% if img.src %}
+    <img
+      src="{{ img.base }}w_1000,c_limit,q_auto:eco/{{ img.version }}/{{ img.filename }}"
+      srcset="{{ img.base }}w_500,c_limit,q_auto:eco/{{ img.version }}/{{ img.filename }} 500w,
+        {{ img.base }}w_1000,c_limit,q_auto:eco/{{ img.version }}/{{ img.filename }} 1000w,
+        {{ img.base }}w_2000,c_limit,q_auto:eco/{{ img.version }}/{{ img.filename }} 2000w,
+        {{ img.base }}w_3000,c_limit,q_auto:eco/{{ img.version }}/{{ img.filename }} 3000w"
+      sizes="100vw"
+      alt="{{ img.alt | default('') }}"
+      {{ 'loading=lazy' if lazy }}
+    >
+  {% endif %}
+{% endmacro %}

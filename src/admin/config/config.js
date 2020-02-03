@@ -1,10 +1,19 @@
-// TODO: break this into modules...
+/** Config for Netlify CMS
+ *  ------------------------------------------------------------------------------------------------
+ *  this file is broken into a series of smaller imports so that it's not just one huge object.
+ *  we import the config directly in /admin/admin.js
+ *  by using this technique we can use javascript objects rather than the default YAML which gives
+ *  greater potential for us to re-use things like the generic content blocks or the page settings
+ *  which we ant to appear on every page.
+**/
+
 
 import { metaConfigGlobal } from './sections/meta';
-import pageSettings from './sections/pageSettings';
 import homeConfig from './sections/home';
+import contactConfig from './sections/contact';
 import siteDetailsConfig from './sections/siteDetails';
-import genericContentBlocks from './sections/generic';
+import socialAccountsConfig from './sections/socialAccounts';
+import { genericPageConfig } from './sections/generic';
 
 const config = {
   // ref https://www.netlifycms.org/docs/beta-features/#manual-initialization
@@ -18,8 +27,8 @@ const config = {
 
   // logo_url: https://your-site.com/images/logo.svg,
 
-  site_url: 'https://sleeping.kiwi/sleepingkiwi-eleventy',
-  display_url: 'https://sleeping.kiwi/sleepingkiwi-eleventy',
+  site_url: 'https://musing-jennings-33f578.netlify.com/',
+  display_url: 'https://musing-jennings-33f578.netlify.com/',
 
   // Media files will be stored in the repo under this dir
   // however because we use cloudinary currently this is ignored
@@ -51,9 +60,11 @@ const config = {
       name: 'pages',
       label: 'Fixed Pages',
       description: 'These are the pages required by the site that you can configure',
+      preview_path: '{{slug}}',
       files: [
         // Home Page
         homeConfig,
+        contactConfig,
       ], // files
     }, // END FIXED PAGES
 
@@ -63,50 +74,15 @@ const config = {
      *  These are generic pages that can be added by CMS users
     **/
     {
-      name: 'generic_pages',
-      label: 'Custom Pages',
-      folder: 'src/pages',
+      name: 'generic_page',
+      label: 'Custom Page',
+      folder: 'src/page',
       slug: '{{slug}}',
-      preview_path: 'pages/{{slug}}',
+      preview_path: '{{slug}}',
       create: true,
       description: 'Empty pages with no fixed content. You can add whatever you want by stacking content blocks.',
       fields: [
-        {
-          label: 'Custom Page',
-          name: 'genericPageInstructions',
-          widget: 'instructions',
-          instructions: 'This page can contain whatever you want!',
-          flavour: 'header',
-          required: false,
-        },
-        {
-          label: 'Layout',
-          name: 'layout',
-          widget: 'hidden',
-          default: 'layouts/base.njk',
-        },
-        {
-          label: 'Title',
-          name: 'title',
-          widget: 'string',
-        },
-        {
-          label: 'Permalink Override (Pattern: /your-slug/index.html)',
-          name: 'permalink',
-          widget: 'string',
-          required: false,
-        },
-        {
-          label: 'Hero image',
-          name: 'hero',
-          widget: 'extraImage',
-          showDetails: true,
-          required: true,
-          hint: 'Minimum width of 1,920px recommended. Anything above 2,500px will be cropped to 2,500px',
-        },
-        ...genericContentBlocks,
-        // include general page settings
-        ...pageSettings,
+        ...genericPageConfig,
       ], // fields
     }, // END CUSTOM PAGES
 
@@ -164,51 +140,7 @@ const config = {
           delete: false,
           file: 'src/_data/social.json',
           fields: [
-            {
-              label: 'Details of your social media accounts',
-              name: 'socialInstructions',
-              widget: 'instructions',
-              instructions: 'These are all optional. \nIncluding your details for a service will enable the social icon for that service in the site footer.',
-              flavour: 'header',
-              required: false,
-            },
-            {
-              label: 'Your Twitter Handle',
-              name: 'twitter',
-              widget: 'string',
-              required: false,
-              hint: 'handle ony (not URL) - does not need to include the @ symbol',
-              pattern: ['^[^@].+', 'please do not include the preceding @ symbol'],
-            },
-            {
-              label: 'Your Instagram Handle',
-              name: 'instagram',
-              widget: 'string',
-              required: false,
-              hint: 'handle ony (not URL) - does not need to include the @ symbol',
-              pattern: ['^[^@].+', 'please do not include the preceding @ symbol'],
-            },
-            {
-              label: 'Full Facebook URL',
-              name: 'facebook',
-              widget: 'string',
-              required: false,
-              hint: 'should be the full URL to the Facebook profile/page you want to share',
-            },
-            {
-              label: 'Full LinkedIn URL',
-              name: 'linkedin',
-              widget: 'string',
-              required: false,
-              hint: 'should be the full URL to the LinkedIn profile/page you want to share',
-            },
-            {
-              label: 'Full Youtube URL',
-              name: 'youtube',
-              widget: 'string',
-              required: false,
-              hint: 'should be the full URL to the Youtube profile/page you want to share',
-            },
+            ...socialAccountsConfig,
           ], // fields
         }, // END SOCIAL
 
@@ -258,9 +190,9 @@ const config = {
         }, // END PRIMARY NAV
 
 
-        /** Header Nav
+        /** Footer Sub Nav
          *  ----------------------------------------------------------------------------------------
-         *  add content links to the header.
+         *  add content links to the footer.
         **/
         {
           label: 'Footer Sub Navigation',

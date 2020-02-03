@@ -1,0 +1,130 @@
+/** SiteFooter
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+.SiteFooter {
+  /* the wrap inside already has left/right padding */
+  padding: var(--bsu-l) 0;
+  color: var(--colour-subtle);
+  background-color: var(--colour-background-subtle);
+  text-align: center;
+  overflow: hidden;
+
+  & svg path {
+    fill: var(--colour-subtle);
+    transition: fill var(--time-transition) var(--ease-default);
+  }
+
+  & a {
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      color: var(--colour-secondary);
+
+      & svg path {
+        fill: var(--colour-secondary);
+      }
+    }
+  }
+}
+
+
+/** Footer logo
+ *  ------------------------------------------------------------------------------------------------
+**/
+.SiteFooter__logo {
+
+  & a {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  & .Logo > .SvgWrap,
+  & .Logo > img {
+    width: 200px; /* TODO: should we let CMS user decide this? */
+    max-width: 100%;
+  }
+}
+
+
+/** Footer nav
+ *  ------------------------------------------------------------------------------------------------
+**/
+.SiteFooter__nav {
+  --gap: var(--bsu-l);
+
+  & ul {
+    justify-content: center;
+  }
+
+  & li {
+    display: block;
+  }
+}
+
+
+/** Social icons
+ *  ------------------------------------------------------------------------------------------------
+**/
+.SiteFooter__social {
+  --gap: var(--bsu-l);
+
+  & ul {
+    justify-content: center;
+  }
+
+  & li {
+    display: block;
+  }
+}
+
+.SiteFooter__social .SvgWrap {
+  width: var(--s1);
+}
+
+.SiteFooter__social li a {
+  padding: 0;
+}
+
+/** Footer back to top link
+ *  ------------------------------------------------------------------------------------------------
+**/
+.SiteFooter__back-to-top.CTA {
+  --flow-space: var(--bsu-l);
+
+  width: 150%;
+  margin-left: -25%;
+
+  & .CTA__a {
+    background-color: var(--colour-subtle);
+    font-family: var(--ff-body);
+    font-weight: normal;
+    color: var(--colour-invert);
+    font-size: var(--s-1);
+
+    &:hover,
+    &:focus {
+      background-color: var(--colour-secondary);
+    }
+  }
+}
+
+
+/** Footer sub nav
+ *  ------------------------------------------------------------------------------------------------
+**/
+.SiteFooter__sub-nav {
+  font-size: var(--s-1);
+  margin-top: var(--bsu-s);
+
+  --gap: var(--bsu-l);
+
+  & ul {
+    justify-content: center;
+  }
+
+  & li {
+    display: block;
+  }
+}

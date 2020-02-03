@@ -1,0 +1,45 @@
+{#
+  QuoteText
+  nicely styled blockquotes with optional attribution
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    quote=''
+      Optional
+      String
+    attribution=''
+      Optional
+      String
+    align='left'
+      OneOf: ['left', 'right', 'center']
+  ---
+#}
+
+{# import components #}
+{% from "components/Wrap.njk" import Wrap with context %}
+
+{% macro QuoteText(
+  quote='',
+  attribution='',
+  align='left'
+) %}
+<blockquote
+  class="QuoteText QuoteText--align-{{ align }}"
+>
+  {% call Wrap(flavour='content', flows=true) %} {# content width Wrap with flow #}
+    {% if quote %}
+      <p class="QuoteText__quote">
+        “{{ quote }}”
+      </p>
+    {% endif %}
+
+    {% if attribution %}
+      <cite>
+        {{ attribution }}
+      </cite>
+    {% endif %}
+  {% endcall %} {# wrap #}
+</blockquote>
+{% endmacro %}

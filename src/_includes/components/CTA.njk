@@ -1,0 +1,58 @@
+{#
+  CTA
+  Call to action button.
+  If there is text we render a button, even if that means it doesn't link anywhere
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    text=''
+      Optional
+      String
+    url=''
+      Optional
+      String
+    align='left'
+      OneOf: ['left', 'right', 'center']
+    newTab=false,
+    dummy=false, // allows us to render the styles but without any functionality...
+    submit=false // renders a submit button for a form
+  ---
+#}
+
+{# import components #}
+{% from "components/Wrap.njk" import Wrap with context %}
+
+{% macro CTA(
+  text='',
+  url='',
+  align='left',
+  newTab=false,
+  dummy=false,
+  submit=false
+) %}
+{% if text %}
+  <div
+    class="CTA CTA--align-{{ align }}{{ ' js--empty-cta-url' if not url }}"
+  >
+    {% call Wrap(flavour='readable') %} {# readable width Wrap #}
+      {% if dummy %}
+        <span class="CTA__a">
+      {% elif submit or (not url) %}
+        <button class="CTA__a{{ ' js--popup-trigger' if not url }}" type="{{'submit' if submit else 'button'}}">
+      {% else %}
+        <a class="CTA__a" href="{{ url }}" {{ 'target=_blank' if newTab }}>
+      {% endif %}
+        {{ text }}
+      {% if dummy %}
+        </span>
+      {% elif submit or (not url) %}
+        </button>
+      {% else %}
+        </a>
+      {% endif %}
+    {% endcall %} {# wrap #}
+  </div>
+{% endif %}
+{% endmacro %}

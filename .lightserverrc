@@ -7,6 +7,7 @@
   "watchexps": [
     "src/js/**/*.js # npm run scripts:dev",
     "src/admin/**/*.js # npm run admin:dev",
+    "src/_includes/**/*.njk # npm run admin:templates",
     "src/styles/**/*.css # npm run styles:dev # reloadcss",
     "dist/**/*.html",
     "src/images/"
