@@ -19,12 +19,14 @@ const HomePreview = window.createClass({
   render: function render() {
     const { entry } = this.props;
     const context = ({
+      hero,
       firstContentArea,
       genericContentBlocks,
       transparentHeader,
       footerPartners,
       footerCTA,
     }) => ({
+      hero,
       firstContentArea,
       genericContentBlocks,
       transparentHeader,

@@ -46,7 +46,7 @@ genericContentBlocks:
   - backgroundColour: false
     collapseTop: false
     columnAlignment: center
-    columnWeighting: left
+    columnWeighting: right
     leftColumnContent:
       - image:
           alt: ''
@@ -80,4 +80,3 @@ genericContentBlocks:
     type: twoColumns
 transparentHeader: true
 ---
-

@@ -54,6 +54,8 @@
 @import 'site/components/SiteHeader.css';
 @import 'site/components/SiteFooter.css';
 
+@import 'site/components/Home.css';
+
 
 /** Helpers & overrides
  *  ------------------------------------------------------------------------------------------------

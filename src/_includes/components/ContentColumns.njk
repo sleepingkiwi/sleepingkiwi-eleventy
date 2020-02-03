@@ -26,6 +26,7 @@
   weight='left',
   alignment='center'
 ) %}
+{% set content = caller() %} {# ref: https://github.com/mozilla/nunjucks/issues/664 #}
   <div
     class="ContentColumns {{
       class

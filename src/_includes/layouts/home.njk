@@ -9,6 +9,7 @@
 {% from "components/PageHeader.njk" import PageHeader with context %}
 {% from "components/CustomContent.njk" import CustomContent with context %}
 {% from "components/ContentSection.njk" import ContentSection with context %}
+{% from "components/ContentColumns.njk" import ContentColumns with context %}
 {% from "components/Wrap.njk" import Wrap with context %}
 {% from "components/HeaderText.njk" import HeaderText with context %}
 {% from "components/RichText.njk" import RichText with context %}
@@ -33,38 +34,45 @@
       class='HomepageMain',
       secondaryColour=true
     ) %}
-      {% call Wrap(flavour='maximum', flows=true) %}
-        <div class="HomepageMain__primary u-flows">
-          {{
-            HeaderText(
-              pre=firstContentArea.preHeader,
-              header=firstContentArea.header,
-              priority='h2',
-              align='left'
-            )
-          }}
-          {{
-            RichText(
-              content=firstContentArea.text,
-              align='left'
-            )
-          }}
-          {{
-            CTA(
-              text=firstContentArea.cta,
-              url=firstContentArea.ctaURL,
-              align='left'
-            )
-          }}
-        </div>
-        <div class="HomepageMain__image">
-          {{
-            InlineImage(
-              img=firstContentArea.image,
-              forcePadding=100
-            )
-          }}
-        </div>
+      {% call Wrap(flavour='columns', flows=true) %}
+        {% call ContentColumns(
+          class='',
+          weight='left',
+          alignment='center'
+        ) %}
+          <div class="HomepageMain__primary u-flows">
+            {{
+              HeaderText(
+                pre=firstContentArea.preHeader,
+                header=firstContentArea.header,
+                priority='h2',
+                align='left'
+              )
+            }}
+            {{
+              RichText(
+                content=firstContentArea.text,
+                align='left'
+              )
+            }}
+            {{
+              CTA(
+                text=firstContentArea.cta,
+                url=firstContentArea.ctaURL,
+                align='left'
+              )
+            }}
+          </div>
+          <div class="HomepageMain__image">
+            {{
+              InlineImage(
+                img=firstContentArea.image,
+                forcePadding=100,
+                contain=true
+              )
+            }}
+          </div>
+        {% endcall %}
       {% endcall %}
     {% endcall %} {# ContentSection #}
 
