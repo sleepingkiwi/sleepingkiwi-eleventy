@@ -91,10 +91,6 @@
  *  ------------------------------------------------------------------------------------------------
 **/
 .SiteFooter__back-to-top.CTA {
-  --flow-space: var(--bsu-l);
-
-  width: 150%;
-  margin-left: -25%;
 
   & .CTA__a {
     background-color: var(--colour-subtle);

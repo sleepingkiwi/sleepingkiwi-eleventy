@@ -75,6 +75,15 @@
   & li {
     display: block;
   }
+
+  & a {
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      color: var(--colour-highlight);
+    }
+  }
 }
 
 /** Colour variations for non-transparent header
