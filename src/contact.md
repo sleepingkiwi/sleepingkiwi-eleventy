@@ -7,15 +7,15 @@ hero:
     alt: 1920 x 1080
     base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
     dominant:
-      - 44
-      - 44
-      - 44
-    filename: sleepingkiwi-eleventy/download_qvssbn.png
-    height: 1080
+      - 47
+      - 59
+      - 61
+    filename: sleepingkiwi-eleventy/2667_2000.jpg
+    height: 2000
     src: >-
-      https://res.cloudinary.com/sleepingkiwi/image/upload/v1576201524/sleepingkiwi-eleventy/download_qvssbn.png
-    version: v1576201524
-    width: 1920
+      https://res.cloudinary.com/sleepingkiwi/image/upload/v1580773520/sleepingkiwi-eleventy/2667_2000.jpg
+    version: v1580773520
+    width: 2667
   preHeader: Contact us
 formContentArea:
   header: Get in touch
