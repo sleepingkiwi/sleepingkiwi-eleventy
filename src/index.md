@@ -22,18 +22,18 @@ firstContentArea:
   ctaURL: 'https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme'
   header: Eleventy starter
   image:
-    alt: The moon on a clear blue sky
+    alt: A misty pine forest
     base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
     dominant:
-      - 11
-      - 15
-      - 27
-    filename: sleepingkiwi-eleventy/fabian-oelkers-e9rkZKjdlSc-unsplash.jpg
-    height: 1518
+      - 32
+      - 40
+      - 36
+    filename: sleepingkiwi-eleventy/dan-otis-OYFHT4X5isg-unsplash.jpg
+    height: 3456
     src: >-
-      https://res.cloudinary.com/sleepingkiwi/image/upload/v1580773552/sleepingkiwi-eleventy/fabian-oelkers-e9rkZKjdlSc-unsplash.jpg
-    version: v1580773552
-    width: 2277
+      https://res.cloudinary.com/sleepingkiwi/image/upload/v1580773550/sleepingkiwi-eleventy/dan-otis-OYFHT4X5isg-unsplash.jpg
+    version: v1580773550
+    width: 5184
   preHeader: sleepingkiwi made an
   text: >-
     Dui sapien eget mi proin sed libero enim sed. Quam vulputate dignissim
@@ -44,8 +44,8 @@ firstContentArea:
     diam phasellus vestibulum lorem sed risus ultricies.
 
 
-    Image by [Fabian
-    Oelkers](https://unsplash.com/@foemedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+    Image by [Dan
+    Otis](https://unsplash.com/@danotis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
     on
     [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 genericContentBlocks:
@@ -55,18 +55,18 @@ genericContentBlocks:
     columnWeighting: even
     leftColumnContent:
       - image:
-          alt: A misty forest
+          alt: The moon in a clear night sky
           base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
           dominant:
-            - 32
-            - 40
-            - 36
-          filename: sleepingkiwi-eleventy/dan-otis-OYFHT4X5isg-unsplash.jpg
-          height: 3456
+            - 11
+            - 15
+            - 27
+          filename: sleepingkiwi-eleventy/fabian-oelkers-e9rkZKjdlSc-unsplash.jpg
+          height: 1518
           src: >-
-            https://res.cloudinary.com/sleepingkiwi/image/upload/v1580773550/sleepingkiwi-eleventy/dan-otis-OYFHT4X5isg-unsplash.jpg
-          version: v1580773550
-          width: 5184
+            https://res.cloudinary.com/sleepingkiwi/image/upload/v1580773552/sleepingkiwi-eleventy/fabian-oelkers-e9rkZKjdlSc-unsplash.jpg
+          version: v1580773552
+          width: 2277
         type: image
     rightColumnContent:
       - header: Some Content
@@ -83,8 +83,8 @@ genericContentBlocks:
           culpa qui officia deserunt mollit anim id est laborum.
 
 
-          Image by [Dan
-          Otis](https://unsplash.com/@danotis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+          Image by [Fabian
+          Oelkers](https://unsplash.com/@foemedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
           on
           [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
         textAlign: left
