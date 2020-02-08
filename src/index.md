@@ -22,18 +22,18 @@ firstContentArea:
   ctaURL: 'https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme'
   header: Eleventy starter
   image:
-    alt: A blue pool with a stainless steel ladder on yellow concrete
+    alt: Plants growing behind a window
     base: 'https://res.cloudinary.com/sleepingkiwi/image/upload/'
     dominant:
-      - 249
-      - 184
-      - 5
-    filename: sleepingkiwi-eleventy/etienne-girardet-Xh6BpT-1tXo-unsplash.jpg
-    height: 3648
+      - 65
+      - 75
+      - 52
+    filename: sleepingkiwi-eleventy/vital-sinkevich-QOQz2R_6N-k-unsplash.jpg
+    height: 2982
     src: >-
-      https://res.cloudinary.com/sleepingkiwi/image/upload/v1581172525/sleepingkiwi-eleventy/etienne-girardet-Xh6BpT-1tXo-unsplash.jpg
-    version: v1581172525
-    width: 5472
+      https://res.cloudinary.com/sleepingkiwi/image/upload/v1581173471/sleepingkiwi-eleventy/vital-sinkevich-QOQz2R_6N-k-unsplash.jpg
+    version: v1581173471
+    width: 2003
   preHeader: sleepingkiwi made an
   text: >-
     Dui sapien eget mi proin sed libero enim sed. Quam vulputate dignissim
@@ -44,10 +44,10 @@ firstContentArea:
     diam phasellus vestibulum lorem sed risus ultricies.
 
 
-    Photo by [Etienne
-    Girardet](https://unsplash.com/@etiennegirardet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+    Photo by [Vital
+    Sinkevich](https://unsplash.com/@vitsinkevich?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
     on
-    [Unsplash](https://unsplash.com/s/photos/yellow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+    [Unsplash](https://unsplash.com/s/photos/film-grain?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 genericContentBlocks:
   - backgroundColour: false
     collapseTop: false
