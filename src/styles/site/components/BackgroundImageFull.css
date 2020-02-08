@@ -1,0 +1,40 @@
+/** Full width background images - it's up to their parents to be relative etc.
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+.BackgroundImageFull {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+
+  &.js--wants-intersection {
+    background-color: currentColor;
+  }
+
+  & img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.js .BackgroundImageFull.js--wants-intersection img {
+  opacity: 0;
+  transition: opacity var(--time-transition-slow) var(--time-transition-fast) ease-out;
+}
+
+.js .BackgroundImageFull.js--has-intersected img {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* if you have specifically opted out of animation we don't want these to just pop in */
+  .js .BackgroundImageFull.js--wants-intersection img {
+    opacity: 1;
+  }
+}

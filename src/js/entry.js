@@ -2,6 +2,7 @@
  *  ------------------------------------------------------------------------------------------------
 **/
 import { init as formsInit } from './forms';
+import { init as genericIntersectionInit } from './generic-intersection';
 import { soModern, soFunctional } from './test';
 
 
@@ -17,3 +18,5 @@ soFunctional().forEach((l) => console.log(l));
 **/
 // validation listeners for forms
 formsInit();
+// allowing elements to opt in to generic interesection observation by adding .js--wants-interestion
+genericIntersectionInit();

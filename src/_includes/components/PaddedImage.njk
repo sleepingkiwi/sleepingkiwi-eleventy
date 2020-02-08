@@ -24,18 +24,19 @@
   padding=100,
   maxWidth=0,
   paddingWasForced=false,
-  contain=false
+  contain=false,
+  wantsIntersection=true
 ) %}
 {% set content = caller() %} {# ref: https://github.com/mozilla/nunjucks/issues/664 #}
 
   <div
-    class="PaddedImage{{ ' PaddedImage--forced-ratio' if paddingWasForced }}{{ ' PaddedImage--forced-ratio--contain' if paddingWasForced and contain }}"
+    class="PaddedImage{{ ' PaddedImage--forced-ratio' if paddingWasForced }}{{ ' PaddedImage--forced-ratio--contain' if paddingWasForced and contain }}{{ ' js--wants-intersection' if wantsIntersection }}"
     style="
     {% if maxWidth > 0 -%}
       max-width: {{ maxWidth }}px;
       {%- endif %}
       {% if dominant | length === 3 -%}
-      background-color:rgb(
+      color:rgb(
         {{ dominant[0] }},
         {{ dominant[1] }},
         {{ dominant[2] }}

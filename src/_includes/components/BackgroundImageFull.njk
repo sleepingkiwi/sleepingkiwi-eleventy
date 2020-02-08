@@ -45,9 +45,22 @@
 #}
 {% macro BackgroundImageFull(
   img={},
-  lazy=false
+  lazy=false,
+  wantsIntersection=true
 ) %}
   {% if img.src %}
+  <div
+    class="BackgroundImageFull{{ ' js--wants-intersection' if wantsIntersection }}"
+    style="
+      {% if img.dominant | length === 3 -%}
+      color:rgb(
+        {{ img.dominant[0] }},
+        {{ img.dominant[1] }},
+        {{ img.dominant[2] }}
+      );
+      {%- endif %}
+    "
+  >
     <img
       src="{{ img.base }}w_1000,c_limit,q_auto:eco/{{ img.version }}/{{ img.filename }}"
       srcset="{{ img.base }}w_500,c_limit,q_auto:eco/{{ img.version }}/{{ img.filename }} 500w,
@@ -58,5 +71,6 @@
       alt="{{ img.alt | default('') }}"
       {{ 'loading=lazy' if lazy }}
     >
+  </div>
   {% endif %}
 {% endmacro %}

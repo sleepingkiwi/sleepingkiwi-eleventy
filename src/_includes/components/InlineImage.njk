@@ -37,7 +37,8 @@
   img={},
   lazy=false,
   forcePadding,
-  contain=false
+  contain=false,
+  wantsIntersection=true
 ) %}
   {# render nothing if there's not src #}
   {% if img.src %}
@@ -49,7 +50,8 @@
           padding=forcePadding or ((img.height/img.width)*100),
           maxWidth=img.width,
           paddingWasForced=true if forcePadding else false,
-          contain=contain
+          contain=contain,
+          wantsIntersection=wantsIntersection
         ) %}
         {#
           developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images

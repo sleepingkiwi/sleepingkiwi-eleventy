@@ -15,6 +15,31 @@
     width: 100%;
     height: 100%;
   }
+
+  &.js--wants-intersection {
+    background-image:
+      radial-gradient(currentColor 10%, transparent 10%),
+      radial-gradient(currentColor 10%, transparent 10%);
+    background-position: 6px 6px, -6px -6px;
+    background-size: 24px 24px;
+    border-radius: 30% 70% 51% 49% / 24% 50% 50% 76%
+  }
+}
+
+.js .PaddedImage.js--wants-intersection img {
+  opacity: 0;
+  transition: opacity var(--time-transition) var(--time-transition-fast) ease-out;
+}
+
+.js .PaddedImage.js--has-intersected img {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* if you have specifically opted out of animation we don't want these to just pop in */
+  .js .PaddedImage.js--wants-intersection img {
+    opacity: 1;
+  }
 }
 
 .InlineImage {

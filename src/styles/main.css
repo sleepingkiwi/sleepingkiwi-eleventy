@@ -41,6 +41,7 @@
 @import 'site/components/Wrap.css';
 @import 'site/components/ContentSection.css';
 @import 'site/components/ContentColumns.css';
+@import 'site/components/BackgroundImageFull.css';
 @import 'site/components/PaddedImage.css';
 
 /* block level components */
