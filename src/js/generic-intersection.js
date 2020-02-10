@@ -35,7 +35,9 @@ export const init = () => {
         entries.forEach((entry) => {
           // > 0 means it has entered our rootMargin box
           if (entry.intersectionRatio > 0) {
-            intersected(entry, obs);
+            window.setTimeout(() => {
+              intersected(entry, obs);
+            }, 20);
           }
         });
       },

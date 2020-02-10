@@ -17,11 +17,22 @@
   }
 
   &.js--wants-intersection {
-    background-image:
+    /* background-image:
       radial-gradient(currentColor 10%, transparent 10%),
       radial-gradient(currentColor 10%, transparent 10%);
     background-position: 6px 6px, -6px -6px;
-    background-size: 24px 24px;
+    background-size: 24px 24px; */
+
+    & .PaddedImage__padder {
+      background-repeat: no-repeat;
+      background-size: cover;
+      mask-image:
+        radial-gradient(currentColor 25%, transparent 25%),
+        radial-gradient(currentColor 25%, transparent 25%);
+      mask-position: 0 0, -6px -6px;
+      mask-size: 12px 12px;
+      mask-repeat: repeat repeat;
+    }
   }
 }
 

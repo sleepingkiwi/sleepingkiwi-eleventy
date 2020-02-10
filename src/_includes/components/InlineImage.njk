@@ -47,6 +47,7 @@
         {# we wrap everything in a padded image container #}
         {% call PaddedImage(
           dominant=img.dominant | default([]),
+          baseSixFour=img.baseSixFour | default(''),
           padding=forcePadding or ((img.height/img.width)*100),
           maxWidth=img.width,
           paddingWasForced=true if forcePadding else false,

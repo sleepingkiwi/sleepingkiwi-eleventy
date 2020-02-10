@@ -21,6 +21,7 @@
 
 {% macro PaddedImage(
   dominant=[],
+  baseSixFour='',
   padding=100,
   maxWidth=0,
   paddingWasForced=false,
@@ -49,7 +50,12 @@
 
     <div
       class="PaddedImage__padder"
-      style="padding-bottom: {{padding}}%;"
+      style="
+      padding-bottom: {{padding}}%;
+      {% if baseSixFour | length > 0 %}
+      background-image:url({{baseSixFour}});
+      {% endif %}
+      "
     ></div>
   </div>
 {% endmacro %}
