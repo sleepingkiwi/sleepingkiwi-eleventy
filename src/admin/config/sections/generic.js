@@ -216,6 +216,14 @@ const genericContentBlocks = [
             hint: 'Should the content in each column align at the top/bottom edge or in the center?',
           },
           {
+            label: 'Combined Column Width',
+            name: 'columnWidth',
+            widget: 'select',
+            options: ['wide', 'content', 'text'],
+            default: 'wide',
+            hint: 'Normally double columns are almost twice the width of single column content. Choose `content` for two columns to match single column images, or `text` to match text blocks.',
+          },
+          {
             ...contentBlockContentTypes,
             label: 'Left Column Content',
             name: 'leftColumnContent',

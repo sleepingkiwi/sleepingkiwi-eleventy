@@ -14,6 +14,8 @@
       oneOf['left', 'even', 'right']
     alignment='center'
       oneOf['top', 'center', 'bottom']
+    width='wide'
+      oneOf['wide', 'content', 'text']
   ---
 #}
 
@@ -24,7 +26,8 @@
 {% macro ContentColumns(
   class='',
   weight='left',
-  alignment='center'
+  alignment='center',
+  width='wide'
 ) %}
 {% set content = caller() %} {# ref: https://github.com/mozilla/nunjucks/issues/664 #}
   <div
@@ -34,6 +37,8 @@
       weight
     }} ContentColumns--aligned-{{
       alignment
+    }} ContentColumns--{{
+      width
     }} u-flows"
   >
     {{ content }}

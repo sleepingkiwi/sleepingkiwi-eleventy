@@ -56,5 +56,11 @@
   #}
   {% block foot %}
   {% endblock %}
+
+  {#
+    Avoiding weird FOUC Chrome bug...
+    ref: https://stackoverflow.com/questions/14389566/stop-css-transition-from-firing-on-page-load/42969608#42969608
+  #}
+  <script> </script>
 </body>
 </html>
