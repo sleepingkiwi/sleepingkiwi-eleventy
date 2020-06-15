@@ -18,6 +18,13 @@ const siteDetailsConfig = [
     required: true,
   },
   {
+    label: 'Site url',
+    name: 'url',
+    widget: 'string',
+    instructions: 'Full site URL - used to generate a sitemap and help Google crawl your site. Should look like: https://website.com',
+    required: true,
+  },
+  {
     label: 'Site Logo',
     name: 'logo',
     widget: 'object',
