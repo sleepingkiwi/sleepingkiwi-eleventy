@@ -1,3 +1,4 @@
+const rssPlugin = require('@11ty/eleventy-plugin-rss');
 
 const htmlMinTransform = require('./src/transforms/html-min.js');
 const htmlPrettyTransform = require('./src/transforms/html-pretty.js');
@@ -29,6 +30,14 @@ module.exports = (eleventyConfig) => {
   **/
   // adding a markdown filter to transform markdown in templates:
   eleventyConfig.addFilter('markdownify', markdownFilter);
+
+
+  /** Plugins
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  // https://www.11ty.dev/docs/plugins/rss/
+  // used primarily to add dates in the rss feed for the moment
+  eleventyConfig.addPlugin(rssPlugin);
 
 
   // enable deep merging of data
