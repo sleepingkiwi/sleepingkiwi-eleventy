@@ -10,9 +10,33 @@
  *  ref: https://alligator.io/js/intersection-observer/
  *  ref: https://blog.arnellebalane.com/the-intersection-observer-api-d441be0b088d
 **/
+const imageLoaded = (img, container) => {
+  img.classList.add('js--has-loaded');
+  container.classList.add('js--has-loaded-image');
+};
+
 const intersected = (observed, observer) => {
   // activate the new one
   observed.target.classList.add('js--has-intersected');
+
+  // if there's img/s in the observed target we add a class once it loads
+  // useful for triggering image transitions
+  // this is very basic and doesn't work super well for multiple images
+  // it's best to stick to one image per container for reliable results!
+  const imgs = observed.target.querySelectorAll('img');
+
+  (imgs || []).forEach(
+    (img) => {
+      // check if it's already loaded
+      if (img.complete || img.naturalHeight !== 0) {
+        imageLoaded(img, observed.target);
+      } else {
+        // add listeners if not
+        img.addEventListener('load', () => { imageLoaded(img, observed.target); }, false);
+        img.addEventListener('error', () => { imageLoaded(img, observed.target); }, false);
+      }
+    },
+  );
 
   // stop watching me.
   observer.unobserve(observed.target);
@@ -37,7 +61,7 @@ export const init = () => {
           if (entry.intersectionRatio > 0) {
             window.setTimeout(() => {
               intersected(entry, obs);
-            }, 20);
+            }, 100);
           }
         });
       },
