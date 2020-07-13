@@ -2,7 +2,7 @@
 
 A personal starting point for building static sites with [eleventy] using [netlify CMS] for content.
 
-[Visit the live site for this repo](https://musing-jennings-33f578.netlify.app/)
+[Visit the live site for this repo](https://sleepity.netlify.app/)
 
 - lots of opinions
 - lots of comments

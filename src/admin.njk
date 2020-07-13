@@ -44,13 +44,20 @@ permalink: '/admin/index.html'
 </head>
 <body>
   {# include the same version of nunjucks used by eleventy - copied in .eleventy.js #}
-  <script src="/node_modules/nunjucks/browser/nunjucks-slim.js"></script>
+  <script src="/vendors/nunjucks/browser/nunjucks-slim.js"></script>
   {# created with the admin:templates step in package.json #}
   <script src="/admin/templates.js"></script>
   {# make the the css path available as a global in the admin - needs access to rev #}
   <script>
+    // admin javascript needs to get at the rev-ed css path!
     var _global_mainStylePath = '{{rev['/styles/main.css'] or '/styles/main.css'}}';
+
+    // tell netlify CMS that we are doing manual init (need to do this before cms script)
+    window.CMS_MANUAL_INIT = true;
   </script>
+  <!-- Include the actual Netlify CMS script -->
+  {# copied across to dist in .eleventy.js - we do this rather than import in admin.js because it saves a massive amount of build time not having it run through webpack! #}
+  <script src="/vendors/netlify-cms/dist/netlify-cms.js"></script>
   <!-- Include the script that builds the page and powers Netlify CMS. -->
   <script type="module" src="{{rev['/admin.modules.js'] or '/admin.modules.js'}}"></script>
 </body>

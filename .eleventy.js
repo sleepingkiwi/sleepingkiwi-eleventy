@@ -9,10 +9,21 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy('src/images');
   eleventyConfig.addPassthroughCopy('src/fonts');
 
-  // for use in our previews.
+  /** Pass through a couple of scripts from node_modules directly
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  // nunjucks for use in our previews.
   // uses the same version as eleventy. Maybe a bit fragile...
   // method from: https://github.com/hankchizljaw/hylia
-  eleventyConfig.addPassthroughCopy('node_modules/nunjucks/browser/nunjucks-slim.js');
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/nunjucks/browser/nunjucks-slim.js': 'vendors/nunjucks/browser/nunjucks-slim.js',
+  });
+
+  // netlify-cms
+  // so that it skips our webpack build process and we can use directly
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/netlify-cms/dist/netlify-cms.js': 'vendors/netlify-cms/dist/netlify-cms.js',
+  });
 
   // transforms modify a template’s output
   // https://www.11ty.dev/docs/config/#transforms

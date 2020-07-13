@@ -103,9 +103,11 @@ const contactConfig = {
             'heading-five',
             'heading-six',
             'quote',
-            'code-block',
             'bulleted-list',
             'numbered-list',
+          ],
+          editorComponents: [
+            'code-block',
           ],
         },
         {

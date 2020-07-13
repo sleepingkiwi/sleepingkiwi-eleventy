@@ -1,15 +1,11 @@
-/** We have to set this global flag to allow manual init
+/** importing netlify cms
  *  ------------------------------------------------------------------------------------------------
+ *  we used to do this here but now are bringing through un-touched from our node_modules folder.
+ *  which saves a massive amount of time in building.
+ *  - see /eleventy.js and /admin.njk for implementation
 **/
-import './manualCommitGlobal';
-
-
-/** netlify cms itself.
- *  ------------------------------------------------------------------------------------------------
- *  We are using manual init: https://www.netlifycms.org/docs/beta-features/#manual-initialization
- *  this means we can pass our config as a js object which is nice because we can break it down.
-**/
-import CMS, { init } from 'netlify-cms';
+// import './manualCommitGlobal';
+// import CMS, { init } from 'netlify-cms';
 
 
 /** our custom widgets
@@ -32,6 +28,16 @@ import ContactPreview from './previews/ContactPreview';
  *  ------------------------------------------------------------------------------------------------
 **/
 import config from './config/config';
+
+
+/** netlify cms config.
+ *  ------------------------------------------------------------------------------------------------
+ *  We are using manual init: https://www.netlifycms.org/docs/beta-features/#manual-initialization
+ *  this means we can pass our config as a js object which is nice because we can break it down.
+ *  -
+ *  we set a global flag in /admin.njk before the CMS comes in to enable this
+**/
+const { CMS, initCMS: init } = window;
 
 
 /** register our custom widget

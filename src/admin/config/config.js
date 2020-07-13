@@ -22,13 +22,13 @@ const config = {
   // https://github.com/netlify/netlify-cms/blob/master/example/config.yml
   backend: {
     name: 'git-gateway',
-    branch: 'master',
+    branch: 'main',
   },
 
   // logo_url: https://your-site.com/images/logo.svg,
 
-  site_url: 'https://musing-jennings-33f578.netlify.app/',
-  display_url: 'https://musing-jennings-33f578.netlify.app/',
+  site_url: 'https://sleepity.netlify.app/',
+  display_url: 'https://sleepity.netlify.app/',
 
   // Media files will be stored in the repo under this dir
   // however because we use cloudinary currently this is ignored

@@ -7,7 +7,7 @@ import { metaConfigPage } from './meta';
 const pageSettings = [
   {
     label: 'Page Settings & SEO',
-    name: 'genericInstructions',
+    name: 'genericPageSettingsInstructions',
     widget: 'instructions',
     flavour: 'divider',
     instructions: 'Settings for this page that affect the overall appearence or overwrite global defaults.',
