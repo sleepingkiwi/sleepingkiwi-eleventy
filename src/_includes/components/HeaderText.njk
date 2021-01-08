@@ -19,6 +19,9 @@
       OneOf: ['left', 'right', 'center']
     priority='h2'
       OneOf: ['h1', 'h2', 'h3'... etc.]
+    wrapText=false // this decides whether a span wraps inner text - used to make sizing tweaks...
+    isNotHeader=false // true if this is not semantically a header!
+    anchorLink=true // false if you need to disable the hidden anchor link
   ---
 #}
 
@@ -30,17 +33,30 @@
   post='',
   header='',
   align='left',
-  priority='h2'
+  priority='h2',
+  wrapText=false,
+  isNotHeader=false,
+  anchorLink=true
 ) %}
-<header
+<{{ 'div' if isNotHeader else 'header' }}
   class="HeaderText
+    HeaderText--{{ 'not-semantic' if isNotHeader else 'semantic' }}
     HeaderText--align-{{ align }}
-    HeaderText--colour-{{ 'dark' if dark else 'light' }}"
+  data-id="heading-anchor--{{(header or pre or post) | slug}}"
 >
+  <span class="HeaderText__floating_id" id="heading-anchor--{{(header or pre or post) | slug}}"></span>
   {% call Wrap(flavour='readable', flows=false) %} {# readable width Wrap with no flow #}
+    {% if anchorLink %}
+      <a
+        href="{{ page.url + '#heading-anchor--' + ((header or pre or post) | slug) }}"
+        class="HeaderText__anchor-link use-colour--foreground"
+      >#</a>
+    {% endif %}
     {% if pre %}
       <p class="HeaderText__pre">
+        {% if wrapText %}<span>{% endif %}
         {{ pre }}
+        {% if wrapText %}</span>{% endif %}
       </p>
     {% endif %}
 
@@ -48,15 +64,19 @@
       <{{ priority }}
         class="HeaderText__header"
       >
+        {% if wrapText %}<span>{% endif %}
         {{ header }}
+        {% if wrapText %}</span>{% endif %}
       </{{ priority }}>
     {% endif %}
 
     {% if post %}
       <p class="HeaderText__post">
+        {% if wrapText %}<span>{% endif %}
         {{ post }}
+        {% if wrapText %}</span>{% endif %}
       </p>
     {% endif %}
   {% endcall %} {# wrap #}
-</header>
+</{{ 'div' if isNotHeader else 'header' }}>
 {% endmacro %}

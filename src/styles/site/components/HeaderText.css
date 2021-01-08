@@ -6,11 +6,20 @@
 
 .HeaderText {
   text-align: center;
+  position: relative;
 
   & p {
     /* larger font size for pre/post headers */
     font-size: var(--s1);
   }
+}
+
+/* anchor link offset from top slightly */
+.HeaderText__floating_id {
+  position: absolute;
+  pointer-events: none;
+  top: calc(var(--bsu) * -1);
+  visibility: hidden;
 }
 
 .HeaderText__header {
@@ -26,4 +35,41 @@
   .HeaderText--align-left {
     text-align: left;
   }
+
+}
+
+
+/** anchor links for headers with IDs
+ *  ------------------------------------------------------------------------------------------------
+**/
+.HeaderText__anchor-link {
+  position: absolute;
+  top: -1rem;
+  left: auto;
+  opacity: 0;
+  transition: all var(--time-transition) var(--ease-default);
+  transition-property: opacity, color;
+  color: var(--colour-subtle);
+}
+
+.HeaderText__anchor-link:focus {
+  opacity: 1;
+}
+
+.HeaderText:hover .HeaderText__anchor-link {
+  opacity: 1;
+}
+
+@media (--column-break) {
+
+  .HeaderText--align-right .HeaderText__anchor-link {
+    margin-left: 1rem;
+    top: 0;
+  }
+
+  .HeaderText--align-left .HeaderText__anchor-link {
+    margin-left: -1rem;
+    top: 0;
+  }
+
 }
