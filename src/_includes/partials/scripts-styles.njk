@@ -50,7 +50,7 @@
       && ('isIntersecting' in window.IntersectionObserverEntry.prototype)
     );
 
-    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ' + colourModeString + ' ' + (gotIntersction ? 'got-intersection' : 'no-intersection '));
+    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ' + (gotIntersction ? 'got-intersection ' : 'no-intersection '));
   }
 </script>
 
