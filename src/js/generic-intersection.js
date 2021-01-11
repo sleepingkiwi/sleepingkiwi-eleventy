@@ -51,9 +51,21 @@ const config = {
 };
 
 export const init = () => {
-  const targets = document.querySelectorAll('.js--wants-intersection');
+  const gotIntersction = (
+    ('IntersectionObserver' in window)
+    && ('IntersectionObserverEntry' in window)
+    && ('intersectionRatio' in window.IntersectionObserverEntry.prototype)
+    && ('isIntersecting' in window.IntersectionObserverEntry.prototype)
+  );
+
+  if (!gotIntersction) {
+    return;
+  }
+
+  const targets = document.querySelectorAll('.js--wants-intersection:not(.js--has-observer)');
 
   if (targets.length > 0) {
+    // console.log(`adding ${targets.length} new observer/s`);
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -69,6 +81,8 @@ export const init = () => {
     );
 
     targets.forEach((target) => {
+      // makes it safe to run this multiple times as we don't catch ones we've already observed
+      target.classList.add('js--has-observer');
       observer.observe(target);
     });
   }

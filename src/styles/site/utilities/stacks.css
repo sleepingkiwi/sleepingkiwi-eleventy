@@ -24,6 +24,22 @@
  *  children sit horizontally above a given parent width, before that they stack vertically!
 **/
 
+
+/*
+  We need to scope these to root if we want PostCSS to be able to expand them for us...
+  ref: https://github.com/postcss/postcss-custom-properties/issues/223
+  -
+  originally we had these scoped only to `.u-stacks`
+*/
+:root {
+  /*
+    before this width children will stack
+    - it should be overwritten on a case-by-case basis
+  */
+  --stack-before: 30rem;
+  --gap: var(--bsu);
+}
+
 .u-stacks {
   /*
     before this width children will stack

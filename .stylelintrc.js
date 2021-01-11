@@ -63,7 +63,7 @@ module.exports = {
       },
     ],
     // use border: 0 instead pls
-    'declaration-property-value-blacklist': {
+    'declaration-property-value-disallowed-list': {
       '/^border/': ['none'],
     },
     // no ids in styles - disable on a case by case if you need one

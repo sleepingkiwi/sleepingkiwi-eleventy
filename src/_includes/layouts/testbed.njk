@@ -1,0 +1,59 @@
+{#
+  Extend base template
+#}
+{% extends 'layouts/base.njk' %}
+
+{#
+  Import components
+#}
+{% from "components/PageHeader.njk" import PageHeader with context %}
+{% from "components/ContentSection.njk" import ContentSection with context %}
+{% from "components/Wrap.njk" import Wrap with context %}
+{% from "components/HeaderText.njk" import HeaderText with context %}
+{% from "components/RichText.njk" import RichText with context %}
+
+{% block content %}
+  <main id="main-content" class="site-main site-main--testbed" tabindex="-1">
+    {{
+      PageHeader(
+        pre=hero.preHeader,
+        header=hero.header,
+        hero=hero.hero
+      )
+    }}
+
+    {% call ContentSection(
+      class='CounterJavaScript'
+    ) %}
+      {% call Wrap(flows=true) %}
+
+        {{
+          HeaderText(
+            pre='Persistance Test',
+            header='Counter',
+            priority='h3',
+            align='left'
+          )
+        }}
+
+        {{
+          RichText(
+            content='Two separate Svelte components instantiated in `src/entry.js` that are separated by non-js static content but communicate through a shared Svelte store.',
+            align='left'
+          )
+        }}
+
+        <div class="js--CounterOne"></div>
+
+        {{
+          RichText(
+            content='The count should be accurate in both of these elements. It should persist through page refreshes and navigation.',
+            align='left'
+          )
+        }}
+
+        <div class="js--CounterTwo"></div>
+      {% endcall %}
+    {% endcall %}
+  </main>
+{% endblock %}

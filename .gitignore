@@ -66,3 +66,4 @@ node_modules
 .vscode
 compilation-stats.json
 /src/_data/rev.json
+.env.local

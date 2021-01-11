@@ -32,7 +32,7 @@ It is useful as a reference but delete all the bits you don't want before you us
 ## JavaScript
 
 - Client script transpiled by [babel]
-- [Preact] for progressively enhanced components
+- [Svelte] for progressively enhanced components
 - Bundled by [webpack]
 - Linted by [eslint]
 
@@ -88,9 +88,11 @@ We can determine what features to detect or whether to serve the fall-back JavaS
 
 👻 **to do:** outline some coherent examples from real projects or bring in small examples...
 
-### Preact for complex/stateful JavaScript
+### Svelte for complex/stateful JavaScript
 
 👻 **to do:** outline some coherent examples from real projects or bring in small examples...
+
+[GLADD](https://gladd.co.uk) is a live site built from this starter that uses Svelte extensively in the membership areas...
 
 ### Modern CSS
 
@@ -142,6 +144,7 @@ As a result, the config for authentication is located largely on [netlify]
 [netlify]: https://www.netlify.com/
 [webpack]: https://webpack.js.org/
 [Preact]: https://preactjs.com/
+[Svelte]: https://svelte.dev/
 [Sass]: https://sass-lang.com/
 [stylelint]: https://github.com/stylelint/stylelint
 [eslint]: https://eslint.org/

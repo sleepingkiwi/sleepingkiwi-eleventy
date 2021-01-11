@@ -30,6 +30,17 @@ module.exports = (env = {}) => {
       **/
       mode: isProduction ? 'production' : 'development',
 
+
+      // all svelte specific.
+      // see: https://github.com/sveltejs/svelte-loader#usage
+      resolve: {
+        alias: {
+          svelte: path.resolve('node_modules', 'svelte'),
+        },
+        extensions: ['.mjs', '.js', '.svelte'],
+        mainFields: ['svelte', 'browser', 'module', 'main'],
+      },
+
       entry: {
         main: './src/js/entry.js',
         polyfills: './src/js/polyfills.js',
@@ -88,12 +99,16 @@ module.exports = (env = {}) => {
       /** Loaders to handle files
        *  ------------------------------------------------------------------------------------------
        *  loaders are used to tell webpack how to interpret different file types.
+       *  run bottom to top
+       *  running svelte js through babel - we also have to include the svelte code from
+       *  node_modules for this...
+       *  ref: https://github.com/sveltejs/svelte-loader/issues/108#issuecomment-614861126
       **/
       module: {
         rules: [
           {
             test: /\.m?js$/,
-            exclude: /(node_modules|bower_components)/,
+            exclude: /node_modules\/(?!svelte)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -125,25 +140,39 @@ module.exports = (env = {}) => {
                   ],
                 ],
                 plugins: [
-                  // strip all prop types in production - saves some space!
-                  isProduction ? 'babel-plugin-transform-react-remove-prop-types' : null,
-                  // allows us to use jsx, includes preact specific pragma: 'h' option
-                  [
-                    '@babel/plugin-transform-react-jsx',
-                    {
-                      // see https://preactjs.com/guide/switching-to-preact#2-jsx-pragma-transpile-to-h-
-                      pragma: 'h',
-                      // this otherwise defaults to React.Fragment
-                      // see https://babeljs.io/docs/en/babel-plugin-transform-react-jsx
-                      pragmaFrag: 'Fragment',
-                    },
-                  ],
                   // we used to explicitly include @babel/plugin-proposal-object-rest-spread
                   // but it's part of es2018 formally which means it's now supported by babel/env
                   // '@babel/plugin-proposal-object-rest-spread',
                 ].filter((mightBeNull) => mightBeNull !== null),
               },
             },
+          },
+          {
+            test: /\.svelte$/,
+            exclude: /node_modules\/(?!svelte)/,
+            use: [
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-env',
+                      {
+                        useBuiltIns: 'usage',
+                        corejs: '3.4',
+                        debug: isProduction,
+                      },
+                    ],
+                  ],
+                },
+              },
+              {
+                loader: 'svelte-loader',
+                options: {
+                  dev: !isProduction,
+                },
+              },
+            ],
           },
         ],
       },
@@ -163,6 +192,16 @@ module.exports = (env = {}) => {
        *  see https://webpack.js.org/concepts/mode/
       **/
       mode: isProduction ? 'production' : 'development',
+
+      // all svelte specific.
+      // see: https://github.com/sveltejs/svelte-loader#usage
+      resolve: {
+        alias: {
+          svelte: path.resolve('node_modules', 'svelte'),
+        },
+        extensions: ['.mjs', '.js', '.svelte'],
+        mainFields: ['svelte', 'browser', 'module', 'main'],
+      },
 
       entry: isAdmin ? {
         admin: './src/admin/admin.js',
@@ -210,12 +249,10 @@ module.exports = (env = {}) => {
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development'),
         }),
-
-        // exclude the admin sourcemap in production because it big
         isProduction ? new webpack.SourceMapDevToolPlugin({
           filename: '[file].map',
           test: /\.(js|jsx|css)($|\?)/i,
-          exclude: /admin\..+\.js/,
+          // exclude: /admin\..+\.js/,
         }) : null,
       ].filter((mightBeNull) => mightBeNull !== null),
 
@@ -223,38 +260,64 @@ module.exports = (env = {}) => {
         rules: [
           {
             test: /\.m?js$/,
-            exclude: [
-              /(node_modules|bower_components)/,
-            ],
+            exclude: /node_modules\/(?!svelte)/,
             use: {
               loader: 'babel-loader',
               options: {
                 presets: [
-                  // https://github.com/babel/preset-modules
+                  // no longer using https://github.com/babel/preset-modules
+                  // it's in preset-env now: https://github.com/babel/preset-modules/issues/16#issuecomment-602780794
                   [
-                    '@babel/preset-modules',
+                    '@babel/preset-env',
                     {
+                      targets: { esmodules: true },
+                      // this enables what used to be @babel/preset-modules
+                      // https://babeljs.io/docs/en/babel-preset-env#bugfixes
+                      bugfixes: true,
                       // set loose false if you need function.prototype.name in IE...
                       // https://github.com/babel/preset-modules#options
                       loose: true,
-                      // useBuiltIns: 'usage',
-                      // corejs: '3.4',
-                      // debug: isProduction,
+                      useBuiltIns: 'usage',
+                      corejs: '3.4',
+                      debug: isProduction,
                     },
                   ],
                 ],
                 plugins: [
-                  isProduction ? 'babel-plugin-transform-react-remove-prop-types' : null,
-                  [
-                    '@babel/plugin-transform-react-jsx',
-                    {
-                      pragma: 'h',
-                      pragmaFrag: 'Fragment',
-                    },
-                  ],
+                  // removed react bits
                 ].filter((mightBeNull) => mightBeNull !== null),
               },
             },
+          },
+          {
+            test: /\.svelte$/,
+            exclude: /node_modules\/(?!svelte)/,
+            use: [
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-env',
+                      {
+                        targets: { esmodules: true },
+                        bugfixes: true,
+                        loose: true,
+                        useBuiltIns: 'usage',
+                        corejs: '3.4',
+                        debug: isProduction,
+                      },
+                    ],
+                  ],
+                },
+              },
+              {
+                loader: 'svelte-loader',
+                options: {
+                  dev: !isProduction,
+                },
+              },
+            ],
           },
           // we want to include the sourcemap for the admin cms side
           // but only in dev because it's flipping huge

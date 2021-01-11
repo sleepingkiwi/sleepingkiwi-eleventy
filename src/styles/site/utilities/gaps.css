@@ -6,6 +6,17 @@
  *  ref: https://absolutely.every-layout.dev/layouts/cluster/
 **/
 
+
+/*
+  We need to scope these to root if we want PostCSS to be able to expand them for us...
+  ref: https://github.com/postcss/postcss-custom-properties/issues/223
+  -
+  originally we had these scoped only to `.u-gaps`
+*/
+:root {
+  --gap: var(--bsu);
+}
+
 .u-gaps {
   --gap: var(--bsu);
 
