@@ -232,7 +232,6 @@ module.exports = (env = {}) => {
       optimization: {
         minimizer: [
           new TerserPlugin({
-            sourceMap: true,
             terserOptions: {
               ecma: 8,
               safari10: true,
