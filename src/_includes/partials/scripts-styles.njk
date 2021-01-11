@@ -15,22 +15,43 @@
 
 {#
   More details in the readme.
-  Another option is to not load JS at all for sites that don't meet a minimum feature detection
-  see https://github.com/sleepingKiwi/sylvarna for an example of this
+  We run a test for browsers that cut the mustard.
+  If they don't, they get the no-js experience...
+  This might not be what you want! It depends on the JS you use
+  and if you have a good no-js experience to fall back on
 #}
 <script>
+  // we mainly want to ensure classList support but also checking element closest
+  // closest is something we use a few times but also conveniently gates some browsers we don't
+  // want to load js for anyway: https://caniuse.com/?search=closest
   // more modern script for more modern browsers
-  function $loadjs(src, fallback) {
-    s = document.createElement('script');
-    // avoids double loading issues in Safari 10.1 which supports module but not nomodule...
-    if ('noModule' in s) s.type = 'module', s.src = src;
-    else s.src = fallback;
-    document.head.appendChild(s);
+  if (
+    !Element.prototype.closest
+    || !('classList' in document.createElement("_"))
+  ) {
+    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' no-js no-js--hagard');
+  } else {
+    function $loadjs(src, fallback) {
+      s = document.createElement('script');
+      // avoids double loading issues in Safari 10.1 which supports module but not nomodule...
+      if ('noModule' in s) s.type = 'module', s.src = src;
+      else s.src = fallback;
+      document.head.appendChild(s);
+    }
+
+    $loadjs('{{rev['/main.modules.js'] or '/main.modules.js'}}', '{{rev['/main.js'] or '/main.js'}}');
+
+    // feature detect intersection observer
+    // we disable some styling and don't try to fade images if it's not supported
+    const gotIntersction = (
+      ('IntersectionObserver' in window)
+      && ('IntersectionObserverEntry' in window)
+      && ('intersectionRatio' in window.IntersectionObserverEntry.prototype)
+      && ('isIntersecting' in window.IntersectionObserverEntry.prototype)
+    );
+
+    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ' + colourModeString + ' ' + (gotIntersction ? 'got-intersection' : 'no-intersection '));
   }
-
-  $loadjs('{{rev['/main.modules.js'] or '/main.modules.js'}}', '{{rev['/main.js'] or '/main.js'}}');
-
-  document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ');
 </script>
 
 

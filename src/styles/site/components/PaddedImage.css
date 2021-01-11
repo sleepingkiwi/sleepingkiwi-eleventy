@@ -36,18 +36,18 @@
   }
 }
 
-.js .PaddedImage.js--wants-intersection img {
+.got-intersection .PaddedImage.js--wants-intersection img {
   opacity: 0;
   transition: opacity var(--time-transition-slow) var(--time-transition) ease-in-out;
 }
 
-.js .PaddedImage.js--has-intersected img {
+.got-intersection .PaddedImage.js--has-intersected img {
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   /* if you have specifically opted out of animation we don't want these to just pop in */
-  .js .PaddedImage.js--wants-intersection img {
+  .got-intersection .PaddedImage.js--wants-intersection img {
     opacity: 1;
   }
 }
