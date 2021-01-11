@@ -16,7 +16,7 @@
   <ul class="SocialLinks SocialLinks--icons">
     {% for key, item in social %}
       <li class="SocialLinks__item social-link social-link--{{key}}">
-        <a href="{{ constants.social[key].root }}{{ item }}" target="_blank">
+        <a href="{{ constants.social[key].root }}{{ item }}" target="_blank" rel="noopener">
           {{ SvgWrap(
             colour=constants.social[key].colour,
             name=constants.social[key].name,

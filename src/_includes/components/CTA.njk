@@ -42,7 +42,7 @@
       {% elif submit or (not url) %}
         <button class="CTA__a{{ ' js--popup-trigger' if not url }}" type="{{'submit' if submit else 'button'}}">
       {% else %}
-        <a class="CTA__a" href="{{ url }}" {{ 'target=_blank' if newTab }}>
+        <a class="CTA__a" href="{{ url }}" {{ 'target=_blank rel="noopener"' if newTab }}>
       {% endif %}
         {{ text }}
       {% if dummy %}
