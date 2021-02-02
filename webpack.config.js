@@ -253,6 +253,7 @@ module.exports = (env = {}) => {
           test: /\.(js|jsx|css)($|\?)/i,
           // exclude: /admin\..+\.js/,
         }) : null,
+        isProduction ? new webpack.HotModuleReplacementPlugin() : null,
       ].filter((mightBeNull) => mightBeNull !== null),
 
       module: {
@@ -313,10 +314,21 @@ module.exports = (env = {}) => {
               {
                 loader: 'svelte-loader',
                 options: {
-                  dev: !isProduction,
+                  compilerOptions: {
+                    dev: !isProduction,
+                  },
+                  hotReload: !isProduction,
                 },
               },
             ],
+          },
+          {
+            // required to prevent errors from Svelte on Webpack 5+, omit on Webpack 4
+            // ref: https://github.com/sveltejs/svelte-loader#usage
+            test: /node_modules\/svelte\/.*\.mjs$/,
+            resolve: {
+              fullySpecified: false,
+            },
           },
           // we want to include the sourcemap for the admin cms side
           // but only in dev because it's flipping huge

@@ -1,6 +1,6 @@
 {
   "name": "sleepingkiwi-eleventy",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A starting point for building static sites with eleventy using netlify CMS for content",
   "keywords": [],
   "author": "sleepingkiwi",
@@ -47,7 +47,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-value-no-unknown-custom-properties": "^3.0.0",
     "svelte": "^3.24.0",
-    "svelte-loader": "^2.13.6",
+    "svelte-loader": "^3.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.12.3",
     "webpack-cli": "^4.3.1"
