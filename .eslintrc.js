@@ -1,5 +1,22 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    // our babel is configured by webpack but we pass the options directly here
+    // so that eslint is on the same page
+    requireConfigFile: false,
+    babelOptions: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            useBuiltIns: 'usage',
+            corejs: '3.10',
+            debug: false,
+          },
+        ],
+      ],
+    },
+  },
   extends: ['airbnb-base'],
   plugins: [
     'svelte3',

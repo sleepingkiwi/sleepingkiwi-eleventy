@@ -129,7 +129,7 @@ module.exports = (env = {}) => {
                        *  see https://babeljs.io/blog/2019/03/19/7.4.0
                        *  and https://github.com/zloirock/core-js#babelpreset-env
                       **/
-                      corejs: '3.4',
+                      corejs: '3.10',
                       /** outputs plugins and polyfills used to the build log
                        *  --------------------------------------------------------------------------
                        *  set this to true if you would like to see what polyfills and transforms
@@ -159,7 +159,7 @@ module.exports = (env = {}) => {
                       '@babel/preset-env',
                       {
                         useBuiltIns: 'usage',
-                        corejs: '3.4',
+                        corejs: '3.10',
                         debug: isProduction,
                       },
                     ],
@@ -278,7 +278,7 @@ module.exports = (env = {}) => {
                       // https://github.com/babel/preset-modules#options
                       loose: true,
                       useBuiltIns: 'usage',
-                      corejs: '3.4',
+                      corejs: '3.10',
                       debug: isProduction,
                     },
                   ],
@@ -304,7 +304,7 @@ module.exports = (env = {}) => {
                         bugfixes: true,
                         loose: true,
                         useBuiltIns: 'usage',
-                        corejs: '3.4',
+                        corejs: '3.10',
                         debug: isProduction,
                       },
                     ],
