@@ -75,6 +75,7 @@ const ExtraImageControl = window.createClass({
       const base = (src.match(/https:\/\/res.cloudinary.com\/.+\/image\/upload\//) || [''])[0];
       const version = (src.match(/\/(v[0-9]+)\//) || ['', ''])[1];
       const filename = (version === '' ? src.split(base) : src.split(`${version}/`))[1] || '';
+      const filenameNoExt = filename.substr(0, filename.lastIndexOf('.') || undefined);
       let baseSixFour = null;
       let dominant = null;
       let width;
@@ -112,6 +113,7 @@ const ExtraImageControl = window.createClass({
           base,
           version: version === '' ? `v${Date.now()}` : version, // fallback if we didn't get v
           filename,
+          filenameNoExt,
           width,
           height,
           dominant,
@@ -159,6 +161,7 @@ const ExtraImageControl = window.createClass({
           base,
           version: version === '' ? `v${Date.now()}` : version, // fallback if we didn't get v
           filename,
+          filenameNoExt,
           width,
           height,
           dominant,

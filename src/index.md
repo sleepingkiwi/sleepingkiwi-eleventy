@@ -13,6 +13,7 @@ hero:
       - 59
       - 61
     filename: sleepingkiwi-eleventy/2667_2000.jpg
+    filenameNoExt: sleepingkiwi-eleventy/2667_2000
     height: 2000
     src: >-
       https://res.cloudinary.com/sleepingkiwi/image/upload/v1580773520/sleepingkiwi-eleventy/2667_2000.jpg
@@ -33,6 +34,7 @@ firstContentArea:
       - 75
       - 52
     filename: sleepingkiwi-eleventy/vital-sinkevich-QOQz2R_6N-k-unsplash.jpg
+    filenameNoExt: sleepingkiwi-eleventy/vital-sinkevich-QOQz2R_6N-k-unsplash
     height: 2982
     src: >-
       https://res.cloudinary.com/sleepingkiwi/image/upload/v1581173471/sleepingkiwi-eleventy/vital-sinkevich-QOQz2R_6N-k-unsplash.jpg
@@ -68,6 +70,7 @@ genericContentBlocks:
             - 15
             - 27
           filename: sleepingkiwi-eleventy/fabian-oelkers-e9rkZKjdlSc-unsplash.jpg
+          filenameNoExt: sleepingkiwi-eleventy/fabian-oelkers-e9rkZKjdlSc-unsplash
           height: 1518
           src: >-
             https://res.cloudinary.com/sleepingkiwi/image/upload/v1580773552/sleepingkiwi-eleventy/fabian-oelkers-e9rkZKjdlSc-unsplash.jpg

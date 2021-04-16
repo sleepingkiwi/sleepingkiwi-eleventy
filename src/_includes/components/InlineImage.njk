@@ -38,7 +38,8 @@
   lazy=false,
   forcePadding,
   contain=false,
-  wantsIntersection=true
+  wantsIntersection=true,
+  sizes='(min-width: 1200px) 1200px, 100vw'
 ) %}
   {# render nothing if there's not src #}
   {% if img.src %}
@@ -72,16 +73,34 @@
           cloudinary ref:
           https://cloudinary.com/documentation/image_transformation_reference
         #}
+        <picture>
+          {% set webpExt = img.version + '/' + img.filenameNoExt + '.webp' %}
+          <source
+            type="image/webp"
+            srcset="{{ img.base }}w_300,c_limit,q_auto:best/{{ webpExt }} 300w,
+            {{ img.base }}w_600,c_limit,q_auto:best/{{ webpExt }} 600w,
+            {{ img.base }}w_1200,c_limit,q_auto:best/{{ webpExt }} 1200w,
+            {{ img.base }}w_1800,c_limit,q_auto:best/{{ webpExt }} 1800w,
+            {{ img.base }}w_2400,c_limit,q_auto:best/{{ webpExt }} 2400w"
+            sizes="{{ sizes }}"
+          >
+          {% set jpegExt = img.version + '/' + img.filenameNoExt + '.jpeg' %}
+          <source
+            type="image/jpeg"
+            srcset="{{ img.base }}w_300,c_limit,q_auto:best/{{ jpegExt }} 300w,
+            {{ img.base }}w_600,c_limit,q_auto:best/{{ jpegExt }} 600w,
+            {{ img.base }}w_1200,c_limit,q_auto:best/{{ jpegExt }} 1200w,
+            {{ img.base }}w_1800,c_limit,q_auto:best/{{ jpegExt }} 1800w,
+            {{ img.base }}w_2400,c_limit,q_auto:best/{{ jpegExt }} 2400w"
+            sizes="{{ sizes }}"
+          >
           <img
-            src="{{ img.base }}w_1200,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }}"
-            srcset="{{ img.base }}w_600,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 600w,
-              {{ img.base }}w_1200,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 1200w,
-              {{ img.base }}w_1800,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 1800w,
-              {{ img.base }}w_2400,c_limit,q_auto:best/{{ img.version }}/{{ img.filename }} 2400w"
-            sizes="(min-width: 1200px) 1200px, 100vw"
+            src="{{ img.base }}w_1200,c_limit,q_auto:best/{{ jpegExt }}"
             alt="{{ img.alt | default('') }}"
+            decoding="async"
             {{ 'loading=lazy' if lazy }}
           >
+        </picture>
         {% endcall %} {# PaddedImage #}
       {% endcall %} {# Wrap #}
     </div>
