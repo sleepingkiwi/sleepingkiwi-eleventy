@@ -35,7 +35,7 @@ firstContentArea:
       - 32
       - 4
     baseSixFour: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAYAAADzoH0MAAADm0lEQVQ4jUWU21IbRxCG/5md2d1Z7erAQTYmGIPESUYGCYRASLIESJWKiXPjykXe/z2+XMxWctFXM931n7qlc6G+UE/oSrhxQr4IhJeKsK3QROi8ft8R6tT/P9SlgfA3oppm7C7b7K53qF6a+FWOWSa03nfRk0Fji3rCDi0HbwdUjwX5g0e6FH4k2vMGu+sd2qs22SJg5hYthN8ENDck84DuEvJpoLvt0lyWlPMcqR+h26HQUOhaaCT0LNw2R1OhhQhvJeF7g+wpxU8dGivS043Qbd18KXQhdCO0Sgg/K8zW47Yp/iWjeC2pXkryRUa+dPi5Ra1Fi+a8SfnUJJ0EzMRjZh6/CYSfFeFnA63qwbcim6eEZUr1VuAXQu3ZDtW0Rbir8OMGbpKTzgv8JpD+KNCbQc9CZzXSSUTonk2k564DOk/QsWKdC907/Con/b1AS9F4Lyk2DT7+1aVa5ehS2EdFBOrUfu4KtYWOhG4iDbNM6P7ap/leoccobuM5o/GcobsakfaFDgzqxkHm3FM+tanWbfLXQLEtKLYFfuZIHz07qxad703CkyefeZT3m7gvBTr06MiTXgWaj22KeSNyvBd2bkkfPX7iCdMcN07QUCR3BlXnHeyhR12DDi1J35Pd5phR1MM9G5qbkta6SZjmpCOHrqIr9tagRq+KGW8LHUQhk6s6F33R/XOXz78+cfjjA+1li3Ja4G4s5sZQzkq0P9z/bzH8sY0intWJ7IuwdlSvgWwaYduh0CCWGzu0+7WD9oU+iuIsxZyIZCDCzKIHxZrEuKsn9LWus9pytYUKoUrkPYe7EK3ngt7fRxz/84nqj4xi47FTkT449l/36K73yO9y7NAi+disPaFPwg0M5bJBtk7RTNiNsK+GsAl0tm063zsUtxnJmcWeGCQn1KiDdCTMQPipwy4tWorsPeC2KW7tSRcpySiJVA4Us2Mr4ToiP/QUF4H8W0Zyl5DMPWFbkLymcRfu6y29EPosdFin1rUMSUeE31KqQUl+naOvwjxYqm0rHpaHuvm6Fu5E6IvwfYfUEGoK/9ESeik6rZdqIMKipFiV+FlKMnEkY4e5NpHC5zhEtiNcV+SfM0Ivj8KcCnvtKJ+a+PsUO0qwowQ/zkhvc5Iriz23uEuH7F6E3zgp8McuJvHMkX8LFOMq+t2rfR9Y3NCTXDuyYUpjVCAVQvvCfKjP9o7Qb8L0LDoV5iJeY53W57z//0A3SPgXyKbTL2N2zYEAAAAASUVORK5CYII=
-    alt: Plants growing behind a window
+    alt: Vibrant green ferns growing against dark background
   preHeader: sleepingkiwi made an
   text: >-
     Dui sapien eget mi proin sed libero enim sed. Quam vulputate dignissim
@@ -46,7 +46,7 @@ firstContentArea:
     diam phasellus vestibulum lorem sed risus ultricies.
 
 
-    Photo by [Vital Sinkevich](https://unsplash.com/@vitsinkevich?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/film-grain?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+    Photo by [Teemu Paananen](https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@xteemu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 genericContentBlocks:
   - backgroundColour: false
     collapseTop: false
