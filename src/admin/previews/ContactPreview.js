@@ -5,6 +5,12 @@
 **/
 /* eslint-disable object-shorthand */
 
+// this feels a bit brittle maybe...
+// we just want to be able to use the built in 11ty slug filter in our previews
+// could optionally bring in slugify as dependancy and make our own filter
+// https://github.com/11ty/eleventy/blob/master/src/Filters/Slug.js
+import slugFilter from '@11ty/eleventy/src/Filters/Slug';
+
 import markdownFilter from '../../filters/markdown';
 import previewDummyContent from './dummy';
 
@@ -14,6 +20,7 @@ import previewDummyContent from './dummy';
 const env = nunjucks.configure();
 
 env.addFilter('markdownify', markdownFilter);
+env.addFilter('slug', slugFilter);
 
 const ContactPreview = window.createClass({
   render: function render() {
