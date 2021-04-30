@@ -48,6 +48,7 @@ module.exports = (env = {}) => {
 
       output: {
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
         // we handle cachebusting directly in package.json with `node-file-rev`
         filename: '[name].js',
 
@@ -211,6 +212,7 @@ module.exports = (env = {}) => {
 
       output: {
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
         filename: '[name].modules.js',
         pathinfo: !isProduction,
       },
