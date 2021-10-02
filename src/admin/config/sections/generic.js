@@ -1,4 +1,5 @@
 import pageSettings from './pageSettings';
+import { slugConfig } from './slugConfig';
 
 
 /** generic repeatable content using blocks
@@ -304,4 +305,6 @@ export const genericPageConfig = [
   ...genericContentBlocks,
   // include general page settings
   ...pageSettings,
+  // include slug settings
+  ...slugConfig,
 ];
