@@ -18,5 +18,5 @@ hero:
     version: v1580773449
     filenameNoExt: sleepingkiwi-eleventy/---_0280
 transparentHeader: true
-slug: Test Page With a Default Slug
+slug: test-page-with-a-default-slug
 ---
