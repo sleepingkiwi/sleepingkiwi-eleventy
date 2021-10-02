@@ -91,6 +91,6 @@ genericContentBlocks:
     type: twoColumns
     columnWidth: wide
 transparentHeader: true
-slug: index.html
+slug: index
 uid: kuacciwo-sm85y0lgxj-home
 ---

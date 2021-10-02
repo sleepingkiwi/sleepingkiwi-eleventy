@@ -9,7 +9,7 @@ const homeConfig = {
   label: 'Homepage',
   delete: false,
   file: 'src/index.md',
-  slug: 'index',
+  slug: 'index.html',
   create: false,
   fields: [
     {

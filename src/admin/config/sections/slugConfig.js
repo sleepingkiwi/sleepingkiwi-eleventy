@@ -22,8 +22,6 @@ export const slugConfig = [
     name: 'slug',
     widget: 'slug',
     hint: '⚠ Changing this field will change the URL for this page. Any existing links to the old URL will 404.',
-    // eslint-disable-next-line no-useless-escape
-    pattern: ['^(?!admin$)(?!index$)(?!Admin$)(?!Index$).*', '`admin` and `index` are forbidden'],
     required: false,
   },
 ];
