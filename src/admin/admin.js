@@ -7,6 +7,7 @@
 // import './manualCommitGlobal';
 // import CMS, { init } from 'netlify-cms';
 
+import slugify from 'slugify';
 
 /** our custom widgets
  *  ------------------------------------------------------------------------------------------------
@@ -68,6 +69,27 @@ CMS.registerPreviewTemplate('contact', ContactPreview);
 CMS.registerPreviewStyle(_global_mainStylePath);
 
 // console.log(CMS);
+
+
+/** Hook in to the preSave event to pre-fill slugs and uids
+ *  ------------------------------------------------------------------------------------------------
+**/
+CMS.registerEventListener({
+  name: 'preSave',
+  handler: ({ entry }) => {
+    /** Pre fill empty slugs
+     *  --------------------------------------------------------------------------------------------
+     *  use either the existing slug (for old pages)
+     *  or slugify the title if there is one.
+    **/
+    let slug = entry.get('data').get('slug');
+    if (!slug && (entry.get('slug') || entry.get('data').get('title'))) {
+      slug = entry.get('slug') || slugify(entry.get('data').get('title'), { lower: true });
+    }
+
+    return entry.get('data').set('slug', slug);
+  },
+});
 
 /** start the cms
  *  ------------------------------------------------------------------------------------------------
