@@ -87,7 +87,16 @@ CMS.registerEventListener({
       slug = entry.get('slug') || slugify(entry.get('data').get('title'), { lower: true });
     }
 
-    return entry.get('data').set('slug', slug);
+    /** Generate unique IDs on first save
+     *  --------------------------------------------------------------------------------------------
+     *  used behind the scenes for relationship management
+    **/
+    let uid = entry.get('data').get('uid');
+    if (!uid) {
+      uid = `${Date.now().toString(36)}-${Math.random().toString(36).substring(2)}-${slugify(entry.get('data').get('title') || Math.random().toString(36).substring(2), { lower: true, strict: true })}`;
+    }
+
+    return entry.get('data').set('slug', slug).set('uid', uid);
   },
 });
 
