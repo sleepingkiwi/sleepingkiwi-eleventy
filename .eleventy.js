@@ -48,7 +48,7 @@ module.exports = (eleventyConfig) => {
    *  ----------------------------------------------------------------------------------------------
   **/
   // https://www.11ty.dev/docs/plugins/rss/
-  // used primarily to add dates in the rss feed for the moment
+  // used primarily to add dates in the sitemap for the moment
   eleventyConfig.addPlugin(rssPlugin);
 
 

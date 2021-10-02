@@ -17,6 +17,7 @@ import ColourControl from './widgets/ColourControl';
 import ExtraImagePreview from './widgets/ExtraImagePreview';
 import InstructionsControl from './widgets/InstructionsControl';
 import RelationWrappedControl from './widgets/RelationWrappedControl';
+import SlugControl from './widgets/SlugControl';
 
 // and custom previews
 import PagePreview from './previews/PagePreview';
@@ -47,6 +48,7 @@ CMS.registerWidget('extraImage', ExtraImageControl, ExtraImagePreview);
 CMS.registerWidget('relationWrapped', RelationWrappedControl);
 CMS.registerWidget('colour', ColourControl);
 CMS.registerWidget('instructions', InstructionsControl);
+CMS.registerWidget('slug', SlugControl);
 
 
 /** register preview bits

@@ -272,15 +272,6 @@ export const genericPageConfig = [
     label: 'Title',
     name: 'title',
     widget: 'string',
-    hint: 'for custom pages this also sets the URL. By default the URL will be a base level of /title. For that reason the following titles are not allowed: admin, index',
-    pattern: ['^(?!admin$)(?!index$)(?!Admin$)(?!Index$).*', 'The following titles are not allowed: admin, index'],
-  },
-  {
-    label: 'Permalink Override (Pattern: /your-slug/index.html)',
-    name: 'permalink',
-    widget: 'string',
-    required: false,
-    hint: 'You probably don\'t need to set this but you can force a different link for this page if you would like includingsubdirectories. i.e. some/deep/path/index.html',
   },
   {
     label: 'Hero Image and Page Title',

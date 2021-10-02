@@ -3,6 +3,7 @@
 **/
 
 import { metaConfigPage } from './meta';
+import { slugConfig } from './slugConfig';
 
 const pageSettings = [
   {
@@ -22,6 +23,7 @@ const pageSettings = [
   },
   // include all of the social & meta options at the end
   ...metaConfigPage,
+  ...slugConfig,
 ];
 
 export default pageSettings;

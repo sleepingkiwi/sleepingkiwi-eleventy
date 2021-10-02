@@ -40,7 +40,7 @@ const metaConfig = (forGlobal) => [
     label: 'Canonical URL',
     name: 'canonical',
     widget: 'string',
-    hint: '🛑 You probably don\'t need to set this. You should only set this if the canonical URL of this page is different to it\'s permalink.',
+    hint: 'You probably don\'t need to set this! It is useful when the `canonical` URL of this page is different to the actual URL (i.e. if the same content exists in two places).',
     required: false,
   },
 ];

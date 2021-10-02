@@ -77,8 +77,13 @@ const config = {
       name: 'generic_page',
       label: 'Custom Page',
       folder: 'src/page',
-      slug: '{{slug}}',
-      preview_path: '{{slug}}',
+      slug: '{{fields.slug}}',
+      /*
+        preview_path:
+        we have pages set up to not have a preceding `page/` (in src>page>page.json>permalink)
+        but for collections with a prefix you'd use something like 'page/{{fields.slug}}'
+      */
+      preview_path: '{{fields.slug}}',
       create: true,
       description: 'Empty pages with no fixed content. You can add whatever you want by stacking content blocks.',
       fields: [
