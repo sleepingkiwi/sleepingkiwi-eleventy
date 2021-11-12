@@ -14,7 +14,7 @@ export const slugConfig = [
     name: 'slugInstructions',
     widget: 'instructions',
     flavour: 'header',
-    instructions: 'The slug is used as this page\'s URL. \nIf you leave this blank it will be generated automatically from the Title.',
+    instructions: 'The slug is used as this page\'s URL. \nWhen you first save a post this will be generated automatically from the Title, however you can manually update it later. \nThese should be unique for each piece of content.',
     required: false,
   },
   {
@@ -23,7 +23,22 @@ export const slugConfig = [
     widget: 'slug',
     hint: '⚠ Changing this field will change the URL for this page. Any existing links to the old URL will 404.',
     required: false,
+    pattern: ['^(?!admin$)(?!bespoke$)(?!brochure$)(?!contact$)(?!index$)(?!style$)(?!Admin$)(?!Bespoke$)(?!Brochure$)(?!Contact$)(?!Index$)(?!Style$).*', 'The following slugs are not allowed: admin, bespoke, brochure, contact, index, style'],
   },
+  /* {
+    label: 'Unique ID',
+    name: 'uidInstructions',
+    widget: 'instructions',
+    flavour: 'header',
+    instructions: '🔥 You should not normally set or change this field',
+    required: false,
+  },
+  {
+    label: 'Unique ID',
+    name: 'uid',
+    widget: 'string',
+    required: false,
+  }, */
 ];
 
 export default slugConfig;

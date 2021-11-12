@@ -73,26 +73,35 @@ CMS.registerPreviewStyle(_global_mainStylePath);
 
 /** Hook in to the preSave event to pre-fill slugs and uids
  *  ------------------------------------------------------------------------------------------------
+ *  We automatically generate slug and UID fields for entries that don't have them
+ *  We ALSO automatically generate them the first time an entry is saved REGARDLESS of whether there
+ *  is information in the CMS. This helps prevent duplicate UIDs when an entry is duplicated in CMS
 **/
 CMS.registerEventListener({
   name: 'preSave',
   handler: ({ entry }) => {
-    /** Pre fill empty slugs
+    // path is blank for brand new entries
+    const path = entry.get('path');
+    /** Pre fill empty slugs or first time saves
      *  --------------------------------------------------------------------------------------------
      *  use either the existing slug (for old pages)
      *  or slugify the title if there is one.
+     *  -
+     *  THIS IGNORES USER INPUT THE FIRST TIME A PAGE IS SAVED AND SLUGIFIES THE TITLE INSTEAD
+     *  - helps to avoid duplicate slugs with page duplication...
     **/
     let slug = entry.get('data').get('slug');
-    if (!slug && (entry.get('slug') || entry.get('data').get('title'))) {
+    if ((!slug || !path) && (entry.get('slug') || entry.get('data').get('title'))) {
       slug = entry.get('slug') || slugify(entry.get('data').get('title'), { lower: true });
     }
 
     /** Generate unique IDs on first save
      *  --------------------------------------------------------------------------------------------
      *  used behind the scenes for relationship management
+     *  - for duplicate pages a new uid is generated even though one already exists
     **/
     let uid = entry.get('data').get('uid');
-    if (!uid) {
+    if (!uid || !path) {
       uid = `${Date.now().toString(36)}-${Math.random().toString(36).substring(2)}-${slugify(entry.get('data').get('title') || Math.random().toString(36).substring(2), { lower: true, strict: true })}`;
     }
 
