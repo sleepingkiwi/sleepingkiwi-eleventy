@@ -1,7 +1,9 @@
 {
-  "twitter": "sleepingkiwi",
-  "instagram": "sleepingkiwi",
-  "facebook": "https://facebook.com",
-  "linkedin": "https://www.linkedin.com",
-  "youtube": "https://youtube.com"
+  "accounts": {
+    "twitter": "sleepingkiwi",
+    "instagram": "sleepingkiwi",
+    "facebook": "https://facebook.com",
+    "linkedin": "https://www.linkedin.com",
+    "youtube": "https://youtube.com"
+  }
 }

@@ -12,22 +12,24 @@
 {% from "components/SvgWrap.njk" import SvgWrap with context %}
 
 {% macro SocialLinks() %}
-{% if social | length > 0 %}
+{% if social.accounts | length > 0 %}
   <ul class="SocialLinks SocialLinks--icons">
-    {% for key, item in social %}
-      <li class="SocialLinks__item social-link social-link--{{key}}">
-        <a href="{{ constants.social[key].root }}{{ item }}" target="_blank" rel="noopener">
-          {{ SvgWrap(
-            colour=constants.social[key].colour,
-            name=constants.social[key].name,
-            width=constants.social[key].icon.width,
-            height=constants.social[key].icon.height,
-            viewBox=constants.social[key].icon.viewBox,
-            paths=constants.social[key].icon.paths,
-            fallback=constants.social[key].icon.fallback
-          ) }}
-        </a>
-      </li>
+    {% for key, item in social.accounts %}
+      {% if item | length > 0 %}
+        <li class="SocialLinks__item social-link social-link--{{key}}">
+          <a href="{{ constants.social[key].root }}{{ item }}" target="_blank" rel="noopener">
+            {{ SvgWrap(
+              colour=constants.social[key].colour,
+              name=constants.social[key].name,
+              width=constants.social[key].icon.width,
+              height=constants.social[key].icon.height,
+              viewBox=constants.social[key].icon.viewBox,
+              paths=constants.social[key].icon.paths,
+              fallback=constants.social[key].icon.fallback
+            ) }}
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 {% endif %}
