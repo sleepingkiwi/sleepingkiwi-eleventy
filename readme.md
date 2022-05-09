@@ -13,6 +13,12 @@ It is useful as a reference but delete all the bits you don't want before you us
 
 ---
 
+## 👋 overrides in pacakge.json
+colorthief causes builds to fail due to a deep dep issue.
+Currently using this workaround: https://github.com/lokesh/color-thief/issues/206#issuecomment-1118462710
+⚠️ This should be reviewed!
+
+
 ## Structure
 
 - Built with [eleventy]

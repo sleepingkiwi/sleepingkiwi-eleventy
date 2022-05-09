@@ -77,8 +77,19 @@ module.exports = {
     ],
     // if you specifically need one disable per case!
     'value-no-vendor-prefix': true,
+    // we actually seem to manually type these a lot (like ::-moz-selection and ::-webkit-input-placeholder)
+    'selector-no-vendor-prefix': null,
+    // same, for now, i.e. -webkit-text-size-adjust
+    'property-no-vendor-prefix': null,
+    // 0.5 not 50% for opacity
+    'alpha-value-notation': 'number',
+    // don't like any of the options for this really!
+    'font-family-name-quotes': 'always-unless-keyword',
     // we enable css nesting through postcss but don't want it to get crazy...
     'max-nesting-depth': 3,
+    // both of these tend to fight with BEM and I don't like how long the regex has to be to cover all my normal uses
+    'selector-id-pattern': null,
+    'selector-class-pattern': null,
     // custom properties
     'csstools/value-no-unknown-custom-properties': [
       true, {
