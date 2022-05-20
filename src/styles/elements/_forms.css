@@ -11,6 +11,8 @@ select {
   font: inherit;
   line-height: 1.5;
   font-weight: normal;
+  margin: 0;
+  border-radius: 0;
 
   &:invalid {
     box-shadow: none;
@@ -33,6 +35,7 @@ select {
 /* pointy labels */
 label {
   cursor: pointer;
+  border-radius: 0;
 }
 
 /* no outlines... */
