@@ -255,7 +255,7 @@ module.exports = (env = {}) => {
           test: /\.(js|jsx|css)($|\?)/i,
           // exclude: /admin\..+\.js/,
         }) : null,
-        isProduction ? new webpack.HotModuleReplacementPlugin() : null,
+        isProduction ? null : new webpack.HotModuleReplacementPlugin(),
       ].filter((mightBeNull) => mightBeNull !== null),
 
       module: {
