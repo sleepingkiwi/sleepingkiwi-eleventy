@@ -49,7 +49,7 @@
     "stylelint": "^14.0.1",
     "stylelint-config-standard": "^25.0.0",
     "stylelint-value-no-unknown-custom-properties": "^4.0.0",
-    "svelte": "^3.24.0",
+    "svelte": "^3.49.0",
     "svelte-loader": "^3.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.12.3",
