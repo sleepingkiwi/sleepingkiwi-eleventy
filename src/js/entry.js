@@ -46,7 +46,16 @@ const init = () => {
 };
 
 if (document.readyState === 'loading') { // Loading hasn't finished yet
-  document.addEventListener('DOMContentLoaded', init);
-} else { // `DOMContentLoaded` has already fired
+  // DOMContentLoaded can sometimes fire very late...
+  // it fires after all defer scripts are loaded
+  // however the readystatechange changes to interactive BEFORE defer scripts fire...
+  // document.addEventListener('DOMContentLoaded', init, false);
+  document.addEventListener('readystatechange', (event) => {
+    if (event.target.readyState === 'interactive') {
+      init();
+    }
+    // event.target.readyState === 'complete' is available and equivelant to DOMContentLoaded
+  });
+} else { // readystate is already past loading
   init();
 }
